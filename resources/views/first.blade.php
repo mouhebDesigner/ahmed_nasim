@@ -7,6 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <p>
+        hello from first view
+    </p>
 </body>
 </html>

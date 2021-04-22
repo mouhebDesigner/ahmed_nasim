@@ -15,7 +15,7 @@ class CreateEtudiantsTable extends Migration
     {
         Schema::create('etudiants', function (Blueprint $table) {
             $table->id();
-            $table->string('niveau');
+            $table->enum('niveau', ['premiére licence', 'deuxième licence', 'troisième licence', 'première mastère', 'deuxième mastère']);
             $table->foreignId('section_id')->constrained('sections')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

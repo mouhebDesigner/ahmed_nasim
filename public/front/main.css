@@ -1,0 +1,16 @@
+select{
+    position: relative;
+    height: 50px;
+    padding: 6px 30px;
+    width: 100%;
+    color: #222222;
+    font-size: 16px;
+    border-radius: 0px;
+    transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    border: none;
+    box-shadow: 0 0 30px #eee;
+}

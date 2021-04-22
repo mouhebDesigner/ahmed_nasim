@@ -9,3 +9,4 @@ class Enseignant extends Model
 {
     use HasFactory;
 }
+    

@@ -1,0 +1,6 @@
+.print_mode{
+    display: block;
+}
+.hide_print{
+    display: none;
+}

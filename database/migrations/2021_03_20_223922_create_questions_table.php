@@ -18,6 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->text('titre');
             $table->foreignId('quiz_id')->constrained('quizzes')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
+            // qui nous permet de créer deux champs dans la table nommé created_at updated_at 
         });
     }
 

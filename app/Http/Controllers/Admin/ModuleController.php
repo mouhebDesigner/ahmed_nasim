@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Section;
+use App\Models\Module;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SectionRequest;
+use App\Http\Requests\ModuleRequest;
 
-class sectionController extends Controller
+class ModuleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class sectionController extends Controller
      */
     public function index()
     {
-        $sections = Section::paginate(10);
+        $modules = Module::paginate(10);
 
-        return view('admin.sections.index', compact('sections'));
+        return view('admin.modules.index', compact('modules'));
     }
 
     /**
@@ -28,7 +28,7 @@ class sectionController extends Controller
      */
     public function create()
     {
-        return view('admin.sections.create');
+        return view('admin.modules.create');
     }
 
     /**
@@ -37,15 +37,16 @@ class sectionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(sectionRequest $request)
+    public function store(ModuleRequest $request)
     {
-        $section = new Section();
+        $module = new Module();
 
-        $section->titre = $request->titre;
+        $module->titre = $request->titre;
+        $module->section_id = $request->section_id;
 
-        $section->save();
+        $module->save();
 
-        return redirect('admin/sections')->with('added', 'La section a été ajouté avec succés');
+        return redirect('admin/modules')->with('added', 'La module a été ajouté avec succés');
     }
 
     /**
@@ -67,9 +68,9 @@ class sectionController extends Controller
      */
     public function edit($id)
     {
-        $section = Section::find($id);
+        $module = Module::find($id);
 
-        return view('admin.sections.edit', compact('section'));
+        return view('admin.modules.edit', compact('module'));
     }
 
     /**
@@ -79,15 +80,15 @@ class sectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(sectionRequest $request, $id)
+    public function update(ModuleRequest $request, $id)
     {
-        $section =  Section::find($id);
+        $module =  Module::find($id);
 
-        $section->titre = $request->titre;
+        $module->titre = $request->titre;
 
-        $section->save();
+        $module->save();
 
-        return redirect('admin/sections')->with('updated', 'La section a été modifié avec succés');
+        return redirect('admin/modules')->with('updated', 'La module a été modifié avec succés');
     }
 
     /**
@@ -98,8 +99,8 @@ class sectionController extends Controller
      */
     public function destroy($id)
     {
-        Section::find($id)->delete();
-        return redirect('admin/sections')->with('deleted', 'La section a été supprimer avec succés');
+        Module::find($id)->delete();
+        return redirect('admin/modules')->with('deleted', 'La module a été supprimer avec succés');
         
     }
 }

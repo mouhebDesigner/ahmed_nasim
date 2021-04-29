@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMatieresTable extends Migration
+class CreateTdsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateMatieresTable extends Migration
      */
     public function up()
     {
-        Schema::create('matieres', function (Blueprint $table) {
+        Schema::create('tds', function (Blueprint $table) {
             $table->id();
-            $table->string('titre');
+            $table->foreignId('matiere_id')->constrained('matieres')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('enseignant_id')->constrained('enseignants')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('section_id')->constrained('sections')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('module_id')->constrained('modules')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -26,10 +24,10 @@ class CreateMatieresTable extends Migration
     /**
      * Reverse the migrations.
      *
-     * @return 
+     * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('matieres');
+        Schema::dropIfExists('tds');
     }
 }

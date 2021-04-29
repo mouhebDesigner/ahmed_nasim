@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Section;
+use App\Models\Matiere;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SectionRequest;
+use App\Http\Requests\MatiereRequest;
 
-class sectionController extends Controller
+class MatiereController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class sectionController extends Controller
      */
     public function index()
     {
-        $sections = Section::paginate(10);
+        $matieres = Matiere::paginate(10);
 
-        return view('admin.sections.index', compact('sections'));
+        return view('admin.matieres.index', compact('matieres'));
     }
 
     /**
@@ -28,7 +28,7 @@ class sectionController extends Controller
      */
     public function create()
     {
-        return view('admin.sections.create');
+        return view('admin.matieres.create');
     }
 
     /**
@@ -37,15 +37,18 @@ class sectionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(sectionRequest $request)
+    public function store(MatiereRequest $request)
     {
-        $section = new Section();
+        $matiere = new Matiere();
 
-        $section->titre = $request->titre;
+        $matiere->titre = $request->titre;
+        $matiere->section_id = $request->section_id;
+        $matiere->module_id = $request->module_id;
+        $matiere->enseignant_id = $request->enseignant_id;
 
-        $section->save();
+        $matiere->save();
 
-        return redirect('admin/sections')->with('added', 'La section a été ajouté avec succés');
+        return redirect('admin/matieres')->with('added', 'Le matière a été ajouté avec succés');
     }
 
     /**
@@ -67,9 +70,9 @@ class sectionController extends Controller
      */
     public function edit($id)
     {
-        $section = Section::find($id);
+        $matiere = Matiere::find($id);
 
-        return view('admin.sections.edit', compact('section'));
+        return view('admin.matieres.edit', compact('matiere'));
     }
 
     /**
@@ -79,15 +82,20 @@ class sectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(sectionRequest $request, $id)
+    public function update(MatiereRequest $request, $id)
     {
-        $section =  Section::find($id);
 
-        $section->titre = $request->titre;
+        $matiere =  Matiere::find($id);
 
-        $section->save();
+        $matiere->titre = $request->titre;
+        $matiere->section_id = $request->section_id;
+        $matiere->module_id = $request->module_id;
+        $matiere->enseignant_id = $request->enseignant_id;
 
-        return redirect('admin/sections')->with('updated', 'La section a été modifié avec succés');
+        $matiere->save();
+
+        return redirect('admin/matieres')->with('updated', 'Le matière a été modifié avec succés');
+
     }
 
     /**
@@ -98,8 +106,8 @@ class sectionController extends Controller
      */
     public function destroy($id)
     {
-        Section::find($id)->delete();
-        return redirect('admin/sections')->with('deleted', 'La section a été supprimer avec succés');
+        Matiere::find($id)->delete();
+        return redirect('admin/matieres')->with('deleted', 'Le matière a été supprimer avec succés');
         
     }
 }

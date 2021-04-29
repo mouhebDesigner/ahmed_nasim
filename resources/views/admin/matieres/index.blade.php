@@ -14,7 +14,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Liste de sections</h1>
+                            <h1 class="m-0">Liste de matieres</h1>
                         </div><!-- /.col -->
                        
                     </div>
@@ -47,7 +47,7 @@
                                                         aria-controls="example1">
                                                     </label>
                                                 </div>
-                                                <a href="{{ url('admin/sections/create') }}">
+                                                <a href="{{ url('admin/matieres/create') }}">
                                                     <i class="fa fa-plus"></i>
                                                 </a>
                                             </div>
@@ -60,6 +60,15 @@
                                                     <tr>
                                                         <th>
                                                             titre
+                                                        </th>
+                                                        <th>
+                                                            enseignant
+                                                        </th>
+                                                        <th>
+                                                            section
+                                                        </th>
+                                                        <th>
+                                                            module
                                                         </th>
                                                         
                                                         <th>
@@ -77,21 +86,24 @@
 
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($sections as $section)
+                                                    @foreach($matieres as $matiere)
                                                         <tr>
-                                                            <td>{{ $section->titre }}</td>
-                                                            <td>{{ $section->created_at }}</td>
-                                                            <td>{{ $section->updated_at }}</td>
+                                                            <td>{{ $matiere->titre }}</td>
+                                                            <td>{{ $matiere->enseignant->user->nom }}</td>
+                                                            <td>{{ $matiere->section->titre }}</td>
+                                                            <td>{{ $matiere->module->titre }}</td>
+                                                            <td>{{ $matiere->created_at }}</td>
+                                                            <td>{{ $matiere->updated_at }}</td>
                                                             <td>
                                                                 <div class="d-flex justify-content-around">
-                                                                    <form action="{{ url('admin/sections/'.$section->id) }}" method="post">
+                                                                    <form action="{{ url('admin/matieres/'.$matiere->id) }}" method="post">
                                                                         @csrf
                                                                         @method('delete')
-                                                                        <button type="submit" class="btn-delete" onclick="return confirm('Voules-vous supprimer cette section')">
+                                                                        <button type="submit" class="btn-delete" onclick="return confirm('Voules-vous supprimer ce module')">
                                                                             <i class="fa fa-trash"></i>
                                                                         </button>
                                                                     </form>
-                                                                    <a href="{{ url('admin/sections/'.$section->id.'/edit') }}" onclick="return confirm('Voules-vous modifier cette section')">
+                                                                    <a href="{{ url('admin/matieres/'.$matiere->id.'/edit') }}" onclick="return confirm('Voules-vous modifier ce module')">
                                                                         <i class="fa fa-edit"></i>
                                                                     </a>
                                                                 </div>
@@ -100,9 +112,18 @@
                                                     @endforeach
                                                 </tbody>
                                                 <tfoot>
-                                                <tr>
+                                                    <tr>
                                                         <th>
                                                             titre
+                                                        </th>
+                                                        <th>
+                                                            enseignant
+                                                        </th>
+                                                        <th>
+                                                            section
+                                                        </th>
+                                                        <th>
+                                                            module
                                                         </th>
                                                         
                                                         <th>

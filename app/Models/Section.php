@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Section extends Model
 {
     use HasFactory;
+    public function module(){
+        return $this->hasMany(Module::class);
+    }
 }

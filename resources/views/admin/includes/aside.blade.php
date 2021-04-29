@@ -51,6 +51,24 @@
               </a>
             </li>
           <li class="nav-item">
+            <a href="{{ url('admin/enseignants') }}" class="nav-link @if(Request::is('admin/enseignants*')) active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                {{ __('Gérer les enseignants') }}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('admin/etudiants') }}" class="nav-link @if(Request::is('admin/etudiants*')) active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                {{ __('Gérer les etudiants') }}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ url('admin/sections') }}" class="nav-link @if(Request::is('admin/sections*')) active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -60,10 +78,19 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ url('admin/modules') }}" class="nav-link @if(Request::is('admin/modules*')) active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                {{ __('Gérer les modules') }}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ url('admin/matieres') }}" class="nav-link @if(Request::is('admin/matieres*')) active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                {{ __('Gérer les matières') }}
+                {{ __('Gérer les cours') }}
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>

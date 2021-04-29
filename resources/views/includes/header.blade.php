@@ -61,16 +61,17 @@
                                         <a href="{{ url('/') }}">Accueil</a>
                                     </li>
                                     <li class="menu-item-has-children">
-                                        <a href="#sections">Sections</a>
+                                        <a href="#sections">Diplômes</a>
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a href="#formations">Formations</a>
                                     </li>
                                     <li class="menu-item-has-children">
-                                        <a href="#events">Evènement</a>
-                                    </li>
-                                    <li class="menu-item-has-children">
                                         <a href="#formateur">Formateur</a>
+                                    </li>
+                                    
+                                    <li class="menu-item-has-children">
+                                        <a href="#forum">forum</a>
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a href="#contact">Contact</a>

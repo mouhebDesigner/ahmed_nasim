@@ -21,13 +21,22 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ url('admin/sections/'.$section->id) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ url('admin/modules/'.$module->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                             <div class="card-body">
                             <div class="form-group">
+                                    <label for="section_id">Section</label>
+                                    <select name="section_id" id="section_id" class="form-control">
+                                        <option value="" selected disbaled>Choisir section</option>
+                                        @foreach(App\Models\Section::all() as $section)
+                                            <option value="{{ $section->id }}" @if($module->section_id == $section->id) selected @endif>{{ $section->titre }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            <div class="form-group">
                                 <label for="titre">Titre de section</label>
-                                <input type="text" class="form-control" name="titre" value="{{ $section->titre }}" id="titre" placeholder="Saisir titre de section">
+                                <input type="text" class="form-control" name="titre" value="{{ $module->titre }}" id="titre" placeholder="Saisir titre de module">
                                 @error('titre')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror

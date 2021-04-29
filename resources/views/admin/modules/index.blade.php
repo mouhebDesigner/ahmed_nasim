@@ -14,7 +14,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Liste de sections</h1>
+                            <h1 class="m-0">Liste de modules</h1>
                         </div><!-- /.col -->
                        
                     </div>
@@ -47,7 +47,7 @@
                                                         aria-controls="example1">
                                                     </label>
                                                 </div>
-                                                <a href="{{ url('admin/sections/create') }}">
+                                                <a href="{{ url('admin/modules/create') }}">
                                                     <i class="fa fa-plus"></i>
                                                 </a>
                                             </div>
@@ -60,6 +60,9 @@
                                                     <tr>
                                                         <th>
                                                             titre
+                                                        </th>
+                                                        <th>
+                                                            section
                                                         </th>
                                                         
                                                         <th>
@@ -77,21 +80,22 @@
 
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($sections as $section)
+                                                    @foreach($modules as $module)
                                                         <tr>
-                                                            <td>{{ $section->titre }}</td>
-                                                            <td>{{ $section->created_at }}</td>
-                                                            <td>{{ $section->updated_at }}</td>
+                                                            <td>{{ $module->titre }}</td>
+                                                            <td>{{ $module->section->titre }}</td>
+                                                            <td>{{ $module->created_at }}</td>
+                                                            <td>{{ $module->updated_at }}</td>
                                                             <td>
                                                                 <div class="d-flex justify-content-around">
-                                                                    <form action="{{ url('admin/sections/'.$section->id) }}" method="post">
+                                                                    <form action="{{ url('admin/modules/'.$module->id) }}" method="post">
                                                                         @csrf
                                                                         @method('delete')
-                                                                        <button type="submit" class="btn-delete" onclick="return confirm('Voules-vous supprimer cette section')">
+                                                                        <button type="submit" class="btn-delete" onclick="return confirm('Voules-vous supprimer ce module')">
                                                                             <i class="fa fa-trash"></i>
                                                                         </button>
                                                                     </form>
-                                                                    <a href="{{ url('admin/sections/'.$section->id.'/edit') }}" onclick="return confirm('Voules-vous modifier cette section')">
+                                                                    <a href="{{ url('admin/modules/'.$module->id.'/edit') }}" onclick="return confirm('Voules-vous modifier ce module')">
                                                                         <i class="fa fa-edit"></i>
                                                                     </a>
                                                                 </div>
@@ -100,11 +104,13 @@
                                                     @endforeach
                                                 </tbody>
                                                 <tfoot>
-                                                <tr>
+                                                    <tr>
                                                         <th>
                                                             titre
                                                         </th>
-                                                        
+                                                        <th>
+                                                            section
+                                                        </th>
                                                         <th>
                                                             date de creation
                                                         </th>

@@ -2,7 +2,7 @@
 <html>
   <head>
   <meta charset="UTF-8">
-    <title>Cours en ligne</title>
+    <title>Gestion de demande</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -18,12 +18,14 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     @yield('css')
     
-    
   </head>
 <body class="sidebar-mini " style="height: auto;">
 
     @yield('content')
     <!-- jQuery -->
+
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    @yield('script')
     <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap -->
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

@@ -12,6 +12,17 @@ class Enseignant extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function tps(){
+        return $this->hasMany(Tp::class);
+    }
+    public function tds(){
+        return $this->hasMany(Td::class);
+    }
+    public function cours(){
+        return $this->hasMany(Cour::class);
+    }
+
     
 }
     

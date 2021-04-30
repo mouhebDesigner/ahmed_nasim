@@ -23,16 +23,43 @@
                         <!-- form start -->
                         <form action="{{ url('admin/matieres') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                            <div class="card-body">
+                            <div class="card-body" id="inputs">
                                 <div class="form-group">
-                                    <label for="enseignant_id">Enseignants</label>
-                                    <select name="enseignant_id" id="enseignant_id" class="form-control">
-                                        <option value="" selected disbaled>Choisir enseignant</option>
-                                        @foreach(App\Models\Enseignant::all() as $enseignant)
-                                            <option value="{{ $enseignant->id }}" @if(old('enseignant_id') == $enseignant->id) selected @endif>{{ $enseignant->user->nom }} {{ $enseignant->user->prenom }}</option>
-                                        @endforeach
+                                    <h2>Cette matière contient: </h2>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="tp">TP</label>
+                                            <input type="checkbox" id="tp" name="has_tp" value="1">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="td">TD</label>
+                                            <input type="checkbox" id="td" name="has_td" value="1">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="cours">Cours</label>
+                                            <input type="checkbox" id="cours" name="has_cour" value="1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="enseignant_tp">
+                                    <label for="enseignant_id_tp">Enseignant de TP</label>
+                                    <select name="enseignant_id_tp" id="enseignant_id_tp" class="form-control">
+                                        <option value="" selected disbaled>Choisir enseignant de TP</option>
                                     </select>
                                 </div>
+                                <div class="form-group" id="enseignant_td">
+                                    <label for="enseignant_id_td">Enseignant de TD</label>
+                                    <select name="enseignant_id_td" id="enseignant_id_td" class="form-control">
+                                        <option value="" selected disbaled>Choisir enseignant de TD</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" id="enseignant_cours">
+                                    <label for="enseignant_id_cours">Enseignant de cours</label>
+                                    <select name="enseignant_id_cours" id="enseignant_id_cours" class="form-control">
+                                        <option value="" selected disbaled>Choisir enseignant de cours</option>
+                                    </select>
+                                </div>
+                               
                                 <div class="form-group">
                                     <label for="section_id">Section</label>
                                     <select name="section_id" id="section_id" class="form-control">
@@ -75,6 +102,63 @@
 @endsection
 @section('script')
 <script>
+    $("#tp").on('click', function(){
+        $("#enseignant_tp").css('display', 'block');
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type:'get',
+            url:'/teachers/',
+            data:'_token = <?php echo csrf_token() ?>',
+            success:function(data) {
+                console.log(data);
+
+                $.each(data, function(index, value){
+                    $('#enseignant_id_tp').append('<option value="'+value.id+'">'+value.nom+'</option>');
+                });
+
+            }    
+        });
+    });
+    $("#td").on('click', function(){
+        $("#enseignant_td").css('display', 'block');
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type:'get',
+            url:'/teachers/',
+            data:'_token = <?php echo csrf_token() ?>',
+            success:function(data) {
+                console.log(data);
+
+                $.each(data, function(index, value){
+                    $('#enseignant_id_td').append('<option value="'+value.id+'">'+value.nom+'</option>');
+                });
+
+            }    
+        });
+    });
+    $("#cours").on('click', function(){
+        $("#enseignant_cours").css('display', 'block');
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type:'get',
+            url:'/teachers/',
+            data:'_token = <?php echo csrf_token() ?>',
+            success:function(data) {
+                console.log(data);
+
+                $.each(data, function(index, value){
+                    $('#enseignant_id_cours').append('<option value="'+value.id+'">'+value.nom+'</option>');
+                });
+
+            }    
+        });
+    });
     $("#section_id").on('change', function(){
         var section_id = $(this).val();
         $.ajax({

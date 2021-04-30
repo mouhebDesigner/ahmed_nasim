@@ -12,4 +12,8 @@ class Tp extends Model
     public function matiere(){
         return $this->belongsTo(Matiere::class);
     }
+
+    public function enseignant(){
+        return $this->belongsTo(Enseignant::class);
+    }
 }

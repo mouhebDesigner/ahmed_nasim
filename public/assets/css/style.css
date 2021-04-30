@@ -34,3 +34,12 @@
 .fa-edit{
     transform: scale(1.5);
 }
+#enseignant_tp{
+    display: none;
+}
+#enseignant_td{
+    display: none;
+}
+#enseignant_cours{
+    display: none;
+}

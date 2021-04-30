@@ -16,7 +16,9 @@ class CreateMatieresTable extends Migration
         Schema::create('matieres', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
-            $table->foreignId('enseignant_id')->constrained('enseignants')->onDelete('cascade')->onUpdate('cascade');
+            $table->boolean('has_tp')->default(false);
+            $table->boolean('has_td')->default(false);
+            $table->boolean('has_cour')->default(false);
             $table->foreignId('section_id')->constrained('sections')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('module_id')->constrained('modules')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

@@ -1,13 +1,17 @@
 <?php
 
 use App\Models\Car;
+use App\Models\User;
 use App\Models\Module;
+use App\Models\Enseignant;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\EnseignantController;
 use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\MatiereController;
 use App\Http\Controllers\Admin\SectionController;
+use App\Http\Controllers\Enseignant\ChapitreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +36,17 @@ Route::prefix('admin')->group(function () {
     Route::get('users', [UserController::class, 'index']);
     Route::delete('user/{id}', [UserController::class, 'destroy']);
 });
+Route::prefix('enseignant')->group(function () {
+    Route::resource('cours', ChapitreController::class);
+    Route::resource('td', TdController::class);
+    Route::resource('tp', TpController::class);
+    Route::resource('quizzes', QuizzesController::class);
+    Route::resource('formations', FormationController::class);
+
+    Route::prefix('matiere/{matiere_id}')->group(function ($matiere_id){
+        Route::resource('chapitres', ChapitreController::class);
+    }); 
+});
 Route::get('register/enseignant', function(){
     return view('auth.register_enseignant');
 });
@@ -43,6 +58,12 @@ Route::get('/module_list/{section_id}', function($section_id){
 
     $modules = Module::where('section_id', $section_id)->get();
     return response()->json($modules);
+
+});
+Route::get('/teachers', function(){
+
+    $teachers= User::where('grade', 'enseignant')->with('enseignant')->get();
+    return response()->json($teachers);
 
 });
 

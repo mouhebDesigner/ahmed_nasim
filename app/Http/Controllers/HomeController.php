@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->grade == "admin")
+        if(Auth::user()->grade == "admin" || Auth::user()->grade == "enseignant")
             return view('admin.home');
     }
 }

@@ -11,7 +11,7 @@
                     @include('admin.includes.error-message')
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Page d'accueil</h1>
+                            <h1 class="m-0">Liste de chapitres</h1>
                         </div><!-- /.col -->
                        
                     </div>
@@ -24,7 +24,7 @@
                         <div class="col-12">
                             <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Liste des inscription</h3>
+                                <h3 class="card-title">Liste des chpaitres</h3>
 
                                 <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -43,48 +43,31 @@
                                 <table class="table table-hover text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th>nom</th>
-                                        <th>prenom</th>
-                                        <th>email</th>
-                                        <th>grade</th>
-                                        <th>numtel</th>
+                                        <th>titre</th>
+                                        <th>Date de creation</th>
+                                        <th>Date de modification</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($users as $user)
+                                    @foreach($chapitres as $chapitre)
                                     <tr>
-                                        <td>{{ $user->nom }}</td>
-                                        <td>{{ $user->prenom }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->grade }}</td>
-                                        <td>{{ $user->numtel }}</td>
+                                        <td>{{ $chapitre->matiere->titre }}</td>
+                                        <td>{{ $chapitre->matiere->created_at }}</td>
+                                        <td>{{ $chapitre->matiere->updated_at }}</td>
                                         <td>
-                                            <div class="d-flex justify-content-between">
-                                                <a href="{{ url('admin/user/'.$user->id.'/approuver') }}" class="btn btn-success"  onclick="
-                                                            return confirm('Voulez-vous approuver cet utilisateur');
-                                                        ">Approuver</a>
-                                                <form action="{{ url('admin/user/'.$user->id) }}" method='post'>
-                                                    @csrf
-                                                    @method('delete')
-                                                        <button type="submit" class="btn-hidden" onclick="
-                                                            return confirm('Voulez-vous suprimer cet utilisateur');
-                                                        ">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </form>
-                                            </div>
+                                            <a href="{{ url('enseignant/matiere/'.$chapitre->id.'/chapitres/create') }}">
+                                                Chapitre <i class="fa fa-plus"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>nom</th>
-                                        <th>prenom</th>
-                                        <th>email</th>
-                                        <th>grade</th>
-                                        <th>numtel</th>
+                                        <th>titre</th>
+                                        <th>Date de creation</th>
+                                        <th>Date de modification</th>
                                         <th>Actions</th>
                                     </tr>
                                 </tfoot>

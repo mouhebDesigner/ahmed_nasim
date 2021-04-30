@@ -62,9 +62,6 @@
                                                             titre
                                                         </th>
                                                         <th>
-                                                            enseignant
-                                                        </th>
-                                                        <th>
                                                             section
                                                         </th>
                                                         <th>
@@ -89,7 +86,6 @@
                                                     @foreach($matieres as $matiere)
                                                         <tr>
                                                             <td>{{ $matiere->titre }}</td>
-                                                            <td>{{ $matiere->enseignant->user->nom }}</td>
                                                             <td>{{ $matiere->section->titre }}</td>
                                                             <td>{{ $matiere->module->titre }}</td>
                                                             <td>{{ $matiere->created_at }}</td>
@@ -115,9 +111,6 @@
                                                     <tr>
                                                         <th>
                                                             titre
-                                                        </th>
-                                                        <th>
-                                                            enseignant
                                                         </th>
                                                         <th>
                                                             section

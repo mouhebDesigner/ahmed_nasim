@@ -38,18 +38,28 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
+      @if(Auth::user()->grade == 'admin')
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-item">
-              <a href="{{ url('home') }}" class="nav-link @if(Request::is('home')) active @endif">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Acceuil
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-            </li>
+          <li class="nav-item">
+            <a href="{{ url('home') }}" class="nav-link @if(Request::is('home')) active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Acceuil
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('admin/users') }}" class="nav-link @if(Request::is('admin/users*')) active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                {{ __('Gérer les inscriptions') }}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="{{ url('admin/enseignants') }}" class="nav-link @if(Request::is('admin/enseignants*')) active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -95,6 +105,69 @@
               </p>
             </a>
           </li>
+          
+          
+        </ul>
+      @endif
+      @if(Auth::user()->grade == 'enseignant')
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="{{ url('home') }}" class="nav-link @if(Request::is('home')) active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Acceuil
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('enseignant/cours') }}" class="nav-link @if(Request::is('enseignant/cours*')) active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                {{ __('Gérer  chapitres') }}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('enseignant/tp') }}" class="nav-link @if(Request::is('enseignant/tp*')) active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                {{ __('Gérer  travaux partique') }}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('enseignant/td') }}" class="nav-link @if(Request::is('enseignant/td*')) active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                {{ __('Gérer travaux dirigé') }}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('enseignant/quizzes') }}" class="nav-link @if(Request::is('enseignant/quizzes*')) active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                {{ __('Gérer  quizzes') }}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('enseignant/formations') }}" class="nav-link @if(Request::is('enseignant/formations*')) active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                {{ __('Gérer  formations') }}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+        
           
             <!-- <ul class="nav nav-treeview" style="display: none;">
               <li class="nav-item">
@@ -142,6 +215,7 @@
           
           
         </ul>
+      @endif
       </nav>
       <!-- /.sidebar-menu -->
     </div>

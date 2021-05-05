@@ -11,7 +11,7 @@
                     @include('admin.includes.error-message')
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Liste de chapitre de matière {{ $matiere }}</h1>
+                            <h1 class="m-0">Liste de travaux pratique de matière {{ $matiere }}</h1>
                         </div><!-- /.col -->
                        
                     </div>
@@ -23,11 +23,11 @@
                         <div class="col-12">
                             <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Liste de chapitres</h3>
+                                <h3 class="card-title">Liste de travaux pratique</h3>
 
                                 <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
-                                    <a href="{{ route('chapitres.create', ['matiere_id' => $matiere_id]) }}" class="btn btn-primary">
+                                    <a href="{{ route('travaux_pratiques.create', ['matiere_id' => $matiere_id]) }}" class="btn btn-primary">
                                         <i class="fa fa-plus"></i>
                                     </a>
                                 </div>
@@ -39,29 +39,27 @@
                                 <thead>
                                     <tr>
                                         <th>titre</th>
-                                        <th>type de contenue</th>
                                         <th>Date de creation</th>
                                         <th>Date de modification</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($chapitres as $chapitre)
+                                    @foreach($tps as $tp)
                                     <tr>
-                                        <td>{{ $chapitre->titre }}</td>
-                                        <td>{{ $chapitre->type }}</td>
-                                        <td>{{ $chapitre->created_at }}</td>
-                                        <td>{{ $chapitre->updated_at }}</td>
+                                        <td>{{ $tp->titre }}</td>
+                                        <td>{{ $tp->created_at }}</td>
+                                        <td>{{ $tp->updated_at }}</td>
                                         <td>
                                             <div class="d-flex justify-content-around">
-                                                <form action="{{ route('chapitres.destroy', ['matiere_id' => $chapitre->matiere_id, 'chapitre' => $chapitre->id]) }}" method="post">
+                                                <form action="{{ route('travaux_pratiques.destroy', ['matiere_id' => $tp->matiere_id, 'travaux_pratique' => $tp->id]) }}" method="post">
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" class="btn-delete" onclick="return confirm('Voules-vous supprimer ce chapitre')">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
-                                                <a href="{{ route('chapitres.edit', ['matiere_id' => $chapitre->matiere_id, 'chapitre' => $chapitre->id]) }}" onclick="return confirm('Voules-vous modifier ce chapitre')">
+                                                <a href="{{ route('travaux_pratiques.edit', ['matiere_id' => $tp->matiere_id, 'travaux_pratique' => $tp->id]) }}" onclick="return confirm('Voules-vous modifier ce chapitre')">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </div>
@@ -72,7 +70,6 @@
                                 <tfoot>
                                     <tr>
                                         <th>titre</th>
-                                        <th>type de contenue</th>
                                         <th>Date de creation</th>
                                         <th>Date de modification</th>
                                         <th>Actions</th>

@@ -42,7 +42,7 @@
                     <div class="logo-cat-wrap">
                         <div class="logo-part">
                             <a href="{{ url('/') }}">
-                                <img src="http://127.0.0.1:8000/front/assets//images/logo-dark.png" alt="">
+                                <img src="http://127.0.0.1:8000/front/assets//images/easy-learn.png" alt="">
                             </a>
                         </div>
                     </div>

@@ -156,7 +156,7 @@ class MatiereController extends Controller
                 $cour->matiere_id = $id;
             } else {
                 $cour_id = Cour::where('matiere_id', $id)->first()->id;
-                $cour =  Cour::find($td_id);
+                $cour =  Cour::find($cour_id);
                 $cour->enseignant_id = $request->enseignant_id_cours;
                 $cour->matiere_id = $id;
             }

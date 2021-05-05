@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="last-password">
-                                <p>Vous n'avez pas un compte? <a href="{{ url('register') }}">S'inscrire maintenant</a></p>
+                                <p>Vous n'avez pas un compte? <a href="{{ url('/') }}">S'inscrire maintenant</a></p>
                             </div>
                         </form>
                     </div>

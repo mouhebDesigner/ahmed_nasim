@@ -38,7 +38,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label for="cours">Cours</label>
-                                            <input type="checkbox" id="cours" name="has_cour" value="1" @if($matiere->has_cours == 1) checked @endif>
+                                            <input type="checkbox" id="cours" name="has_cour" value="1" @if($matiere->has_cour == 1) checked @endif>
                                         </div>
                                     </div>
                                 </div>

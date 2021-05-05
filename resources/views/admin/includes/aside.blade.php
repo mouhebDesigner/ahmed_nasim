@@ -123,7 +123,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('enseignant/cours') }}" class="nav-link @if(Request::is('enseignant/cours*')) active @endif">
+            <a href="{{ url('enseignant/cours') }}" class="nav-link @if(Request::is('enseignant/cours*') || Request::is('*chapitres*')) active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 {{ __('Gérer  chapitres') }}
@@ -132,16 +132,16 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('enseignant/tp') }}" class="nav-link @if(Request::is('enseignant/tp*')) active @endif">
+            <a href="{{ url('enseignant/tp') }}" class="nav-link @if(Request::is('enseignant/tp*') || Request::is('*travaux_pratiques*')) active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                {{ __('Gérer  travaux partique') }}
+                {{ __('Gérer travaux partique') }}
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('enseignant/td') }}" class="nav-link @if(Request::is('enseignant/td*')) active @endif">
+            <a href="{{ url('enseignant/td') }}" class="nav-link @if(Request::is('enseignant/td*') || Request::is('*travaux_diriges*')) active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 {{ __('Gérer travaux dirigé') }}
@@ -150,7 +150,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('enseignant/quizzes') }}" class="nav-link @if(Request::is('enseignant/quizzes*')) active @endif">
+            <a href="{{ url('enseignant/quizzes') }}" class="nav-link @if(Request::is('enseignant/quizze*')) active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 {{ __('Gérer  quizzes') }}

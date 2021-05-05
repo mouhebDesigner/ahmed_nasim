@@ -1,6 +1,11 @@
 @extends('admin.layouts.master')
 
 @section('content')
+    @php
+
+    $question_rest = App\Models\Quizze::find($quizze_id)->nbr_questions - App\Models\Quizze::find($quizze_id)->questions->count();
+
+    @endphp
     <div class="wrapper">
         
         @include('admin.includes.header')
@@ -11,7 +16,7 @@
                     @include('admin.includes.error-message')
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Liste de chapitre de matière {{ $matiere }}</h1>
+                            <h1 class="m-0">Gérer les questions</h1>
                         </div><!-- /.col -->
                        
                     </div>
@@ -23,45 +28,62 @@
                         <div class="col-12">
                             <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Liste de chapitres</h3>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="d-flex justify-content-between">
 
-                                <div class="card-tools">
-                                <div class="input-group input-group-sm" style="width: 150px;">
-                                    <a href="{{ route('chapitres.create', ['matiere_id' => $matiere_id]) }}" class="btn btn-primary">
-                                        <i class="fa fa-plus"></i>
-                                    </a>
+                                            <h3 class="card-title">Liste de questions</h3>
+                                            @if($question_rest == 0)
+                                                <a href="#" onclick="alert('Vous avez créé toutes les questions')" class="btn btn-primary">
+                                                    <i class="fa fa-plus"></i>
+                                                    {{ $question_rest }}
+                                                </a>
+                                            @else 
+                                                <a href="{{ route('questions.create', ['quizze_id' => $quizze_id]) }}" class="btn btn-primary">
+                                                    <i class="fa fa-plus"></i>
+                                                    {{ $question_rest }}
+                                                </a>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
-                                </div>
+                                
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
                                 <table class="table table-hover text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th>titre</th>
-                                        <th>type de contenue</th>
+                                        <th>Question</th>
+                                        <th>Réponse</th>
                                         <th>Date de creation</th>
                                         <th>Date de modification</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($chapitres as $chapitre)
+                                    @foreach($questions as $question)
                                     <tr>
-                                        <td>{{ $chapitre->titre }}</td>
-                                        <td>{{ $chapitre->type }}</td>
-                                        <td>{{ $chapitre->created_at }}</td>
-                                        <td>{{ $chapitre->updated_at }}</td>
+                                        <td>{{ $question->content }}</td>
+                                        <td>
+                                            @if($question->answer == 'true')
+                                                <p>Vraie</p>
+                                            @else
+                                                <p>Faux</p>
+                                            @endif
+                                        </td>
+                                        <td>{{ $question->created_at }}</td>
+                                        <td>{{ $question->updated_at }}</td>
                                         <td>
                                             <div class="d-flex justify-content-around">
-                                                <form action="{{ route('chapitres.destroy', ['matiere_id' => $chapitre->matiere_id, 'chapitre' => $chapitre->id]) }}" method="post">
+                                                <form action="{{ route('questions.destroy', ['question' => $question->id]) }}" method="post">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn-delete" onclick="return confirm('Voules-vous supprimer ce chapitre')">
+                                                    <button type="submit" class="btn-delete" onclick="return confirm('Voules-vous supprimer cet question')">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
-                                                <a href="{{ route('chapitres.edit', ['matiere_id' => $chapitre->matiere_id, 'chapitre' => $chapitre->id]) }}" onclick="return confirm('Voules-vous modifier ce chapitre')">
+                                                <a href="{{ route('questions.edit', ['question' => $question->id]) }}" onclick="return confirm('Voules-vous modifier cet question')">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </div>
@@ -71,8 +93,8 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>titre</th>
-                                        <th>type de contenue</th>
+                                        <th>Matiere</th>
+                                        <th>Nombre de question</th>
                                         <th>Date de creation</th>
                                         <th>Date de modification</th>
                                         <th>Actions</th>

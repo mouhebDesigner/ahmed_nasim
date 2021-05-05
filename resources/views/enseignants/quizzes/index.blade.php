@@ -11,7 +11,7 @@
                     @include('admin.includes.error-message')
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Liste de chapitre de matière {{ $matiere }}</h1>
+                            <h1 class="m-0">Gérer les quizzes</h1>
                         </div><!-- /.col -->
                        
                     </div>
@@ -23,13 +23,17 @@
                         <div class="col-12">
                             <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Liste de chapitres</h3>
+                                <h3 class="card-title">Liste de quizzes</h3>
 
                                 <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
-                                    <a href="{{ route('chapitres.create', ['matiere_id' => $matiere_id]) }}" class="btn btn-primary">
-                                        <i class="fa fa-plus"></i>
-                                    </a>
+                                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                                    <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                    </div>
                                 </div>
                                 </div>
                             </div>
@@ -38,30 +42,33 @@
                                 <table class="table table-hover text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th>titre</th>
-                                        <th>type de contenue</th>
+                                        <th>Matiere</th>
+                                        <th>Nombre de question</th>
                                         <th>Date de creation</th>
                                         <th>Date de modification</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($chapitres as $chapitre)
+                                    @foreach($quizzes as $quizze)
                                     <tr>
-                                        <td>{{ $chapitre->titre }}</td>
-                                        <td>{{ $chapitre->type }}</td>
-                                        <td>{{ $chapitre->created_at }}</td>
-                                        <td>{{ $chapitre->updated_at }}</td>
+                                        <td>{{ $quizze->matiere->titre }}</td>
+                                        <td>{{ $quizze->nbr_questions }}</td>
+                                        <td>{{ $quizze->matiere->created_at }}</td>
+                                        <td>{{ $quizze->matiere->updated_at }}</td>
                                         <td>
                                             <div class="d-flex justify-content-around">
-                                                <form action="{{ route('chapitres.destroy', ['matiere_id' => $chapitre->matiere_id, 'chapitre' => $chapitre->id]) }}" method="post">
+                                                <a href="{{ route('questions.index', ['quizze_id' => $quizze->id]) }}" class="btn btn-primary">
+                                                    Questions
+                                                </a>
+                                                <form action="{{ route('quizzes.destroy', ['quiz' => $quizze->id]) }}" method="post">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn-delete" onclick="return confirm('Voules-vous supprimer ce chapitre')">
+                                                    <button type="submit" class="btn-delete" onclick="return confirm('Voules-vous supprimer ce module')">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
-                                                <a href="{{ route('chapitres.edit', ['matiere_id' => $chapitre->matiere_id, 'chapitre' => $chapitre->id]) }}" onclick="return confirm('Voules-vous modifier ce chapitre')">
+                                                <a href="{{ route('quizzes.edit', ['quiz' => $quizze->id]) }}" onclick="return confirm('Voules-vous modifier ce module')">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </div>
@@ -71,8 +78,8 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>titre</th>
-                                        <th>type de contenue</th>
+                                        <th>Matiere</th>
+                                        <th>Nombre de question</th>
                                         <th>Date de creation</th>
                                         <th>Date de modification</th>
                                         <th>Actions</th>

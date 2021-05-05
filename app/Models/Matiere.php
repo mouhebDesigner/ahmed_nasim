@@ -31,5 +31,9 @@ class Matiere extends Model
         return $this->belongsTo(Enseignant::class);
     }
 
+    public function quizze(){
+        return $this->hasOne(Quizze::class);
+    }
+
 
 }

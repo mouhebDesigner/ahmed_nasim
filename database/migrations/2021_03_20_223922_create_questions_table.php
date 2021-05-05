@@ -15,8 +15,9 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->text('titre');
-            $table->foreignId('quiz_id')->constrained('quizzes')->onDelete('cascade')->onUpdate('cascade');
+            $table->text('content');
+            $table->enum('answer', ['true', 'false']);
+            $table->foreignId('quizze_id')->constrained('quizzes')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             // qui nous permet de créer deux champs dans la table nommé created_at updated_at 
         });

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQuizzesTable extends Migration
+class CreateActivitesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateQuizzesTable extends Migration
      */
     public function up()
     {
-        Schema::create('quizzes', function (Blueprint $table) {
+        Schema::create('activites', function (Blueprint $table) {
             $table->id();
-            $table->biginteger('nbr_questions');
+            $table->string('titre');
+            $table->string('document');
+            $table->enum('type', ['td', 'tp']);
+            $table->foreignId('chapitre_id')->constrained('chapitres')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('matiere_id')->constrained('matieres')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
@@ -28,6 +31,6 @@ class CreateQuizzesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quizzes');
+        Schema::dropIfExists('activites');
     }
 }

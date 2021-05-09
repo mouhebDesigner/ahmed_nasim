@@ -57,30 +57,6 @@
                     </span>
                 @enderror
             </div>
-
-            <div class="form-group col-lg-12 mb-25">
-                <input type="text" id="specialite" name="specialite" value="{{ old('specialite') }}" class="@error('specialite') error_input @enderror" placeholder="Saisir votre specialite">
-                @error('specialite')
-                    <span class="invalid-feedback" role="alert" style="display:inline">
-                        <strong class="font-size_strong">{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-            
-            <div class="form-group col-lg-12 mb-25">
-                <select name="type" id="">
-                    <option value="" disabled selected>{{ __('Vous êtes professeur de : ') }}</option>
-                    <option value="TP">TP</option>
-                    <option value="TD">TD</option>
-                    <option value="COURS">COURS</option>
-                </select>
-                @error('type')
-                    <span class="invalid-feedback" role="alert" style="display:inline">
-                        <strong class="font-size_strong">{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-
             <div class="form-group col-lg-12 col-md-12 col-sm-12 text-center">
                 <button type="submit" class="readon register-btn">
                     <span class="txt">Inscrire</span>

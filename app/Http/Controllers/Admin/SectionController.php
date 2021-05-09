@@ -42,6 +42,9 @@ class sectionController extends Controller
         $section = new Section();
 
         $section->titre = $request->titre;
+        if($request->hasFile('icone')){
+            $section->icone = $request->icone->store('images');
+        }
 
         $section->save();
 
@@ -85,6 +88,10 @@ class sectionController extends Controller
 
         $section->titre = $request->titre;
 
+        if($request->hasFile('icone')){
+            $section->icone = $request->icone->store('images');
+        }
+        
         $section->save();
 
         return redirect('admin/sections')->with('updated', 'La section a été modifié avec succés');

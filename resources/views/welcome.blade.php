@@ -29,5 +29,6 @@
             </div>
         </div>
     </div>
+    @include('includes.sections')
 @endsection
 

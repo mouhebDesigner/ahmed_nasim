@@ -76,8 +76,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="titre">Titre de module</label>
-                                    <input type="text" class="form-control" name="titre" value="{{ old('titre') }}" id="titre" placeholder="Saisir titre de module">
+                                    <label for="titre">Titre de matière</label>
+                                    <input type="text" class="form-control" name="titre" value="{{ old('titre') }}" id="titre" placeholder="Saisir titre de matiére">
                                     @error('titre')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror

@@ -25,13 +25,20 @@
                         @csrf
                         @method('put')
                             <div class="card-body">
-                            <div class="form-group">
-                                <label for="titre">Titre de section</label>
-                                <input type="text" class="form-control" name="titre" value="{{ $section->titre }}" id="titre" placeholder="Saisir titre de section">
-                                @error('titre')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
+                                <div class="form-group">
+                                    <label for="titre">Titre de section</label>
+                                    <input type="text" class="form-control" name="titre" value="{{ $section->titre }}" id="titre" placeholder="Saisir titre de section">
+                                    @error('titre')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="icone">iconee de section</label>
+                                    <input type="file" class="form-control" name="icone" value="{{ old('icone') }}" id="icone" >
+                                    @error('icone')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             </div>
                             <!-- /.card-body -->
 

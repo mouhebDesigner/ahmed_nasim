@@ -61,7 +61,7 @@
                                         <a href="{{ url('/') }}">Accueil</a>
                                     </li>
                                     <li class="menu-item-has-children">
-                                        <a href="#sections">Diplômes</a>
+                                        <a href="#sections">Sections</a>
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a href="#formations">Formations</a>

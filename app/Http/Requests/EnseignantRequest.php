@@ -30,8 +30,6 @@ class EnseignantRequest extends FormRequest
             'prenom' => ['required', 'string', 'max:255'],
             'numtel' => ['required', 'numeric', 'digits:8'],
             'date_naissance' => ['required'],
-            "specialite" => 'required',
-            "type" => "required" 
         ];
     }
 }

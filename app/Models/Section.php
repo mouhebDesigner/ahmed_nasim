@@ -11,4 +11,7 @@ class Section extends Model
     public function module(){
         return $this->hasMany(Module::class);
     }
+    public function matieres(){
+        return $this->hasMany(Matiere::class);
+    }
 }

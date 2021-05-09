@@ -28,8 +28,6 @@ class EnseignantController extends Controller
         $enseignant = new Enseignant();
 
         $enseignant->user_id = $user->id;
-        $enseignant->specialite = $request->specialite;
-        $enseignant->type = $request->type;
 
         $enseignant->save();
         

@@ -48,4 +48,8 @@ class User extends Authenticatable
     public function enseignant(){
         return $this->hasOne(Enseignant::class);
     }
+    
+    public function formations(){
+        return $this->belongsToMany(Formation::class);
+    }
 }

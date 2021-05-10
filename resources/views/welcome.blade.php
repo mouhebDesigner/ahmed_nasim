@@ -30,5 +30,6 @@
         </div>
     </div>
     @include('includes.sections')
+    @include('includes.formations')
 @endsection
 

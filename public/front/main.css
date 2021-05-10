@@ -14,3 +14,9 @@ select{
     border: none;
     box-shadow: 0 0 30px #eee;
 }
+
+.alert_success{
+    background: #166bb3;
+    color: white;
+    box-shadow: 0px 4px 7px -2px #166bb3;
+}

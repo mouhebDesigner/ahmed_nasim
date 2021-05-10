@@ -26,11 +26,11 @@
                                 <h3 class="card-title">Liste de formations</h3>
 
                                 <div class="card-tools">
-                                <div class="input-group input-group-sm" style="width: 150px;">
-                                    <a href="{{ route('formations.create') }}" class="btn btn-primary">
-                                        <i class="fa fa-plus"></i>
-                                    </a>
-                                </div>
+                                    <div class="input-group input-group-sm" style="width: 150px;">
+                                        <a href="{{ route('formations.create') }}" class="btn btn-primary">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.card-header -->

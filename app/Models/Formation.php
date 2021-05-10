@@ -12,4 +12,8 @@ class Formation extends Model
     public function videos(){
         return $this->hasMany(Video::class);
     }
+
+    public function participants(){
+        return $this->belongsToMany(User::class);
+    }
 }

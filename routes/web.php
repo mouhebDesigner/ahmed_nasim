@@ -42,6 +42,8 @@ Route::prefix('admin')->group(function () {
     Route::get('user/{id}/approuver', [UserController::class, 'approuver']);
     Route::get('users', [UserController::class, 'index']);
     Route::delete('user/{id}', [UserController::class, 'destroy']);
+    Route::resource('formations', FormationController::class);
+
 });
 Route::prefix('enseignant')->group(function () {
     Route::resource('cours', matiere_enseignant::class);
@@ -77,7 +79,6 @@ Route::prefix('enseignant')->group(function () {
     Route::resource('quizzes', QuizController::class)->except(['create', 'store']);
     
     
-    Route::resource('formations', FormationController::class);
 
 });
 

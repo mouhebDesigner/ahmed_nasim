@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-md-12">
                     @if(session('signed'))
-                        <div class="alert">
+                        <div class="alert alert_success">
                             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
                             <strong>Succés! </strong>  {{ session('signed') }}
                         </div>             

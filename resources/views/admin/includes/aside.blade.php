@@ -105,7 +105,15 @@
               </p>
             </a>
           </li>
-          
+          <li class="nav-item">
+            <a href="{{ url('admin/formations') }}" class="nav-link @if(Request::is('enseignant/formations*')) active @endif">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                {{ __('Gérer  formations') }}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
           
         </ul>
       @endif
@@ -158,15 +166,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{{ url('enseignant/formations') }}" class="nav-link @if(Request::is('enseignant/formations*')) active @endif">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                {{ __('Gérer  formations') }}
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-          </li>
+          
         
           
             <!-- <ul class="nav nav-treeview" style="display: none;">

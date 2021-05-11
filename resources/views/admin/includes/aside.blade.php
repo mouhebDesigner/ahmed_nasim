@@ -100,7 +100,7 @@
             <a href="{{ url('admin/matieres') }}" class="nav-link @if(Request::is('admin/matieres*')) active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                {{ __('Gérer les cours') }}
+                {{ __('Gérer les matieres') }}
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -131,32 +131,42 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('enseignant/cours') }}" class="nav-link @if(Request::is('enseignant/cours*') || Request::is('*chapitres*')) active @endif">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+            <a href="#" class="nav-link  @if(Request::is('enseignant/matieres')) active @endif">
+              <i class="nav-icon fas fa-tree"></i>
               <p>
-                {{ __('Gérer  chapitres') }}
-                <i class="right fas fa-angle-left"></i>
+                Gérer matières
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="{{ url('enseignant/matieres') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Consulter matières</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('enseignant/cours') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Gérer chapitres</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('enseignant/tp') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Gérer travaux pratiques</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('enseignant/td') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Gérer travaux dirigés</p>
+                </a>
+              </li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a href="{{ url('enseignant/tp') }}" class="nav-link @if(Request::is('enseignant/tp*') || Request::is('*travaux_pratiques*')) active @endif">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                {{ __('Gérer travaux partique') }}
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ url('enseignant/td') }}" class="nav-link @if(Request::is('enseignant/td*') || Request::is('*travaux_diriges*')) active @endif">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                {{ __('Gérer travaux dirigé') }}
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-          </li>
+
+          
           <li class="nav-item">
             <a href="{{ url('enseignant/quizzes') }}" class="nav-link @if(Request::is('enseignant/quizze*')) active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>

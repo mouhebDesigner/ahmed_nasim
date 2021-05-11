@@ -32,7 +32,18 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="icone">iconee de section</label>
+                                    <label for="section_id">Niveau</label>
+                                    <select name="niveau" id="niveau" class="form-control">
+                                        <option value="" selected disbaled>Choisir niveau</option>
+                                        <option value="mastère">Mastère</option>
+                                        <option value="licence">Licence</option>
+                                    </select>
+                                    @error('niveau')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="icone">icone de section</label>
                                     <input type="file" class="form-control" name="icone" value="{{ old('icone') }}" id="icone" >
                                     @error('icone')
                                         <p class="text-danger">{{ $message }}</p>

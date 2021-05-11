@@ -58,13 +58,20 @@
                 @enderror
             </div>
             <div class="form-group col-lg-12 mb-25">
-                <select name="niveau" id="" >
+                <select name="cycle" id="" >
+                    <option value="" selected disbaled>Choisir votre cycle</option>
+                    <option value="licence">Licence</option>
+                    <option value="mastère">Mastère</option>
+                </select>
+                @error('cycle')
+                    <span class="invalid-feedback" role="alert" style="display: inline">
+                        <strong class="font-size_strong_strong">{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+            <div class="form-group col-lg-12 mb-25">
+                <select name="niveau" id="niveau">
                     <option value="" selected disbaled>Choisir votre niveau</option>
-                    <option value="premiére licence">premiére licence</option>
-                    <option value="deuxième licence">deuxième licence</option>
-                    <option value="troisième licence">troisième licence</option>
-                    <option value="première mastère">première mastère</option>
-                    <option value="deuxième mastère">deuxième mastère</option>
                 </select>
                 @error('niveau')
                     <span class="invalid-feedback" role="alert" style="display: inline">
@@ -99,3 +106,4 @@
         
     </form>
 </div>
+

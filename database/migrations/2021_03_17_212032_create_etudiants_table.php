@@ -17,6 +17,7 @@ class CreateEtudiantsTable extends Migration
             $table->id();
             $table->enum('niveau', ['premiére licence', 'deuxième licence', 'troisième licence', 'première mastère', 'deuxième mastère']);
             $table->foreignId('section_id')->constrained('sections')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

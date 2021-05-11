@@ -25,5 +25,7 @@ class HomeController extends Controller
     {
         if(Auth::user()->grade == "admin" || Auth::user()->grade == "enseignant")
             return view('admin.home');
+        else 
+            return view('home');
     }
 }

@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\EnseignantController;
+use App\Http\Controllers\Admin\EnseignantController as enseignant_admin;
+use App\Http\Controllers\Admin\EtudiantController as etudiant_admin;
 use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Enseignant\TdController;
@@ -19,6 +21,10 @@ use App\Http\Controllers\Enseignant\QuizController;
 use App\Http\Controllers\Enseignant\ChapitreController;
 use App\Http\Controllers\Enseignant\QuestionController;
 use App\Http\Controllers\Enseignant\FormationController;
+use App\Http\Controllers\MatiereController as MatiereController_etudiant;
+use App\Http\Controllers\FormationController as FormationController_etudiant;
+use App\Http\Controllers\ForumController as ForumController_etudiant;
+use App\Http\Controllers\ModuleController as ModuleController_etudiant;
 use App\Http\Controllers\Admin\MatiereController as matiere_admin;
 use App\Http\Controllers\Enseignant\MatiereController as matiere_enseignant;
 /*
@@ -43,6 +49,8 @@ Route::prefix('admin')->group(function () {
     Route::get('users', [UserController::class, 'index']);
     Route::delete('user/{id}', [UserController::class, 'destroy']);
     Route::resource('formations', FormationController::class);
+    Route::resource('enseignants', enseignant_admin::class);
+    Route::resource('etudiants', etudiant_admin::class);
 
 });
 Route::prefix('enseignant')->group(function () {
@@ -106,7 +114,10 @@ Route::get('/teachers', function(){
 
 Route::post('enseignant', [EnseignantController::class, 'store']);
 Route::post('etudiant', [EtudiantController::class, 'store']);
-
+Route::get('modules', [ModuleController_etudiant::class, 'index']);
+Route::get('matieres', [MatiereController_etudiant::class, 'index']);
+Route::get('formations', [FormationController_etudiant::class, 'index']);
+Route::get('forum', [ForumController_etudian::class, 'index']);
 Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

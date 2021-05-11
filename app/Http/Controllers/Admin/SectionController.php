@@ -42,6 +42,7 @@ class sectionController extends Controller
         $section = new Section();
 
         $section->titre = $request->titre;
+        $section->niveau = $request->niveau;
         if($request->hasFile('icone')){
             $section->icone = $request->icone->store('images');
         }
@@ -87,6 +88,7 @@ class sectionController extends Controller
         $section =  Section::find($id);
 
         $section->titre = $request->titre;
+        $section->niveau = $request->niveau;
 
         if($request->hasFile('icone')){
             $section->icone = $request->icone->store('images');

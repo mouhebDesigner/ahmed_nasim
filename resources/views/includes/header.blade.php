@@ -21,11 +21,21 @@
                             <!-- <a href="{{ url('login') }}">Se connecter</a>/ -->
                         </li>
                         <li class="btn-part">
+                        @guest
                             <a class="apply-btn" href="{{ url('login') }}">
-                            <i class="fa fa-sign-in"></i>
-                            
-                            Se connecter</a>
+                                <i class="fa fa-sign-in"></i>Se connecter
+                            </a>
+                        @else 
+                            <a class="apply-btn" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                {{ __('Déconnecter') }}
+                            </a>
 
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        @endif
                         </li>
                     </ul>
                 </div>
@@ -55,6 +65,7 @@
                                     <i class="fa fa-bars"></i>
                                 </a>
                             </div>
+                            @guest 
                             <nav class="rs-menu rs-menu-close" style="height: 0px;">
                                 <ul class="nav-menu">
                                     <li class="menu-item-has-children">
@@ -67,7 +78,7 @@
                                         <a href="#formations">Formations</a>
                                     </li>
                                     <li class="menu-item-has-children">
-                                        <a href="#formateur">Formateur</a>
+                                        <a href="#formateur">Enseignants</a>
                                     </li>
                                     
                                     <li class="menu-item-has-children">
@@ -77,7 +88,31 @@
                                         <a href="#contact">Contact</a>
                                     </li>
                                 </ul> <!-- //.nav-menu -->
-                            </nav>                                         
+                            </nav>  
+                            @else 
+                            <nav class="rs-menu rs-menu-close" style="height: 0px;">
+                                <ul class="nav-menu">
+                                    <li class="menu-item-has-children">
+                                        <a href="{{ url('/') }}" class="@if(Request::is('/')) active @endif">Accueil</a>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="{{ url('/modules') }}" class="active">Modules</a>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="{{ url('/matieres') }}" class="@if(Request::is('matieres')) active @endif">Matière</a>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="{{ url('formations') }}" class="@if(Request::is('formations')) active @endif">Formations</a>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="{{ url('forum') }}" class="@if(Request::is('forum')) active @endif">forum</a>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="{{ url('contact') }}" class="@if(Request::is('contact')) active @endif">Contact</a>
+                                    </li>
+                                </ul> <!-- //.nav-menu -->
+                            </nav>  
+                            @endif                                       
                         </div> <!-- //.main-menu -->                                
                     </div>
                 </div>

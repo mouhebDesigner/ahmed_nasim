@@ -17,7 +17,7 @@ class CreateSectionsTable extends Migration
             $table->id();
             $table->string('titre');
             $table->string('icone');
-            $table->enum('type', ['mastère', 'licence']);
+            $table->enum('niveau', ['mastère', 'licence']);
             $table->timestamps();
         });
     }

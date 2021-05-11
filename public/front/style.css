@@ -7055,22 +7055,22 @@ body .modal-backdrop {
   margin-top: unset;
   z-index: unset;
 }
-.rs-features.style4 .features-wrap {
+ .features-wrap {
   background: unset;
   display: unset;
   align-items: unset;
   position: unset;
 }
-.rs-features.style4 .features-wrap .icon-part {
+ .features-wrap .icon-part {
   margin: 0 0px 17px 0;
 }
-.rs-features.style4 .features-wrap .content-part .title {
+ .features-wrap .content-part .title {
   margin-bottom: 10px;
 }
-.rs-features.style4 .features-wrap .content-part .title .watermark {
+ .features-wrap .content-part .title .watermark {
   color: #333333;
 }
-.rs-features.style4 .features-wrap .content-part .dese {
+ .features-wrap .content-part .dese {
   color: #505050;
 }
 .rs-degree.style1 .degree-wrap {

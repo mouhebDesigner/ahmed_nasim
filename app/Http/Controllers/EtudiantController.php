@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Etudiant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\EtudiantRequest;
 
 class EtudiantController extends Controller
@@ -26,11 +27,11 @@ class EtudiantController extends Controller
         $etudiant = new Etudiant;
 
         $etudiant->user_id = $user->id;
-        $etudiant->niveau = $request->niveau;
+        $etudiant->niveau = $request->niveau." ".$request->cycle;
         $etudiant->section_id = $request->section_id;
 
         $etudiant->save();
 
-        return redirect()->back()->with('signed', 'Votre compte a été créé avec succés');
+        return redirect('register/etudiant')->with('signed', 'Votre compte a été créé avec succés');
     }
 }

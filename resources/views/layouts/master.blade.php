@@ -51,7 +51,8 @@
                 @yield('content')
             </div>
             @include('includes.footer')
-        </div>    
+        </div>   
+        
         <!-- script files -->
         <script src="assets/js/contact.form.js"></script>
         <!-- modernizr js -->
@@ -89,6 +90,8 @@
         <script src="{{ asset('front/assets/js/contact.form.js') }}"></script>
         <!-- main js -->
         <script src="{{ asset('front/assets/js/main.js') }}"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        @yield('script')
     </body>
 
 <!-- Mirrored from keenitsolutions.com/products/html/educavo/index2.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Apr 2021 19:19:20 GMT -->

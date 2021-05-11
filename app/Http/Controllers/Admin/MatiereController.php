@@ -111,7 +111,7 @@ class MatiereController extends Controller
      */
     public function update(MatiereRequest $request, $id)
     {
-
+        
         $matiere =  Matiere::find($id);
 
         $matiere->titre = $request->titre;
@@ -121,7 +121,7 @@ class MatiereController extends Controller
         
         if(isset($request->enseignant_id_tp)){
             if($matiere->has_tp == 0){
-                $td = new Tp();
+                $tp = new Tp();
                 $tp->enseignant_id = $request->enseignant_id_tp;
                 $tp->matiere_id = $id;
             } else {

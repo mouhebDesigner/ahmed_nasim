@@ -25,6 +25,8 @@ class SectionRequest extends FormRequest
     {
         return [
             'titre' => 'required',
+            'icone' => 'required',
+            'niveau' => 'required',
         ];
     }
 }

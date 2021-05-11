@@ -13,22 +13,22 @@
                         <h2 class="login">Login</h2>
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
-                            <input type="email" name="email" placeholder="Saisir votre email" required="">
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            <input type="password" name="password" placeholder="Saisir votre mot de passe" required="">
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <div class="form_inputs">
+                                <input type="text" name="email" placeholder="Saisir votre email">
+                                @error('email')
+                                    <p class="error_input_message">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password" placeholder="Saisir votre mot de passe">
+                                @error('password')
+                                    <p class="error_input_message">{{ $message }}</p>
+                                @enderror
+                            </div>
                             <button type="submit" class="readon submit-btn">connecter</button>
                             <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                  
+                                <div class="col-md-8 offset-md-4">
+                                    
 
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">

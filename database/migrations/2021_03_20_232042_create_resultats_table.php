@@ -15,6 +15,9 @@ class CreateResultatsTable extends Migration
     {
         Schema::create('resultats', function (Blueprint $table) {
             $table->id();
+            $table->biginteger('note');
+            $table->foreignId('quizze_id')->constrained('quizzes')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('etudiant_id')->constrained('etudiants')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

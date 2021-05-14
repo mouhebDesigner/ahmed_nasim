@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Enseignant;
 
 use App\Models\Quizze;
+use App\Models\Reponse;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Requests\QuestionRequest;
@@ -30,9 +31,17 @@ class QuestionController extends Controller
         $question = new Question;
 
         $question->quizze_id = $quizze_id;
-        $question->answer = $request->answer;
         $question->content = $request->content;
         $question->save();
+
+        for($i=1; $i <= Quizze::find($quizze_id)->nbr_reponses; $i++){
+
+            $reponse = new Reponse();
+    
+            $reponse->titre = $request->input('reponse_'.$i);
+            $reponse->question_id = $question->id;
+            $reponse->save();
+        }
 
         return redirect('enseignant/quizze/'.$question->quizze_id.'/questions')->with('added', 'La question a été ajouté avec succés');
 
@@ -49,10 +58,19 @@ class QuestionController extends Controller
     
         $question = Question::find($id);
 
-        $question->answer = $request->answer;
         $question->content = $request->content;
         $question->save();
-            // enseignant/quizze/1/questions
+
+        for($i=1; $i <= Quizze::find($quizze_id)->nrb_reponses; $i++){
+
+            $reponse = new Reponse();
+    
+            $reponse->titre = $request->input('reponses'.$i);
+            $reponse->question_id = $question->id;
+            $reponse->save();
+        }
+
+        // enseignant/quizze/1/questions
         return redirect('enseignant/quizze/'.$question->quizze_id.'/questions')->with('updated', 'La question a été modifié avec succés');
     }
 
@@ -62,7 +80,6 @@ class QuestionController extends Controller
         Question::find($id)->delete();
 
         return redirect('enseignant/quizze/'.$quizze_id.'/questions')->with('updated', 'La question a été supprimé avec succés');
-
     }
 
     public function deleteAll(Request $request){

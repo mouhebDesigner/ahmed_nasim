@@ -38,6 +38,9 @@ class Matiere extends Model
     public function chapitres(){
         return $this->hasMany(Chapitre::class);
     }
+    public function activites(){
+        return $this->hasMany(Activite::class);
+    }
 
 
 }

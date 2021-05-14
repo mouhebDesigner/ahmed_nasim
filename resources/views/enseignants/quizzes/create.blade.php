@@ -31,6 +31,13 @@
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label for="nbr_reponses">Nombre de réponses</label>
+                                    <input type="number" class="form-control" name="nbr_reponses" value="{{ old('nbr_reponses') }}" id="nbr_reponses" placeholder="Saisir la nombre de question">
+                                    @error('nbr_reponses')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
                                
                             </div>
                             <!-- /.card-body -->

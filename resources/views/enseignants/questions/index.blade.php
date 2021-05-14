@@ -55,7 +55,7 @@
                                 <thead>
                                     <tr>
                                         <th>Question</th>
-                                        <th>Réponse</th>
+                                        <th>Nombre de réponses</th>
                                         <th>Date de creation</th>
                                         <th>Date de modification</th>
                                         <th>Actions</th>
@@ -65,6 +65,7 @@
                                     @foreach($questions as $question)
                                     <tr>
                                         <td>{{ $question->content }}</td>
+                                        <td>{{ $question->reponses()->count() }}</td>
                                         <td>
                                             @if($question->answer == 'true')
                                                 <p>Vraie</p>
@@ -93,8 +94,8 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Matiere</th>
-                                        <th>Nombre de question</th>
+                                        <th>Question</th>
+                                        <th>Nombre de réponses</th>
                                         <th>Date de creation</th>
                                         <th>Date de modification</th>
                                         <th>Actions</th>

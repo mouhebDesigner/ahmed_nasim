@@ -26,19 +26,21 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="content">Question</label>
-                                    <input type="text" class="form-control" name="content" value="{{ old('content') }}" id="content" placeholder="Saisir content de section">
+                                    <input type="text" class="form-control" name="content" value="{{ old('content') }}" id="content" placeholder="Saisir question">
                                     @error('content')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label for="answer">Réponse</label>
-                                    <select name="answer" id="answer" class="form-control">
-                                        <option value="" selected disbaled>Choisir la réponse</option>
-                                        <option value="true">Vraie</option>
-                                        <option value="false">Faux</option>
-                                    </select>
-                                </div>
+                                
+                                @for($i = 1; $i <= App\Models\Quizze::find($quizze_id)->nbr_reponses; $i++)
+                                    <div class="form-group">
+                                        <label for="reponse_{{ $i }}">Réponse {{ $i }}</label>
+                                        <input type="text" class="form-control" name="reponse_{{ $i }}" value="{{ old('reponse_'.$i) }}" id="reponse_{{ $i }}" placeholder="Saisir réponse">
+                                        @error('reponse_{{ $i }}')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                @endfor
                             </div>
                             <!-- /.card-body -->
 

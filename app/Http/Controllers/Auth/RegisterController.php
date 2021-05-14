@@ -67,7 +67,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'nom' => $data['nom'],
             'prenom' => $data['prenom'],
             'email' => $data['email'],
@@ -76,5 +76,12 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'grade' => 'etudiant'
         ]);
+        if (!empty($data['photo'])){
+
+            $user->update(['photo' => $data['photo']->store('images')]);
+            
+        }
+
+        return $user;
     }
 }

@@ -37,3 +37,36 @@ select{
     color: #bd3636;
     font-weight: 600;
 }
+
+.question{
+    background: #21a7d0;
+    padding: 20px;
+    color: white;
+    font-weight: bold;
+}
+.reponse input[type="radio"]{
+    display: none;
+}
+.reponse input[type="radio"]:checked + label{
+    border-left: 10px solid #273c66;
+}
+.reponse label{
+    background: #21a7d096;
+    padding: 25px;
+    width: 100%;
+    color: #203154;
+    font-weight: bold;
+    cursor: pointer;
+}
+.button_quiz{
+    width: 100%;
+    padding: 20px;
+    border: none;
+    background: #06475a;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.button_quiz:hover{
+    background: #06465ae3;
+}

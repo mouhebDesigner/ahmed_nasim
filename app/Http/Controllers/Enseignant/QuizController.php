@@ -29,6 +29,7 @@ class QuizController extends Controller
 
         $quiz->matiere_id = $matiere_id;
         $quiz->nbr_questions = $request->nbr_questions;
+        $quiz->nbr_reponses = $request->nbr_reponses;
 
         $quiz->save();
 
@@ -48,6 +49,7 @@ class QuizController extends Controller
 
         $quiz->matiere_id = $matiere_id;
         $quiz->nbr_questions = $request->nbr_questions;
+        $quiz->nbr_reponses = $request->nbr_reponses;
 
         $quiz->save();
 

@@ -27,7 +27,7 @@
                 </div>
                 <!-- Login Form -->
                 <div class="styled-form">
-                    <form  method="post" action="{{ url('etudiant') }}">         
+                    <form  method="post" action="{{ url('etudiant') }}" enctype="multipart/form-data">         
                         @csrf
                         <div class="row clearfix">                                    
                             <!-- Form Group -->
@@ -77,6 +77,7 @@
                                     </span>
                                 @enderror
                             </div>
+                            
                             <div class="form-group col-lg-12 mb-25">
                                 <input type="text"  onclick="this.type = 'date'" id="date_naissance" name="date_naissance" value="{{ old('date_naissance') }}" class="@error('date_naissance') error_input @enderror" placeholder="Saisir votre date naissance">
                                 @error('date_naissance')
@@ -115,6 +116,14 @@
                                     @endforeach
                                 </select>
                                 @error('section')
+                                    <span class="invalid-feedback" role="alert" style="display: inline">
+                                        <strong class="font-size_strong_strong">{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group col-lg-12 mb-25">
+                                <input type="file" id="photo" name="photo" value="{{ old('photo') }}" class="@error('photo') error_input @enderror">
+                                @error('photo')
                                     <span class="invalid-feedback" role="alert" style="display: inline">
                                         <strong class="font-size_strong_strong">{{ $message }}</strong>
                                     </span>

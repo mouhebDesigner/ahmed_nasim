@@ -10,6 +10,7 @@ use App\Models\Chapitre;
 use App\Models\Enseignant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QuizzeController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\EnseignantController;
@@ -120,6 +121,7 @@ Route::get('modules', [ModuleController_etudiant::class, 'index']);
 Route::resource('matieres', MatiereController_etudiant::class);
 Route::get('formations', [FormationController_etudiant::class, 'index']);
 Route::get('forum', [ForumController_etudian::class, 'index']);
+Route::get('matiere/{matiere_id}/quizze', [QuizzeController::class, 'index']);
 
 // Download file
 Route::get('/download_chapitre/{id}', function($id){

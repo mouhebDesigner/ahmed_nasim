@@ -6,21 +6,7 @@
 
 @section('content')
  
-    <!-- Breadcrumbs Start -->
-    <div class="rs-breadcrumbs breadcrumbs-overlay">
-        <div class="breadcrumbs-img">
-            <img src="assets/images/breadcrumbs/2.jpg" alt="Breadcrumbs Image">
-        </div>
-        <div class="breadcrumbs-text white-color">
-            <h1 class="page-title">Learn  User Interface and User Experience</h1>
-            <ul>
-                <li>
-                    <a class="active" href="index.html">Home</a>
-                </li>
-                <li>Course Details</li>
-            </ul>
-        </div>
-    </div>
+    
     <!-- Breadcrumbs End -->            
 
     <!-- Intro Courses -->
@@ -107,14 +93,18 @@
                             </div>
                             <div class="tab-pane fade" id="prod-instructor" role="tabpanel" aria-labelledby="prod-instructor-tab">
                                 <div class="content pt-30 pb-30 pl-30 pr-30 white-bg">
-                                    <h3 class="instructor-title">Instructors</h3>
+                                    <h3 class="instructor-title">Enseignants</h3>
                                     <div class="row rs-team style1 orange-color transparent-bg clearfix">
+                                        @if($matiere->has_tp == 1)
                                         <div class="col-lg-6 col-md-6 col-sm-12 sm-mb-30">
                                             <div class="team-item">
-                                                <img src="assets/images/team/1.jpg" alt="">
+                                                @php 
+                                                    $user_id = App\Models\Enseignant::find($matiere->tp->enseignant_id)->user_id;
+                                                @endphp
+                                                <img src="{{ asset('storage/'.App\Models\User::find($user_id)->photo)}}" alt="">
                                                 <div class="content-part">
-                                                    <h4 class="name"><a href="#">Jhon Pedrocas</a></h4>
-                                                    <span class="designation">Professor</span>
+                                                    <h4 class="name"><a href="#">{{ App\Models\User::find($user_id)->nom }} {{ App\Models\User::find($user_id)->prenom }}</a></h4>
+                                                    <span class="designation">{{  App\Models\User::find($user_id)->email }}</span>
                                                     <ul class="social-links">
                                                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                                         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -124,12 +114,17 @@
                                                 </div>
                                             </div>
                                         </div>                                                            
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                        @endif                                                         
+                                        @if($matiere->has_td == 1)
+                                        <div class="col-lg-6 col-md-6 col-sm-12 sm-mb-30">
                                             <div class="team-item">
-                                                <img src="assets/images/team/2.jpg" alt="">
+                                                @php 
+                                                    $user_id = App\Models\Enseignant::find($matiere->td->enseignant_id)->user_id;
+                                                @endphp
+                                                <img src="{{ asset('storage/'.App\Models\User::find($user_id)->photo)}}" alt="">
                                                 <div class="content-part">
-                                                    <h4 class="name"><a href="#">Jhon Pedrocas</a></h4>
-                                                    <span class="designation">Professor</span>
+                                                    <h4 class="name"><a href="#">{{ App\Models\User::find($user_id)->nom }} {{ App\Models\User::find($user_id)->prenom }}</a></h4>
+                                                    <span class="designation">{{  App\Models\User::find($user_id)->email }}</span>
                                                     <ul class="social-links">
                                                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                                         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -139,6 +134,7 @@
                                                 </div>
                                             </div>
                                         </div>                                                            
+                                        @endif                                                         
                                     </div>  
                                 </div>
                             </div>
@@ -157,40 +153,44 @@
                         <div class="course-features-info">
                             <ul>
                                 <li class="lectures-feature">
-                                    <i class="fa fa-files-o"></i>
-                                    <span class="label">Lectures</span>
-                                    <span class="value">3</span>
+                                    <img src="{{ asset('images/document.png') }}" width="20" height="20" alt="">
+                                    <span class="label">Chapitres</span>
+                                    <span class="value">{{ $matiere->chapitres()->count() }}</span>
                                 </li>
                                 
                                 <li class="quizzes-feature">
-                                    <i class="fa fa-puzzle-piece"></i>
-                                    <span class="label">Quizzes</span>
-                                    <span class="value">0</span>
+                                    <img src="{{ asset('images/exam.png') }}" width="20" height="20" alt="">
+                                    <span class="label">Quizze</span>
+                                    @if($matiere->quizze()->count() > 0)
+                                        <span class="value">Oui</span>
+                                    @else 
+                                        <span class="value">Non</span>
+                                    @endif
                                 </li>
                                 
                                 <li class="duration-feature">
-                                    <i class="fa fa-clock-o"></i>
-                                    <span class="label">Duration</span>
-                                    <span class="value">10 week </span>
+                                    <img src="{{ asset('images/document.png') }}" width="20" height="20" alt="">
+                                    <span class="label">Travaux dirigés</span>
+                                    <span class="value">{{ $matiere->activites()->where('type', 'td')->count() }}</span>
+                                </li>
+                                <li class="duration-feature">
+                                    <img src="{{ asset('images/document.png') }}" width="20" height="20" alt="">
+                                    <span class="label">Travaux pratiques</span>
+                                    <span class="value">{{ $matiere->activites()->where('type', 'tp')->count() }}</span>
                                 </li>
                                 
                                 <li class="students-feature">
-                                    <i class="fa fa-users"></i>
-                                    <span class="label">Students</span>
-                                    <span class="value">21</span>
-                                </li>
-                                
-                                <li class="assessments-feature">
-                                    <i class="fa fa-check-square-o"></i>
-                                    <span class="label">Assessments</span>
-                                    <span class="value">Yes</span>
+                                    <img src="{{ asset('images/students.png') }}" width="20" height="20" alt="">
+                                    <span class="label">Etudiants</span>
+                                    <span class="value">{{ App\Models\Etudiant::where('section_id', Auth::user()->etudiant->section_id)->where('niveau', Auth::user()->etudiant->niveau)->count() }}</span>
                                 </li>
                             </ul>
                         </div>
                         
                         <div class="btn-part">
-                            <a href="#" class="btn readon2 orange">$35</a>
-                            <a href="#" class="btn readon2 orange-transparent">Buy Now</a>
+                            @if($matiere->quizze)
+                                <a href="{{ url('matiere/'.$matiere->id.'/quizze') }}" class="btn readon2 orange-transparent">Passer examen</a>
+                            @endif
                         </div>
                     </div>
                 </div>                        

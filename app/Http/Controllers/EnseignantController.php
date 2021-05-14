@@ -22,6 +22,10 @@ class EnseignantController extends Controller
         $user->numtel = $request->numtel;
         $user->grade = "enseignant";
         $user->date_naissance = $request->date_naissance;
+        if($request->hasFile('photo')){
+
+            $user->photo = $request->photo->store('images');
+        }
 
         $user->save();
 

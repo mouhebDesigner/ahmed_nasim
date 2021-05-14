@@ -43,7 +43,8 @@
                                 <thead>
                                     <tr>
                                         <th>Matiere</th>
-                                        <th>Nombre de question</th>
+                                        <th>Nombre de questions</th>
+                                        <th>Nombre de réponses</th>
                                         <th>Date de creation</th>
                                         <th>Date de modification</th>
                                         <th>Actions</th>
@@ -54,6 +55,7 @@
                                     <tr>
                                         <td>{{ $quizze->matiere->titre }}</td>
                                         <td>{{ $quizze->nbr_questions }}</td>
+                                        <td>{{ $quizze->nbr_reponses }}</td>
                                         <td>{{ $quizze->matiere->created_at }}</td>
                                         <td>{{ $quizze->matiere->updated_at }}</td>
                                         <td>
@@ -79,7 +81,8 @@
                                 <tfoot>
                                     <tr>
                                         <th>Matiere</th>
-                                        <th>Nombre de question</th>
+                                        <th>Nombre de questions</th>
+                                        <th>Nombre de réponses</th>
                                         <th>Date de creation</th>
                                         <th>Date de modification</th>
                                         <th>Actions</th>

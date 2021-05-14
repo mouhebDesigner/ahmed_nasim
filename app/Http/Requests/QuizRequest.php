@@ -23,8 +23,10 @@ class QuizRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
-            'nbr_questions' => "required"
+            'nbr_questions' => "required",
+            'nbr_reponses' => "required"
         ];
     }
 }

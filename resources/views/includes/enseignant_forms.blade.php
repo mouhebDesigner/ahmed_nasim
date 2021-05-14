@@ -1,5 +1,5 @@
 <div class="styled-form">
-    <form  method="post" action="{{ url('enseignant') }}">         
+    <form  method="post" action="{{ url('enseignant') }}" enctype="multipart/form-data">         
         @csrf
         <div class="row clearfix">                                    
             <!-- Form Group -->
@@ -54,6 +54,14 @@
                 @error('date_naissance')
                     <span class="invalid-feedback" role="alert" style="display:inline">
                         <strong class="font-size_strong">{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+            <div class="form-group col-lg-12 mb-25">
+                <input type="file" id="photo" name="photo" value="{{ old('photo') }}" class="@error('photo') error_input @enderror">
+                @error('photo')
+                    <span class="invalid-feedback" role="alert" style="display: inline">
+                        <strong class="font-size_strong_strong">{{ $message }}</strong>
                     </span>
                 @enderror
             </div>

@@ -93,10 +93,10 @@
                             <nav class="rs-menu rs-menu-close" style="height: 0px;">
                                 <ul class="nav-menu">
                                     <li class="menu-item-has-children">
-                                        <a href="{{ url('/') }}" class="@if(Request::is('/')) active @endif">Accueil</a>
+                                        <a href="{{ url('/') }}" class="@if(Request::is('home')) active @endif">Accueil</a>
                                     </li>
                                     <li class="menu-item-has-children">
-                                        <a href="{{ url('/modules') }}" class="active">Modules</a>
+                                        <a href="{{ url('/modules') }}" class="@if(Request::is('modules')) active @endif">Modules</a>
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a href="{{ url('/matieres') }}" class="@if(Request::is('matieres')) active @endif">Matière</a>

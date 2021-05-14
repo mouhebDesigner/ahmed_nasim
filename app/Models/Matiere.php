@@ -34,6 +34,10 @@ class Matiere extends Model
     public function quizze(){
         return $this->hasOne(Quizze::class);
     }
+    
+    public function chapitres(){
+        return $this->hasMany(Chapitre::class);
+    }
 
 
 }

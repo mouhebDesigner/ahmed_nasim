@@ -5,14 +5,14 @@ use App\Models\Tp;
 use App\Models\Car;
 use App\Models\User;
 use App\Models\Module;
+use App\Models\Activite;
+use App\Models\Chapitre;
 use App\Models\Enseignant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\EnseignantController;
-use App\Http\Controllers\Admin\EnseignantController as enseignant_admin;
-use App\Http\Controllers\Admin\EtudiantController as etudiant_admin;
 use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Enseignant\TdController;
@@ -21,12 +21,14 @@ use App\Http\Controllers\Enseignant\QuizController;
 use App\Http\Controllers\Enseignant\ChapitreController;
 use App\Http\Controllers\Enseignant\QuestionController;
 use App\Http\Controllers\Enseignant\FormationController;
-use App\Http\Controllers\MatiereController as MatiereController_etudiant;
-use App\Http\Controllers\FormationController as FormationController_etudiant;
+use App\Http\Controllers\Admin\MatiereController as matiere_admin;
+use App\Http\Controllers\Admin\EtudiantController as etudiant_admin;
 use App\Http\Controllers\ForumController as ForumController_etudiant;
 use App\Http\Controllers\ModuleController as ModuleController_etudiant;
-use App\Http\Controllers\Admin\MatiereController as matiere_admin;
+use App\Http\Controllers\Admin\EnseignantController as enseignant_admin;
+use App\Http\Controllers\MatiereController as MatiereController_etudiant;
 use App\Http\Controllers\Enseignant\MatiereController as matiere_enseignant;
+use App\Http\Controllers\FormationController as FormationController_etudiant;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -115,9 +117,38 @@ Route::get('/teachers', function(){
 Route::post('enseignant', [EnseignantController::class, 'store']);
 Route::post('etudiant', [EtudiantController::class, 'store']);
 Route::get('modules', [ModuleController_etudiant::class, 'index']);
-Route::get('matieres', [MatiereController_etudiant::class, 'index']);
+Route::resource('matieres', MatiereController_etudiant::class);
 Route::get('formations', [FormationController_etudiant::class, 'index']);
 Route::get('forum', [ForumController_etudian::class, 'index']);
+
+// Download file
+Route::get('/download_chapitre/{id}', function($id){
+
+    $document = Chapitre::find($id);
+
+    $file = storage_path().'/app/public/'.$document->content;
+
+    $extension = explode('.', $file);
+    $header = array(
+        'Content-Type: application/pdf',
+    );
+
+    return Response::download($file, "$document->titre.pdf", $header);
+});
+// Download file
+Route::get('/download_activite/{id}', function($id){
+
+    $document = Activite::find($id);
+
+    $file = storage_path().'/app/public/'.$document->document;
+
+    $extension = explode('.', $file);
+    $header = array(
+        'Content-Type: application/pdf',
+    );
+
+    return Response::download($file, "$document->titre.pdf", $header);
+});
 Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -54,7 +54,9 @@
             <div class="row y-middle">
                 <div class="col-lg-4 md-mb-20">
                     <div class="footer-logo md-text-center">
-                        <a href="index-2.html"><img src="http://127.0.0.1:8000/front/assets//images/logo.png" alt=""></a>
+                        <a href="{{ url('/') }}">
+                            <img src="http://127.0.0.1:8000/front/assets//images/easy-learn.png" alt="">
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-4 md-mb-20">

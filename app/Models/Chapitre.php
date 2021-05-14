@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Chapitre extends Model
 {
     use HasFactory;
+
+    public function activites(){
+        return $this->hasMany(Activite::class);
+    }
 }

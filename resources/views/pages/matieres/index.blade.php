@@ -8,8 +8,8 @@
  
 <div id="rs-blog" class="rs-blog style1 pt-94 pb-100 md-pt-64 md-pb-70">
     <div class="container">
-        <div class="sec-title mb-60 md-mb-30 text-center">
-            <div class="sub-title primary">Les matières </div>
+        <div class="sec-title mb-60 md-mb-30">
+            <div class="sub-title primary">Matières </div>
         </div>
         <div class="row">
             @foreach($matieres as  $matiere)
@@ -29,7 +29,7 @@
                             </ul>
                             <h3 class="title"><a href="{{ url('matieres/'.$matiere->id) }}">{{ $matiere->titre }}</a></h3>
                             <div class="btn-part">
-                                <a class="readon-arrow" href="#">Voir détails</a>
+                                <a class="readon-arrow" href="{{ url('matieres/'.$matiere->id) }}">Voir détails</a>
                             </div>
                         </div>
                     </div>

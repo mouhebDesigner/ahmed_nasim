@@ -41,6 +41,15 @@
                                         @enderror
                                     </div>
                                 @endfor
+                                <div class="form-group">
+                                    <label for="reponse_correct">Réponse correcte</label>
+                                    <select name="reponse_correct" id="reponse_correct" class="form-control">
+                                        <option value="" selected disbaled>Choisir réponse correct</option>
+                                        @for($i = 1; $i <= App\Models\Quizze::find($quizze_id)->nbr_reponses; $i++)
+                                            <option value="reponse_{{ $i }}">Réponse {{ $i }}</option>
+                                        @endfor
+                                    </select>
+                                </div>
                             </div>
                             <!-- /.card-body -->
 

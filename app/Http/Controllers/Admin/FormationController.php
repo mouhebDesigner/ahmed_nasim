@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Enseignant;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ class FormationController extends Controller
     {
         $formations = Formation::paginate(10);
 
-        return view('enseignants.formations.index', compact('formations'));
+        return view('admin.formations.index', compact('formations'));
     }
 
     /**
@@ -28,7 +28,7 @@ class FormationController extends Controller
      */
     public function create()
     {
-        return view('enseignants.formations.create');
+        return view('admin.formations.create');
     }
 
     /**
@@ -42,7 +42,6 @@ class FormationController extends Controller
         $formation = new Formation();
 
         $formation->titre = $request->titre;
-        $formation->user_id = Auth::user()->id;
         
         $formation->description = $request->description;
         
@@ -53,7 +52,7 @@ class FormationController extends Controller
         $formation->save();
         
 
-        return redirect('enseignant/formations')->with('added', 'La formation a été ajouté avec succés');
+        return redirect('admin/formations')->with('added', 'La formation a été ajouté avec succés');
     }
 
     /**
@@ -77,7 +76,7 @@ class FormationController extends Controller
     {
         $formation = Formation::find($id);
 
-        return view('enseignants.formations.edit', compact('section'));
+        return view('admin.formations.edit', compact('formation'));
     }
 
     /**

@@ -99,10 +99,10 @@
                                         <a href="{{ url('/modules') }}" class="@if(Request::is('modules')) active @endif">Modules</a>
                                     </li>
                                     <li class="menu-item-has-children">
-                                        <a href="{{ url('/matieres') }}" class="@if(Request::is('matieres')) active @endif">Matière</a>
+                                        <a href="{{ url('/matieres') }}" class="@if(Request::is('matieres*')) active @endif">Matière</a>
                                     </li>
                                     <li class="menu-item-has-children">
-                                        <a href="{{ url('formations') }}" class="@if(Request::is('formations')) active @endif">Formations</a>
+                                        <a href="{{ url('formations') }}" class="@if(Request::is('formations*')) active @endif">Formations</a>
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a href="{{ url('forum') }}" class="@if(Request::is('forum')) active @endif">forum</a>

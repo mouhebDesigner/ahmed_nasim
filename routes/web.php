@@ -14,14 +14,15 @@ use App\Http\Controllers\QuizzeController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\EnseignantController;
+use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Enseignant\TdController;
 use App\Http\Controllers\Enseignant\TpController;
+use App\Http\Controllers\Admin\FormationController;
 use App\Http\Controllers\Enseignant\QuizController;
 use App\Http\Controllers\Enseignant\ChapitreController;
 use App\Http\Controllers\Enseignant\QuestionController;
-use App\Http\Controllers\Enseignant\FormationController;
 use App\Http\Controllers\Admin\MatiereController as matiere_admin;
 use App\Http\Controllers\Admin\EtudiantController as etudiant_admin;
 use App\Http\Controllers\ForumController as ForumController_etudiant;
@@ -54,6 +55,10 @@ Route::prefix('admin')->group(function () {
     Route::resource('formations', FormationController::class);
     Route::resource('enseignants', enseignant_admin::class);
     Route::resource('etudiants', etudiant_admin::class);
+    Route::prefix('formation/{formation_id}')->group(function ($matiere_id){
+        Route::resource('videos', VideoController::class)->only(['index', 'create', 'store']);
+    });
+    Route::resource('videos', VideoController::class)->only(['update', 'destroy', 'edit']);
 
 });
 Route::prefix('enseignant')->group(function () {
@@ -81,9 +86,7 @@ Route::prefix('enseignant')->group(function () {
     Route::prefix('quizze/{quizze_id}')->group(function ($matiere_id){
         Route::resource('questions', QuestionController::class)->only(['index', 'create', 'store']);
     });
-    Route::prefix('formation/{quizze_id}')->group(function ($matiere_id){
-        Route::resource('videos', VideoController::class)->only(['index', 'create', 'store']);
-    });
+    
 
     Route::resource('questions', QuestionController::class)->only(['destroy', 'edit', 'update']);
 
@@ -119,9 +122,11 @@ Route::post('enseignant', [EnseignantController::class, 'store']);
 Route::post('etudiant', [EtudiantController::class, 'store']);
 Route::get('modules', [ModuleController_etudiant::class, 'index']);
 Route::resource('matieres', MatiereController_etudiant::class);
-Route::get('formations', [FormationController_etudiant::class, 'index']);
+Route::resource('formations', FormationController_etudiant::class);
 Route::get('forum', [ForumController_etudian::class, 'index']);
 Route::get('matiere/{matiere_id}/quizze', [QuizzeController::class, 'index']);
+Route::post('quizze/{quizze_id}', [QuizzeController::class, 'store']);
+Route::get('repasser/{quizze_id}', [QuizzeController::class, 'repasser']);
 
 // Download file
 Route::get('/download_chapitre/{id}', function($id){

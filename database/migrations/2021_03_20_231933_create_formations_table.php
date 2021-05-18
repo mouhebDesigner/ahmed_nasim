@@ -18,7 +18,6 @@ class CreateFormationsTable extends Migration
             $table->text('titre');
             $table->text('description');
             $table->text('image');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

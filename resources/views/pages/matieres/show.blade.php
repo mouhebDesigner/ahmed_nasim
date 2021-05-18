@@ -189,7 +189,13 @@
                         
                         <div class="btn-part">
                             @if($matiere->quizze)
-                                <a href="{{ url('matiere/'.$matiere->id.'/quizze') }}" class="btn readon2 orange-transparent">Passer examen</a>
+                                @if(App\Models\Resultat::where('etudiant_id', Auth::user()->etudiant->id)->count() > 0)
+                                    <p class="quiz_message">Vous avez passé ce quizze</p>
+                                @else 
+                                    <a href="{{ url('matiere/'.$matiere->id.'/quizze') }}" class="btn readon2 orange-transparent">Passer examen</a>
+                                @endif
+                            @else 
+                                <p class="quiz_message">Il n'y a pas de quizze ajouté jusqu'à maintenant</p>
                             @endif
                         </div>
                     </div>

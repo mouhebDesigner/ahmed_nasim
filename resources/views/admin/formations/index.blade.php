@@ -54,7 +54,7 @@
                                         <td>{{ $formation->created_at }}</td>
                                         <td>{{ $formation->updated_at }}</td>
                                         <td>
-                                            <a href="{{ route('videos.index', ['formation_id', $formation->id]) }}">
+                                            <a href="{{ route('videos.index', ['formation_id' =>  $formation->id]) }}">
                                                 Afficher    
                                             </a>
                                         </td>

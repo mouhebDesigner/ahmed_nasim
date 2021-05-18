@@ -39,6 +39,8 @@ class QuestionController extends Controller
             $reponse = new Reponse();
     
             $reponse->titre = $request->input('reponse_'.$i);
+            if($request->reponse_correct == "reponse_".$i)
+                $reponse->reponse = 1;
             $reponse->question_id = $question->id;
             $reponse->save();
         }

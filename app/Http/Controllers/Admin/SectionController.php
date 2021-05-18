@@ -6,6 +6,7 @@ use App\Models\Section;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SectionRequest;
+use App\Http\Requests\SectionEditRequest;
 
 class sectionController extends Controller
 {
@@ -83,7 +84,7 @@ class sectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(sectionRequest $request, $id)
+    public function update(SectionEditRequest $request, $id)
     {
         $section =  Section::find($id);
 

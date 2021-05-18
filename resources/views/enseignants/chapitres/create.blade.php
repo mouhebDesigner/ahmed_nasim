@@ -26,7 +26,7 @@
                             <div class="card-body" id="inputs">
                                 <div class="form-group">
                                     <label for="titre">Titre de chapitre</label>
-                                    <input type="text" class="form-control" name="titre" value="{{ old('titre') }}" id="titre" placeholder="Saisir titre de module">
+                                    <input type="text" class="form-control" name="titre" value="{{ old('titre') }}" id="titre" placeholder="Saisir titre de chapitre">
                                     @error('titre')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror

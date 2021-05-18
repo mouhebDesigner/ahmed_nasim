@@ -8,7 +8,8 @@
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>
-                    Ajouter un travaux pratique 
+                Ajouter un travaux pratique de la matière : {{ App\Models\Matiere::find($matiere_id)->titre }} 
+                    
                 </h1>
             </section>
             <section class="content">

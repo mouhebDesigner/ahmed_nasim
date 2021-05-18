@@ -1,8 +1,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-      <span class="brand-text font-weight-light">Cours en ligne</span>
+      <img src="http://127.0.0.1:8000/front/assets//images/easy-learn.png" width="200" alt="">
+
+      
     </a>
 
     <!-- Sidebar -->
@@ -10,10 +11,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <!-- <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
+          <img src="{{ asset('storage/'.Auth::user()->photo)}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ Auth::user()->nom  }} {{ Auth::user()->prenom }} </a>
+          <a href="#" class="d-block"><strong>{{ Auth::user()->nom  }} {{ Auth::user()->prenom }}</strong> </a>
         </div>
       </div>
 
@@ -98,7 +99,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ url('admin/matieres') }}" class="nav-link @if(Request::is('admin/matieres*')) active @endif">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="fas fa-book"></i>
               <p>
                 {{ __('Gérer les matieres') }}
                 <i class="right fas fa-angle-left"></i>
@@ -132,7 +133,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link  @if(Request::is('enseignant/matieres')) active @endif">
-              <i class="nav-icon fas fa-tree"></i>
+              <i class="nav-icon fas fa-book"></i>
               <p>
                 Gérer matières
                 <i class="fas fa-angle-left right"></i>

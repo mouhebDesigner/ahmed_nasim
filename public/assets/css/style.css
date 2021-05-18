@@ -10,6 +10,13 @@
     border: none !important;
     background-color: transparent !important;
 }
+
+.logout_link{
+    font-weight: 500;
+    background: #343a40;
+    color: white;
+    padding: 10px 10px;
+}
 .btn-hidden .fa{
     color: tomato;
     transform: scale(1.8);

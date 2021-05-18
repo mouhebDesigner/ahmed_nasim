@@ -27,16 +27,22 @@
                     </div>
                     <div class="content-part">
                         <ul class="meta-part">
-                            <li><a class="categorie" href="#"><strong>{{ $formation->titre }}</strong></a></li>
+                            <li><a class="categorie" href="#"><strong>{{ $formation->titre }} {{ $formation->videos->count() }}</strong></a></li>
                         </ul>
                         <div class="bottom-part">
                             <div class="info-meta">
                                 <p>
+                                
                                    {{ substr($formation->description, 0, 150) }}...
                                 </p>
                             </div>
                             <div class="btn-part">
-                                <a href="{{ url('formations/'.$formation->id) }}"><i class="flaticon-right-arrow"></i></a>
+                            
+                                @if($formation->videos)
+                                    <a href="{{ url('formations/'.$formation->id) }}"><i class="flaticon-right-arrow"></i></a>
+                                @else 
+                                    <a href="#" onclick="alert('Cette formation n a pas des videos pour le moment')"><i class="flaticon-right-arrow"></i></a>
+                                @endif
                             </div>
                         </div>
                     </div>

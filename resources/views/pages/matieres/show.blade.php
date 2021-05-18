@@ -33,11 +33,11 @@
                             <div class="tab-pane fade active show" id="prod-curriculum" role="tabpanel" aria-labelledby="prod-curriculum-tab">
                                 <div class="content">
                                     <div id="accordion" class="accordion-box">
-                                    @foreach($matiere->chapitres as $chapitre)
+                                    @foreach($matiere->chapitres as $key => $chapitre)
                                         <div class="card accordion block">
                                             <div class="card-header" id="headingOne">
                                                 <h5 class="mb-0">
-                                                    <button class="btn btn-link acc-btn collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Chapitre 1</button>
+                                                    <button class="btn btn-link acc-btn collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Chapitre {{ $key+1 }}</button>
                                                 </h5>
                                             </div>
                                             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion" style="">

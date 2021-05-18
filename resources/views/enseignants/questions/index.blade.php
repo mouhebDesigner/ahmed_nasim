@@ -66,13 +66,7 @@
                                     <tr>
                                         <td>{{ $question->content }}</td>
                                         <td>{{ $question->reponses()->count() }}</td>
-                                        <td>
-                                            @if($question->answer == 'true')
-                                                <p>Vraie</p>
-                                            @else
-                                                <p>Faux</p>
-                                            @endif
-                                        </td>
+                                       
                                         <td>{{ $question->created_at }}</td>
                                         <td>{{ $question->updated_at }}</td>
                                         <td>

@@ -21,7 +21,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ route('formations.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ url('admin/formations') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body" id="inputs">
                                 <div class="form-group">

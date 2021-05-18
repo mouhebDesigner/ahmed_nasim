@@ -115,6 +115,7 @@ return [
     */
 
     'attributes'           => [
+        'section_id'            => "section",
         'name'                  => 'nom',
         'username'              => 'nom d\'utilisateur',
         'email'                 => 'adresse e-mail',

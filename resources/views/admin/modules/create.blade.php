@@ -32,6 +32,9 @@
                                             <option value="{{ $section->id }}" @if(old('section_id') == $section->id) selected @endif>{{ $section->titre }}</option>
                                         @endforeach
                                     </select>
+                                    @error('section_id')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="titre">Titre de module</label>

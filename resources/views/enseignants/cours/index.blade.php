@@ -56,13 +56,17 @@
                                         <td>{{ $matiere->matiere->created_at }}</td>
                                         <td>{{ $matiere->matiere->updated_at }}</td>
                                         <td>
-                                            <a href="{{ route('quizzes.create', ['matiere_id' => $matiere->matiere->id]) }}" class="btn btn-primary">
-                                                Créer quizze
-                                            </a>
+                                            @if(App\Models\Quizze::where('matiere_id', $matiere->id)->count() != 0)
+                                                <a href="{{ route('quizzes.create', ['matiere_id' => $matiere->matiere->id]) }}" class="btn btn-primary">
+                                                    Créer quizze
+                                                </a>
+                                            @else 
+                                                <p>Quizze ajouté</p>
+                                            @endif
                                         </td>
                                         <td>
                                             <a href="{{ url('enseignant/matiere/'.$matiere->matiere->id.'/chapitres') }}" class="btn btn-success">
-                                                Chapitres 
+                                                Liste des chapitres 
                                             </a>
                                         </td>
                                     </tr>

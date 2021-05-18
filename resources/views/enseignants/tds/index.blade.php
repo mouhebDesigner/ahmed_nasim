@@ -62,7 +62,7 @@
                                         </td>
                                         <td>
                                             <a href="{{ url('enseignant/matiere/'.$matiere->matiere->id.'/travaux_diriges') }}" class="btn btn-success">
-                                                Travaux dirigés 
+                                                Liste des Travaux dirigés 
                                             </a>
                                         </td>
                                     </tr>

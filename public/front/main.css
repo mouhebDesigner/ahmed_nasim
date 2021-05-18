@@ -78,3 +78,15 @@ select{
     font-weight: bold;
     text-align: center;
 }
+
+.photo_label{
+    background: white;
+    padding: 15px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input_file{
+    display: none;
+}
+

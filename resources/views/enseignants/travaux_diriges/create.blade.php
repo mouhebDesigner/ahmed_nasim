@@ -8,7 +8,7 @@
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>
-                    Ajouter un chapitre de la matière : {{ App\Models\Matiere::find($matiere_id)->titre }} 
+                    Ajouter un travaux dirigé de la matière : {{ App\Models\Matiere::find($matiere_id)->titre }} 
                 </h1>
             </section>
             <section class="content">

@@ -27,7 +27,7 @@
 
                                 <div class="card-tools">
                                     <div class="input-group input-group-sm" style="width: 150px;">
-                                        <a href="{{ route('formations.create') }}" class="btn btn-primary">
+                                        <a href="{{ url('admin/formations/create') }}" class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                         </a>
                                     </div>

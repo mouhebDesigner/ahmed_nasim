@@ -93,11 +93,11 @@
                                                                     <form action="{{ url('admin/enseignants/'.$enseignant->id) }}" method="post">
                                                                         @csrf
                                                                         @method('delete')
-                                                                        <button type="submit" class="btn-delete" onclick="return confirm('Voules-vous supprimer ce module')">
+                                                                        <button type="submit" class="btn-delete" onclick="return confirm('Voules-vous supprimer cet enseignant')">
                                                                             <i class="fa fa-trash"></i>
                                                                         </button>
                                                                     </form>
-                                                                    <a href="{{ url('admin/enseignants/'.$enseignant->id.'/edit') }}" onclick="return confirm('Voules-vous modifier ce module')">
+                                                                    <a href="{{ url('admin/enseignants/'.$enseignant->id.'/edit') }}" onclick="return confirm('Voules-vous modifier cet enseignant')">
                                                                         <i class="fa fa-edit"></i>
                                                                     </a>
                                                                 </div>
@@ -108,13 +108,13 @@
                                                 <tfoot>
                                                     <tr>
                                                         <th>
-                                                            titre
+                                                            Nom
                                                         </th>
                                                         <th>
-                                                            section
+                                                            Prénom
                                                         </th>
                                                         <th>
-                                                            module
+                                                            Email
                                                         </th>
                                                         
                                                         <th>

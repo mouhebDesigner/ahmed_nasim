@@ -13,11 +13,13 @@
                 </div>
             </div> 
         </div>
+        <div class="row">
             @foreach(App\Models\Formation::all() as $formation)
+
             <div class="col-lg-4 col-md-6 mb-30 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="2000ms" style="visibility: visible; animation-duration: 2000ms; animation-delay: 300ms; animation-name: fadeInUp;">
                 <div class="courses-item">
                     <div class="img-part">
-                        <img src="{{ asset('storage/'.$formation->image) }}" alt="">
+                        <img src="{{ asset('storage/'.$formation->image) }}" alt="" style="width: 100%; height: 200px">
                     </div>
                     <div class="content-part">
                         <ul class="meta-part">
@@ -25,15 +27,10 @@
                         </ul>
                         <div class="bottom-part">
                             <div class="info-meta">
-                                <ul>
-                                    <li class="user"><i class="fa fa-user"></i> 245</li>
-                                    <li class="ratings">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        (05)
-                                    </li>
-                                </ul>
+                                <p>
+                                
+                                   {{ substr($formation->description, 0, 100) }}...
+                                </p>
                             </div>
                             <div class="btn-part">
                                 <a href="{{ url('formations/'.$formation->id) }}"><i class="flaticon-right-arrow"></i></a>
@@ -41,8 +38,9 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
+                
             </div>
+                @endforeach
             
             
             

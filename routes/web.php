@@ -54,7 +54,7 @@ Route::prefix('admin')->group(function () {
     Route::delete('user/{id}', [UserController::class, 'destroy']);
     Route::resource('formations', formation_controller_admin::class);
     Route::resource('enseignants', enseignant_admin::class);
-    // Route::resource('etudiants', etudiant_admin::class);
+    Route::resource('etudiants', etudiant_admin::class);
     Route::prefix('formation/{formation_id}')->group(function ($matiere_id){
         Route::resource('videos', VideoController::class)->only(['index', 'create', 'store']);
     });
@@ -83,6 +83,7 @@ Route::prefix('enseignant')->group(function () {
         Route::resource('travaux_pratiques', TpController::class);
         Route::resource('quizzes', QuizController::class)->only(['create', 'store']);
     });
+    Route::get('matieres', [matiere_enseignant::class, 'matiere'])->middleware('auth');
     Route::prefix('quizze/{quizze_id}')->group(function ($matiere_id){
         Route::resource('questions', QuestionController::class)->only(['index', 'create', 'store']);
     });
@@ -121,6 +122,7 @@ Route::get('/teachers', function(){
 Route::post('enseignant', [EnseignantController::class, 'store']);
 Route::post('etudiant', [EtudiantController::class, 'store']);
 Route::get('modules', [ModuleController_etudiant::class, 'index']);
+Route::get('module/{module_id}/matieres', [ModuleController_etudiant::class, 'matieres']);
 Route::resource('matieres', MatiereController_etudiant::class);
 Route::resource('formations', FormationController_etudiant::class);
 // Route::get('forum', [ForumController_etudian::class, 'index']);
@@ -156,6 +158,8 @@ Route::get('/download_activite/{id}', function($id){
 
     return Response::download($file, "$document->titre.pdf", $header);
 });
+
+
 Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

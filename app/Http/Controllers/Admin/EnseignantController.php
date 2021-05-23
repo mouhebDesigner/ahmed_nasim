@@ -93,8 +93,22 @@ class EnseignantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EnseignantRequest $request, $id)
+    public function update(Request $request, $id)
     {
+
+        $validations_password = "";
+        if($request->password != ""){
+            $validations_password = "required | string | min:8 | confirmed";
+        }
+        $request->validate([
+            'numtel' => "required | numeric | digits:8 | unique:users,numtel,".$id.",id",
+            "password" => $validations_password,
+            "email" =>  "required | string | email | max:255 | unique:users,email,".$id.",id",
+            'nom' => 'required | string | max:255',
+            'prenom' => 'required | string | max:255',
+            'date_naissance' => 'required',
+        ]);
+
         $enseignant =  User::find($id);
 
         $enseignant->nom = $request->nom;

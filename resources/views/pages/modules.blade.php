@@ -20,7 +20,7 @@
         <div class="row">
             @foreach($modules as  $module)
             <div class="col-lg-4 col-md-6 mb-30 wow fadeInUp" data-wow-delay="500ms" data-wow-duration="2000ms" style="visibility: visible; animation-duration: 2000ms; animation-delay: 500ms; animation-name: fadeInUp;">
-                <a class="categories-item" href="#">
+                <a class="categories-item" href="{{ url('module/'.$module->id.'/matieres') }}">
                     <div class="icon-part">
                         <img src="{{ asset('images/book.png') }}" alt="">
                     </div>

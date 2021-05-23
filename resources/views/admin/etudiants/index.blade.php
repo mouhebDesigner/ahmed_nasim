@@ -14,7 +14,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Liste de matieres</h1>
+                            <h1 class="m-0">Liste des etudiants</h1>
                         </div><!-- /.col -->
                        
                     </div>
@@ -47,7 +47,7 @@
                                                         aria-controls="example1">
                                                     </label>
                                                 </div>
-                                                <a href="{{ url('admin/matieres/create') }}">
+                                                <a href="{{ url('admin/etudiants/create') }}">
                                                     <i class="fa fa-plus"></i>
                                                 </a>
                                             </div>
@@ -59,13 +59,19 @@
                                                 <thead>
                                                     <tr>
                                                         <th>
-                                                            titre
+                                                            Nom
                                                         </th>
                                                         <th>
-                                                            section
+                                                            Prénom
                                                         </th>
                                                         <th>
-                                                            module
+                                                            Email
+                                                        </th>
+                                                        <th>
+                                                            Section
+                                                        </th>
+                                                        <th>
+                                                            Niveau
                                                         </th>
                                                         
                                                         <th>
@@ -78,28 +84,28 @@
                                                         <th>
                                                             Action
                                                         </th>
-
                                                     </tr>
-
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($matieres as $matiere)
+                                                    @foreach($etudiants as $etudiant)
                                                         <tr>
-                                                            <td>{{ $matiere->titre }}</td>
-                                                            <td>{{ $matiere->section->titre }}</td>
-                                                            <td>{{ $matiere->module->titre }}</td>
-                                                            <td>{{ $matiere->created_at }}</td>
-                                                            <td>{{ $matiere->updated_at }}</td>
+                                                            <td>{{ $etudiant->nom }}</td>
+                                                            <td>{{ $etudiant->prenom }}</td>
+                                                            <td>{{ $etudiant->email }}</td>
+                                                            <td>{{ $etudiant->etudiant->section->titre }}</td>
+                                                            <td>{{ $etudiant->etudiant->niveau }}</td>
+                                                            <td>{{ $etudiant->created_at }}</td>
+                                                            <td>{{ $etudiant->updated_at }}</td>
                                                             <td>
                                                                 <div class="d-flex justify-content-around">
-                                                                    <form action="{{ url('admin/matieres/'.$matiere->id) }}" method="post">
+                                                                    <form action="{{ url('admin/etudiants/'.$etudiant->id) }}" method="post">
                                                                         @csrf
                                                                         @method('delete')
-                                                                        <button type="submit" class="btn-delete" onclick="return confirm('Voules-vous supprimer ce module')">
+                                                                        <button type="submit" class="btn-delete" onclick="return confirm('Voules-vous supprimer cet etudiant')">
                                                                             <i class="fa fa-trash"></i>
                                                                         </button>
                                                                     </form>
-                                                                    <a href="{{ url('admin/matieres/'.$matiere->id.'/edit') }}" onclick="return confirm('Voules-vous modifier ce module')">
+                                                                    <a href="{{ url('admin/etudiants/'.$etudiant->id.'/edit') }}" onclick="return confirm('Voules-vous modifier cet etudiant')">
                                                                         <i class="fa fa-edit"></i>
                                                                     </a>
                                                                 </div>
@@ -110,13 +116,19 @@
                                                 <tfoot>
                                                     <tr>
                                                         <th>
-                                                            titre
+                                                            Nom
                                                         </th>
                                                         <th>
-                                                            section
+                                                            Prénom
                                                         </th>
                                                         <th>
-                                                            module
+                                                            Email
+                                                        </th>
+                                                        <th>
+                                                            Section
+                                                        </th>
+                                                        <th>
+                                                            Niveau
                                                         </th>
                                                         
                                                         <th>

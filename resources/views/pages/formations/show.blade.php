@@ -64,7 +64,7 @@
 
                                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion" style="">
                                             <div class="card-body acc-content current">
-                                                
+                                                @if($formation->videos->count() > 0)
                                                 @foreach($formation->videos as $video)
                                                 <div class="content">
                                                     <div class="clearfix">
@@ -80,6 +80,7 @@
                                                     </div>
                                                 </div>
                                                 @endforeach
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -99,17 +100,19 @@
             <div class="video-column col-lg-4">
                 <div class="inner-column">
                 <!-- Video Box -->
+                    @if($formation->videos->count() > 0)
                     <div class="intro-video media-icon orange-color2">
                         <img class="video-img" src="{{ asset('front/assets/images/about/about-video-bg2.png')}}" alt="Video Image">
                         @php 
-                            $link = $formation->videos()->first()->link;
-                            $code = substr($link, strpos($link, 'v=')+2, strpos($link, '&') - strpos($link, 'v=') - 2);
+                                $link = $formation->videos()->first()->link;
+                                $code = substr($link, strpos($link, 'v=')+2, strpos($link, '&') - strpos($link, 'v=') - 2);
                         @endphp
                         <a class="popup-videos" href="https://www.youtube.com/watch?v={{ $code }}">
                             <i class="fa fa-play"></i>
                         </a>
                         <h4>Prévisualiser cette formation</h4>
                     </div>
+                    @endif
                     <!-- End Video Box -->
                     
                     

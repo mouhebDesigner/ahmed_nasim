@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Models\Module;
 use App\Models\Matiere;
 use Illuminate\Http\Request;
-use Auth;
+
 class MatiereController extends Controller
 {
     public function index(){
+        $modules  = Module::where('section_id', Auth::user()->etudiant->section_id)->get();
         $matieres = Matiere::where('section_id', Auth::user()->etudiant->section_id)->paginate(6);
 
-        return view('pages.matieres.index', compact('matieres'));
+        return view('pages.matieres.index', compact('matieres', 'modules'));
     }
 
     public function show($id){

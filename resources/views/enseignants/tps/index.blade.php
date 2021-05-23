@@ -45,7 +45,6 @@
                                         <th>titre</th>
                                         <th>Date de creation</th>
                                         <th>Date de modification</th>
-                                        <th>Quizze</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -55,11 +54,7 @@
                                         <td>{{ $matiere->matiere->titre }}</td>
                                         <td>{{ $matiere->matiere->created_at }}</td>
                                         <td>{{ $matiere->matiere->updated_at }}</td>
-                                        <td>
-                                            <a href="{{ route('quizzes.create', ['matiere_id' => $matiere->id]) }}" class="btn btn-primary">
-                                                Créer quizze
-                                            </a>
-                                        </td>
+                                  
                                         <td>
                                             <a href="{{ url('enseignant/matiere/'.$matiere->matiere->id.'/travaux_pratiques') }}" class="btn btn-success">
                                                 Liste de travaux pratiques
@@ -73,7 +68,6 @@
                                         <th>titre</th>
                                         <th>Date de creation</th>
                                         <th>Date de modification</th>
-                                        <th>Quizze</th>
                                         <th>Actions</th>
                                     </tr>
                                 </tfoot>

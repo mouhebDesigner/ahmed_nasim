@@ -11,7 +11,7 @@
                     @include('admin.includes.error-message')
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Gérer les chapitres</h1>
+                            <h1 class="m-0">Liste des matières</h1>
                         </div><!-- /.col -->
                        
                     </div>
@@ -49,17 +49,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($matieres as $matiere)
+                                    @foreach($matieres_list as $matiere)
                                     <tr>
-                                        <td>{{ $matiere->matiere->titre }}</td>
-                                        <td>{{ $matiere->matiere->created_at }}</td>
-                                        <td>{{ $matiere->matiere->updated_at }}</td>
-                                     
+                                        <td>{{ $matiere->titre }}</td>
+                                        <td>{{ $matiere->created_at }}</td>
+                                        <td>{{ $matiere->updated_at }}</td>
                                         <td>
-                                            <a href="{{ url('enseignant/matiere/'.$matiere->matiere->id.'/chapitres') }}" class="btn btn-success">
-                                                Liste des chapitres 
-                                            </a>
+                                            @if(App\Models\Quizze::where('matiere_id', $matiere->id)->count() != 0)
+                                                <a href="{{ route('quizzes.create', ['matiere_id' => $matiere->id]) }}" class="btn btn-primary">
+                                                    Créer quizze
+                                                </a>
+                                            @else 
+                                                <p>Quizze ajouté</p>
+                                            @endif
                                         </td>
+                                       
                                     </tr>
                                     @endforeach
                                 </tbody>

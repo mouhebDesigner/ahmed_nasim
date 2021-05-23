@@ -19,11 +19,12 @@
                 </div>
             </div> 
         </div>
+        <div class="row">
             @foreach($formations as $formation)
             <div class="col-lg-4 col-md-6 mb-30 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="2000ms" style="visibility: visible; animation-duration: 2000ms; animation-delay: 300ms; animation-name: fadeInUp;">
                 <div class="courses-item">
                     <div class="img-part">
-                        <img src="{{ asset('storage/'.$formation->image) }}" alt="">
+                        <img src="{{ asset('storage/'.$formation->image) }}" style="width: 100%; height: 200px" alt="">
                     </div>
                     <div class="content-part">
                         <ul class="meta-part">
@@ -33,7 +34,7 @@
                             <div class="info-meta">
                                 <p>
                                 
-                                   {{ substr($formation->description, 0, 150) }}...
+                                   {{ substr($formation->description, 0, 100) }}...
                                 </p>
                             </div>
                             <div class="btn-part">
@@ -47,8 +48,10 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
             </div>
+                @endforeach
+        </div>
+
             
             
             

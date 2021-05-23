@@ -8,7 +8,7 @@
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>
-                    Ajouter un titre de matière 
+                    Ajouter un etudiant 
                 </h1>
             </section>
             <section class="content">
@@ -21,45 +21,61 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ url('admin/matieres') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ url('admin/etudiants') }}" method="post" enctype="multipart/form-data">
                         @csrf
                             <div class="card-body" id="inputs">
-                                <div class="form-group">
-                                    <h2>Cette matière contient: </h2>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label for="tp">TP</label>
-                                            <input type="checkbox" id="tp" name="has_tp" value="1">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="td">TD</label>
-                                            <input type="checkbox" id="td" name="has_td" value="1">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="cours">Cours</label>
-                                            <input type="checkbox" id="cours" name="has_cour" value="1">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group" id="enseignant_tp">
-                                    <label for="enseignant_id_tp">Enseignant de TP</label>
-                                    <select name="enseignant_id_tp" id="enseignant_id_tp" class="form-control">
-                                        <option value="" selected disbaled>Choisir enseignant de TP</option>
-                                    </select>
-                                </div>
-                                <div class="form-group" id="enseignant_td">
-                                    <label for="enseignant_id_td">Enseignant de TD</label>
-                                    <select name="enseignant_id_td" id="enseignant_id_td" class="form-control">
-                                        <option value="" selected disbaled>Choisir enseignant de TD</option>
-                                    </select>
-                                </div>
-                                <div class="form-group" id="enseignant_cours">
-                                    <label for="enseignant_id_cours">Enseignant de cours</label>
-                                    <select name="enseignant_id_cours" id="enseignant_id_cours" class="form-control">
-                                        <option value="" selected disbaled>Choisir enseignant de cours</option>
-                                    </select>
-                                </div>
                                
+                               
+                                
+                                <div class="form-group">
+                                    <label for="nom">Nom d'etudiant</label>
+                                    <input type="text" class="form-control" name="nom" value="{{ old('nom') }}" id="nom" placeholder="Saisir nom de matiére">
+                                    @error('nom')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="prenom">Préprenom d'etudiant</label>
+                                    <input type="text" class="form-control" name="prenom" value="{{ old('prenom') }}" id="prenom" placeholder="Saisir prenom de matiére">
+                                    @error('prenom')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email d'etudiant</label>
+                                    <input type="text" class="form-control" name="email" value="{{ old('email') }}" id="email" placeholder="Saisir email de matiére">
+                                    @error('email')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Mot de passe  d'etudiant</label>
+                                    <input type="password" class="form-control" name="password" value="{{ old('password') }}" id="password" placeholder="Saisir password de matiére">
+                                    @error('password')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Confirmer la Mot de passe</label>
+                                    <input type="password" class="form-control" name="password_confirmation" value="{{ old('password') }}" id="password" placeholder="Saisir password de matiére">
+                                    @error('password')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="numtel">Numéro de téléphone d'etudiant</label>
+                                    <input type="number" class="form-control" name="numtel" value="{{ old('numtel') }}" id="numtel" placeholder="Saisir numtel de matiére">
+                                    @error('numtel')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="date_naissance">date naissance d'etudiant</label>
+                                    <input type="date" class="form-control" name="date_naissance" value="{{ old('date_naissance') }}" id="date_naissance" placeholder="Saisir date_naissance de matiére">
+                                    @error('date_naissance')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
                                 <div class="form-group">
                                     <label for="section_id">Section</label>
                                     <select name="section_id" id="section_id" class="form-control">
@@ -70,17 +86,13 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="module_id">Module</label>
-                                    <select name="module_id" id="module_id" class="form-control">
-                                        <option value="" selected disbaled>Choisir module</option>
+                                    <label for="niveau">Niveau</label>
+                                    <select name="niveau" id="niveau" class="form-control">
+                                        <option value="" selected disbaled>Choisir niveau</option>
+                                        @foreach($niveaux as $niveau)
+                                            <option value="{{ $niveau }}" @if(old('niveau') == $niveau) selected @endif>{{ $niveau }}</option>
+                                        @endforeach
                                     </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="titre">Titre de matière</label>
-                                    <input type="text" class="form-control" name="titre" value="{{ old('titre') }}" id="titre" placeholder="Saisir titre de matiére">
-                                    @error('titre')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -103,7 +115,7 @@
 @section('script')
 <script>
     $("#tp").on('click', function(){
-        $("#enseignant_tp").css('display', 'block');
+        $("#etudiant_tp").css('display', 'block');
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -115,14 +127,14 @@
                 console.log(data);
 
                 $.each(data, function(index, value){
-                    $('#enseignant_id_tp').append('<option value="'+value.enseignant.id+'">'+value.nom+'</option>');
+                    $('#etudiant_id_tp').append('<option value="'+value.etudiant.id+'">'+value.nom+'</option>');
                 });
 
             }    
         });
     });
     $("#td").on('click', function(){
-        $("#enseignant_td").css('display', 'block');
+        $("#etudiant_td").css('display', 'block');
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -134,14 +146,14 @@
                 console.log(data);
 
                 $.each(data, function(index, value){
-                    $('#enseignant_id_td').append('<option value="'+value.enseignant.id+'">'+value.nom+'</option>');
+                    $('#etudiant_id_td').append('<option value="'+value.etudiant.id+'">'+value.nom+'</option>');
                 });
 
             }    
         });
     });
     $("#cours").on('click', function(){
-        $("#enseignant_cours").css('display', 'block');
+        $("#etudiant_cours").css('display', 'block');
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -153,7 +165,7 @@
                 console.log(data);
 
                 $.each(data, function(index, value){
-                    $('#enseignant_id_cours').append('<option value="'+value.enseignant.id+'">'+value.nom+'</option>');
+                    $('#etudiant_id_cours').append('<option value="'+value.etudiant.id+'">'+value.nom+'</option>');
                 });
 
             }    

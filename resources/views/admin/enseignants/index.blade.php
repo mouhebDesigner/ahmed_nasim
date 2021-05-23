@@ -130,6 +130,9 @@
                                                     </tr>
                                                 </tfoot>
                                             </table>
+                                            <div class="d-flex justify-content-center">
+                                                {{ $enseignants->links() }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

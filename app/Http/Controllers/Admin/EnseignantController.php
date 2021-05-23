@@ -18,7 +18,7 @@ class EnseignantController extends Controller
      */
     public function index()
     {
-        $enseignants = User::where('grade', 'enseignant')->paginate(10);
+        $enseignants = User::where('grade', 'enseignant')->where('approuver', 1)->orderBy('created_at', 'desc')->paginate(10);
 
         return view('admin.enseignants.index', compact('enseignants'));
     }
@@ -49,6 +49,7 @@ class EnseignantController extends Controller
         $enseignant->numtel = $request->numtel;
         $enseignant->date_naissance = $request->date_naissance;
         $enseignant->grade = "enseignant";
+        $enseignant->approuver = 1;
       
 
         $enseignant->save();

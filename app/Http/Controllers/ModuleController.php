@@ -15,8 +15,10 @@ class ModuleController extends Controller
     }
 
     public function matieres($module_id){
+
+        $module = Module::find($module_id)->titre;
         $matieres = Matiere::where('module_id', $module_id)->paginate(6);
 
-        return view('pages.matieres.index', compact('matieres'));
+        return view('pages.modules.matieres', compact('matieres', 'module'));
     }
 }

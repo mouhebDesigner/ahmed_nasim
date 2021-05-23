@@ -50,3 +50,9 @@
 #enseignant_cours{
     display: none;
 }
+
+.active_treeview{
+    background: #00000061;
+    /* color: white !important; */
+    border-radius: 19px;
+}

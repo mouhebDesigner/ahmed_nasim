@@ -29,7 +29,7 @@
                             <div class="info-meta">
                                 <p>
                                 
-                                   {{ substr($formation->description, 0, 100) }}...
+                                   {{ substr($formation->description, 0, 60) }}...
                                 </p>
                             </div>
                             <div class="btn-part">

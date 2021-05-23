@@ -12,6 +12,11 @@
     <!-- Intro Courses -->
     <section class="intro-section gray-bg pt-94 pb-100 md-pt-64 md-pb-70 loaded">
         <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2>{{ $matiere->titre }}</h2>
+                </div>
+            </div>
             <div class="row clearfix">
                 <!-- Content Column -->
                 <div class="col-lg-8 md-mb-50">

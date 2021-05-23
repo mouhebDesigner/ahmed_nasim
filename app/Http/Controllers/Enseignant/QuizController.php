@@ -14,10 +14,12 @@ class QuizController extends Controller
     public function index(){
         
         $quizzes = Quizze::paginate(10);
-
+        
+        
         return view('enseignants.quizzes.index', compact('quizzes'));
         
     }
+    
 
     public function create($matiere_id){
         return view('enseignants.quizzes.create', compact('matiere_id'));

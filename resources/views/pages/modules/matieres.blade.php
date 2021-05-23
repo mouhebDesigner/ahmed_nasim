@@ -9,14 +9,10 @@
 <div id="rs-blog" class="rs-blog style1 pt-94 pb-100 md-pt-64 md-pb-70">
     <div class="container">
             <div class="sec-title mb-60 md-mb-30">
-                <div class="sub-title primary">Matières </div>
-            </div>
-            @foreach($modules as $module)
+                <div class="sub-title primary">Matières de la module {{ $module }} </div>
+            </div>  
                 <div class="row">
-                    <div class="sub-title primary">Module {{ $module->titre }}</div>
-                </div>
-                <div class="row">
-                    @foreach($module->matieres as  $matiere)
+                    @foreach($matieres as  $matiere)
 
                         <div class="col-lg-6 col-md-12 pr-75 md-pr-15 md-mb-50">
                             <div class="row align-items-center no-gutter white-bg blog-item mb-30 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="2000ms" style="visibility: visible; animation-duration: 2000ms; animation-delay: 300ms; animation-name: fadeInUp;">
@@ -41,7 +37,6 @@
                         </div>
                     @endforeach
                 </div>
-            @endforeach
     </div>
 </div>
 @endsection

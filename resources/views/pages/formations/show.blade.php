@@ -28,10 +28,10 @@
                 <div class="intro-info-tabs">
                     <ul class="nav nav-tabs intro-tabs tabs-box" id="myTab" role="tablist">
                         <li class="nav-item tab-btns">
-                            <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab" href="#prod-overview" role="tab" aria-controls="prod-overview" aria-selected="false">Overview</a>
+                            <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab" href="#prod-overview" role="tab" aria-controls="prod-overview" aria-selected="false">Description</a>
                         </li>
                         <li class="nav-item tab-btns">
-                            <a class="nav-link tab-btn " id="prod-curriculum-tab" data-toggle="tab" href="#prod-curriculum" role="tab" aria-controls="prod-curriculum" aria-selected="true">Curriculum</a>
+                            <a class="nav-link tab-btn " id="prod-curriculum-tab" data-toggle="tab" href="#prod-curriculum" role="tab" aria-controls="prod-curriculum" aria-selected="true">Videos</a>
                         </li>
                     </ul>
                     <div class="tab-content tabs-content" id="myTabContent">

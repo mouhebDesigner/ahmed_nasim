@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- favicon -->
         <link rel="apple-touch-icon" href="apple-touch-icon.html">
-        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('front/assets/images/fav.png')}}') }}">
+        <link rel="shortcut icon" type="image/x-icon" href="http://127.0.0.1:8000/front/assets//images/easy-learn.png">
         <!-- Bootstrap v4.4.1 css -->
         <link rel="stylesheet" type="text/css" href="{{ asset('front/assets/css/bootstrap.min.css') }}">
         <!-- font-awesome css -->

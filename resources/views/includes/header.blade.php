@@ -82,7 +82,7 @@
                                     </li>
                                     
                                     <li class="menu-item-has-children">
-                                        <a href="#forum">forum</a>
+                                        <a href="{{ url('forums') }}">forum</a>
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a href="#contact">Contact</a>
@@ -105,7 +105,7 @@
                                         <a href="{{ url('formations') }}" class="@if(Request::is('formations*')) active @endif">Formations</a>
                                     </li>
                                     <li class="menu-item-has-children">
-                                        <a href="{{ url('forum') }}" class="@if(Request::is('forum')) active @endif">forum</a>
+                                        <a href="{{ url('forums') }}" class="@if(Request::is('forum')) active @endif">forum</a>
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a href="{{ url('contact') }}" class="@if(Request::is('contact')) active @endif">Contact</a>

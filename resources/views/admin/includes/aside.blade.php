@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="/home" class="brand-link">
       <img src="http://127.0.0.1:8000/front/assets//images/easy-learn.png" width="200" alt="">
 
       
@@ -131,34 +131,34 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link  @if(Request::is('enseignant/matieres')) active @endif">
+          <li class="nav-item @if(Request::is('enseignant/matieres') || Request::is('enseignant/cours') || Request::is('enseignant/tp') || Request::is('enseignant/td')) menu-is-opening menu-open @endif">
+            <a href="#" class="nav-link  @if(Request::is('enseignant/matieres') || Request::is('enseignant/cours') || Request::is('enseignant/tp') || Request::is('enseignant/td')) active @endif">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Gérer matières
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview" style="display: none;">
-              <li class="nav-item">
+            <ul class="nav nav-treeview" @if(Request::is('enseignant/matieres')) style="display: block;" @else  style="display: none;" @endif>
+              <li class="nav-item @if(Request::is('enseignant/matieres')) active_treeview @endif">
                 <a href="{{ url('enseignant/matieres') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Consulter matières</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item @if(Request::is('enseignant/cours')) active_treeview @endif">
                 <a href="{{ url('enseignant/cours') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gérer chapitres</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item @if(Request::is('enseignant/tp')) active_treeview @endif">
                 <a href="{{ url('enseignant/tp') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gérer travaux pratiques</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item @if(Request::is('enseignant/td')) active_treeview @endif">
                 <a href="{{ url('enseignant/td') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gérer travaux dirigés</p>

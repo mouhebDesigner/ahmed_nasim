@@ -28,4 +28,13 @@ class HomeController extends Controller
         else 
             return view('home');
     }
+
+    public function approval()
+    {
+        if(Auth::user()->grade == "etudiant")
+            return view('approval');
+        else 
+            return view('admin.approval');
+
+    }
 }

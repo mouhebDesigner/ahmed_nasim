@@ -90,3 +90,46 @@ select{
     display: none;
 }
 
+.btn-add{
+    color: #ffffff;
+    background: #21a7d0;
+    padding: 0px 15px;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+}
+
+textarea{
+    margin-bottom: 30px;
+    font-size: 15px;
+    font-weight: 400;
+    color: #505050;
+    width: 100%;
+    display: block;
+    border: none;
+    /* height: 45px; */
+    padding: 10px 18px;
+    border-radius: 5px;
+    box-shadow: 0 0 30px #eee;
+}
+
+.forum_block:hover{
+    box-shadow: 0px 0px 4px 1px #21a7d0;
+}
+
+.comment{
+    border-radius: 20px;
+    background: #273c6678;
+    color: white !important;
+}
+
+.comment_username{
+    padding: 0px;
+    margin: 0;
+    margin-left: 11px;  
+}
+.comment_imageuser{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}

@@ -8,14 +8,20 @@ use App\Models\Module;
 use App\Models\Activite;
 use App\Models\Chapitre;
 use App\Models\Enseignant;
+use Illuminate\Http\Request;
+use App\Models\TravailDemande;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\QuizzeController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\TravailController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\EnseignantController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\VideoController;
+use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Enseignant\TdController;
@@ -54,8 +60,9 @@ Route::prefix('admin')->group(function () {
     Route::get('users', [UserController::class, 'index']);
     Route::delete('user/{id}', [UserController::class, 'destroy']);
     Route::resource('formations', formation_controller_admin::class);
-    Route::resource('enseignants', enseignant_admin::class);
+    Route::resource('enseignants', enseignant_admin::class); 
     Route::resource('etudiants', etudiant_admin::class);
+    Route::resource('admins', AdminController::class);
     Route::prefix('formation/{formation_id}')->group(function ($matiere_id){
         Route::resource('videos', VideoController::class)->only(['index', 'create', 'store']);
     });
@@ -69,12 +76,14 @@ Route::middleware(['approved'])->group(function () {
     Route::get('repasser/{quizze_id}', [QuizzeController::class, 'repasser']);
     Route::resource('matieres', MatiereController_etudiant::class);
     Route::resource('formations', FormationController_etudiant::class)->except('index');
-    Route::get('forums/{id}/show', [ForumController::class, 'show']);
+    Route::get('forums/{id}/show', [ForumController::class, 'show'])->middleware('auth');
 
     Route::get('forums/create', [ForumController::class, 'create'])->middleware('auth');
     Route::post('forums', [ForumController::class, 'store'])->middleware('auth');
     Route::put('forums/{id}', [ForumController::class, 'edit'])->middleware('auth');
     Route::delete('forums/{id}', [ForumController::class, 'destroy'])->middleware('auth');
+    // Déposer activite 
+    Route::post('activite/{activite_id}/deposer',  [TravailController::class, 'deposer']);
     // esneigantn reoutes
     Route::prefix('enseignant')->group(function () {
         Route::resource('cours', matiere_enseignant::class);
@@ -134,10 +143,17 @@ Route::get('/module_list/{section_id}', function($section_id){
     return response()->json($modules);
 
 });
-Route::get('/teachers', function(){
+Route::get('/enseignants', function(){
 
     $teachers= User::where('grade', 'enseignant')->with('enseignant')->get();
     return response()->json($teachers);
+
+});
+Route::get('/sections', function(){
+
+    $sections = Section::all();
+
+    return response()->json($sections);
 
 });
 
@@ -183,3 +199,38 @@ Route::get('forums', [ForumController::class, 'index']);
 Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('travail', function(){
+    $travails = TravailDemande::all(); 
+    return view('travail', compact('travails'));
+});
+
+Route::get('downloadTravail/{id}', function($id){
+    // traiteent de download
+    $document = TravailDemande::find($id);
+
+    $file = storage_path().'/app/public/'.$document->fichier;
+    // storage/app/public/files/ajkzdghjgdateydafzuydazd.pdf
+
+    // $extension = explode('.', $file);
+    $header = array(
+        'Content-Type: application/pdf',
+    );
+
+    return Response::download($file, "$document->user->nom.pdf", $header);
+
+});
+
+// Contact admin
+Route::resource('contact', ContactController::class);
+
+// add coment 
+Route::resource('commentaires', CommentaireController::class);
+
+Route::get('image_upload', function(){
+    return view('image_upload');
+});
+Route::post('image', function(Request $request){
+    return $request->photo->store('images');
+});

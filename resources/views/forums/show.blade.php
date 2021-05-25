@@ -28,23 +28,53 @@
                 <div class="intro-info-tabs">
                     <div class="tab-content tabs-content" id="myTabContent">
                         <div class="tab-pane tab fade  active show" id="prod-overview" role="tabpanel" aria-labelledby="prod-overview-tab">
-                            <div class="content white-bg pt-30">
+                            <div class="white-bg pt-30">
                                 <!-- Cource Overview -->
-                                <div class="course-overview">
-                                    <div class="inner-box">
-                                        <h4>{{ $forum->titre }}</h4>
-                                        <p>{{ $forum->description }}</p>                                                                                         
-                                    </div>
+                                <div class="forum_block">
+                                    <h4>
+                                        {{ $forum->title }}
+                                    </h4>                                                                                       
+                                    <p>
+                                        {{ $forum->description }}
+                                    </p>
                                 </div>      
 
                             </div>
-                                <div class="content pt-30 pb-30 white-bg comment mt-5">
+                            @foreach(App\Models\Commentaire::where('forum_id', $forum->id)->get() as $comment)
+                            <div class="content pt-30 pb-30 white-bg comment mt-5">
                                 <div class="cource-review-box">
                                     <div class="d-flex justify-content-between align-items-center" style="width: max-content">
                                         <img src="{{ asset('front/assets/images/gallery/12.jpg') }}" class="comment_imageuser" >
-                                        <h4 class="comment_username">Rick O'Shea</h4>
+                                        <h4 class="comment_username">{{ $comment->user->nom }}</h4>
                                     </div>
-                                    <div class="text text-white">Phasellus enim magna, varius et commodo ut, ultricies vitae velit. Ut nulla tellus, eleifend euismod pellentesque vel, sagittis vel justo. In libero urna, venenatis sit amet ornare non, suscipit nec risus.</div> 
+                                    <div class="text text-white">
+                                        <p>
+                                            {{ $comment->contenue }}
+                                        </p>
+                                    </div> 
+                                </div>
+                            </div>
+                            @endforeach
+                            <div class="content pt-30 pb-30 white-bg mt-5">
+                                <div class="cource-review-box">
+                                    <form action="{{ url('commentaires') }}" method="post">
+                                        @csrf 
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                            <input type="hidden" value="{{ $forum->id }}" name="forum_id">
+                                                <div class="form_inputs">
+                                                    <textarea name="message" id="" cols="30" rows="5" placeholder="saisir votre commentaire"></textarea>
+                                                    @error('message')
+                                                        <p class="error_input_message">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button type="submit" class="readon submit-btn">Envoyer</button>
+                                            </div>
+                                        </div>
+                                        
+                                    </form>
                                 </div>
                             </div>
                         </div>

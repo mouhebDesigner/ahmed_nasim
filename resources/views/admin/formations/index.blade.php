@@ -67,7 +67,7 @@
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
-                                                <a href="{{ route('formations.edit', ['formation' => $formation->id]) }}" onclick="return confirm('Voules-vous modifier cette formation')">
+                                                <a href="{{ url('admin/formations/'.$formation->id.'/edit') }}" onclick="return confirm('Voules-vous modifier cette formation')">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </div>

@@ -55,4 +55,8 @@ class User extends Authenticatable
     public function formations(){
         return $this->belongsToMany(Formation::class);
     }
+
+    public function forums(){
+        return $this->hasMany(Forum::class);
+    }
 }

@@ -109,10 +109,10 @@
                                 @enderror
                             </div>
                             <div class="form-group col-lg-12 mb-25">
-                                <select name="section_id" id="">
+                                <select name="section_id" id="section_id">
                                     <option value="" selected disbaled>Choisir votre section</option>
-                                    @foreach(App\Models\Section::all()  as $section)
-                                        <option value="{{ $section->id }}">{{ $section->titre }}</option>
+                                    @foreach(App\Models\Section::all() as $section)
+                                        <option value="{{ $section->id }}" @if(old('section_id') == $section->id) selected @endif>{{ $section->titre }}</option>
                                     @endforeach
                                 </select>
                                 @error('section')
@@ -154,6 +154,22 @@
 @section('script')
     <script>
         $("#cycle").on('change', function(){
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type:'get',
+                url:'/sections',
+                data:'_token = <?php echo csrf_token(); ?>',
+                success:function(data) {
+                    console.log(data);
+                    $.each(data, function(index, value){
+                        $('#section_id').append('<option value="'+value.id+'">'+value.titre+'</option>');
+                    });
+                }    
+            });
+        });
+        $("#cycle").on('change', function(){
             var cycle = $(this).val();
 
             if(cycle == 'licence'){
@@ -168,6 +184,9 @@
                 $("#niveau").append('<option value="première">Première année</option>')
                 $("#niveau").append('<option value="deuxième">Deuxième année</option>')
             }
+            
+            // Get sections 
+           
             
         });
     </script>

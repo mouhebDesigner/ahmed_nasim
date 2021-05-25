@@ -47,10 +47,26 @@
                                         <!-- Cource Overview -->
                                         <a href="{{ url('forums/'.$forum->id.'/show') }}" class=" course-overview">
                                             <div class="inner-box">
-                                                <h4>fzefzef</h4>
+                                                <div class="user">
+                                                    <img src="{{ asset('storage/'.$forum->user->photo)}}" alt="">
+                                                    <div class="name_date">
+                                                        <p>{{ $forum->user->nom }} {{ $forum->user->prenom }}</p>
+                                                        <span>{{ $forum->created_at->diffForHumans() }}</span>
+                                                    </div>
+                                                </div>
+                                                <h4>{{ $forum->titre }}</h4>
                                                 <p>
-                                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro, fugit, nam ullam dolorum blanditiis ea amet earum ratione unde perferendis, ducimus fuga optio quisquam a magnam autem veniam laborum cumque.
+                                                    {{ substr($forum->description, 0, 100) }}...
                                                 </p>
+
+                                                <div class="nbr_comments">
+                                                    <p>
+                                                        <span>
+                                                            {{ $forum->commentaires->count() }}
+                                                        </span>
+                                                        Commentaires
+                                                    </p>
+                                                </div>
                                             </div>
                                         </a>                                                
                                     </div>

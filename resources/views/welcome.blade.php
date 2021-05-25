@@ -1,8 +1,6 @@
 @extends('layouts.master')
 
-@section('includes')
-    @include('includes.header')
-@endsection
+
 
 @section('content')
     @guest
@@ -31,8 +29,10 @@
             </div>
         </div>
         @include('includes.sections')
-        @include('includes.formations')
-    @else 
+        <div id="formations">
+            @include('includes.formations')
+        </div>
+        @else 
         <div id="rs-banner" class="rs-banner style1">
             <div class="container">
                 <div class="banner-content text-center">

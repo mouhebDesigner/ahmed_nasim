@@ -86,8 +86,12 @@ class FormationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(FormationRequest $request, $id)
+    public function update(Request $request, $id)
     {
+        $request->validate([
+            'titre' => 'required',
+            'description' => 'required',
+        ]);
         $formation =  Formation::find($id);
 
 
@@ -101,7 +105,7 @@ class FormationController extends Controller
 
         $formation->save();
 
-        return redirect('enseignant/formations')->with('updated', 'La formation a été modifié avec succés');
+        return redirect('admin/formations')->with('updated', 'La formation a été modifié avec succés');
     }
 
     /**

@@ -133,3 +133,40 @@ textarea{
     height: 60px;
     border-radius: 50%;
 }
+
+.forum_block{
+    background: white;
+    padding: 50px;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.user img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    margin-right: 12px;
+}
+.user .name_date p{
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+}
+
+.nbr_comments{
+    background: #273c66;
+    width: max-content;
+    padding: 10px;
+    border-radius: 28px;
+    color: white !important;
+    float: right;
+}
+
+.nbr_comments p{
+    color: white !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}

@@ -3,6 +3,10 @@
 @section('includes')
     @include('includes.header')
 @endsection
+@section('css')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+@endsection
 
 @section('content')
  
@@ -51,7 +55,13 @@
                                                         <div class="clearfix">
                                                             <div class="pull-left">
                                                                 @if($chapitre->type == "video")
-                                                                <a class="popup-videos play-icon" href="https://www.youtube.com/watch?v=atMUy_bPoQI"><i class="fa fa-play"></i><strong>{{ $chapitre->titre }}</strong></a>
+                                                                @php 
+                                                                    $link = $chapitre->content;
+                                                                    $code = substr($link, strpos($link, 'v=')+2, strpos($link, '&') - strpos($link, 'v=') - 2);
+                                                                @endphp
+                                                                <!-- NU_omO5KCOc -->
+                                                                <!-- https://www.youtube.com/watch?v=NU_omO5KCOc&ab_channel=WataniaReplay -->
+                                                                <a class="popup-videos play-icon" href="https://www.youtube.com/watch?v={{ $code }}"><i class="fa fa-play"></i><strong>{{ $chapitre->titre }}</strong></a>
                                                                 @else 
                                                                 <a class=" play-icon" href="{{ url('download_chapitre/'.$chapitre->id) }}"><i class="fa fa-download"></i><strong>{{ $chapitre->titre }}</strong></a>
                                                                 @endif
@@ -67,7 +77,41 @@
                                                                 </div>
                                                                 <div class="pull-right">
                                                                     <div class="minutes">
-                                                                        <a href="#" class="btn btn-primary">Mon travail</a>
+                                                                        <!-- Button trigger modal -->
+                                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#activite{{ $activite->id }}">
+                                                                            Mon travail
+                                                                        </button>
+
+                                                                        <!-- Modal -->
+                                                                        <div class="modal fade" id="activite{{ $activite->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog">
+                                                                            <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="exampleModalLabel">Déposer votre travail</h5>
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body styled-form">
+                                                                                <form action="{{ url('activite/'.$activite->id.'/deposer') }}" method="post">
+                                                                                @csrf
+                                                                                
+                                                                                <div class="form-group col-lg-12 mb-25">
+                                                                                    <label for="fichier" class="fichier_label">Télécharger fichier</label>
+                                                                                    <input type="file" id="fichier" name="fichier" value="{{ old('fichier') }}" class="input_file @error('fichier') error_input @enderror">
+                                                                                    @error('fichier')
+                                                                                        <span class="invalid-feedback" role="alert" style="display: inline">
+                                                                                            <strong class="font-size_strong_strong">{{ $message }}</strong>
+                                                                                        </span>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                                                                <button type="submit" class="btn btn-primary">Déposer</button>
+                                                                            </div>
+                                                                            </form>
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -81,7 +125,40 @@
                                                                 </div>
                                                                 <div class="pull-right">
                                                                     <div class="minutes">
-                                                                        <a href="#" class="btn btn-primary">Mon travail</a>
+                                                                            <!-- Button trigger modal -->
+                                                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#activite{{ $activite->id }}">
+                                                                            Mon travail
+                                                                        </button>
+
+                                                                        <!-- Modal -->
+                                                                        <div class="modal fade" id="activite{{ $activite->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog">
+                                                                            <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="exampleModalLabel">Déposer votre travail</h5>
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body styled-form">
+                                                                                <form action="{{ url('activite/'.$activite->id.'/deposer') }}" method="post" enctype="multipart/form-data">
+                                                                                @csrf
+                                                                                <div class="form-group col-lg-12 mb-25">
+                                                                                    <label for="fichier" class="fichier_label">Télécharger fichier</label>
+                                                                                    <input type="file" id="fichier" name="fichier" value="{{ old('fichier') }}" class="input_file @error('fichier') error_input @enderror">
+                                                                                    @error('fichier')
+                                                                                        <span class="invalid-feedback" role="alert" style="display: inline">
+                                                                                            <strong class="font-size_strong_strong">{{ $message }}</strong>
+                                                                                        </span>
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                                                                <button type="submit" class="btn btn-primary">Déposer</button>
+                                                                            </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -208,6 +285,7 @@
             </div>                
         </div>
     </section>
+    <!-- Button trigger modal -->
     <!-- End intro Courses -->
 
     <!-- Newsletter section start -->

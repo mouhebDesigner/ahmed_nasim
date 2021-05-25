@@ -1,5 +1,5 @@
 <div id="rs-popular-courses" class="rs-popular-courses bg6 style1 pt-94 pb-70 md-pt-64 md-pb-40">
-    <div class="container">
+    <div class="container" >
         <div class="row y-middle mb-50 md-mb-30">
             <div class="col-md-6 sm-mb-30">
                 <div class="sec-title">

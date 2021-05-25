@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/home" class="brand-link">
-      <img src="http://127.0.0.1:8000/front/assets//images/easy-learn.png" width="200" alt="">
+      <img src="{{ asset('front/assets//images/easy-learn.png') }}" width="200" alt="">
 
       
     </a>
@@ -75,6 +75,15 @@
               <i class="nav-icon fas fa-user-graduate"></i>
               <p>
                 {{ __('Gérer les etudiants') }}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('admin/admins') }}" class="nav-link @if(Request::is('admin/admins*')) active @endif">
+              <i class="nav-icon fas fa-user-graduate"></i>
+              <p>
+                {{ __('Gérer les administrateurs') }}
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>

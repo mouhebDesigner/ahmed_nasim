@@ -40,6 +40,5 @@
     <script src="{{ asset('assets/dist/js/pages/dashboard3.js') }}"></script>
     @yield('script')
 </body>
-
 <!-- Mirrored from altair-html-rtl.tzdthemes.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 29 Nov 2020 11:31:56 GMT -->
 </html> 

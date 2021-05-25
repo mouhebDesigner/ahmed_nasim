@@ -22,7 +22,7 @@
                         <!-- /.card-header -->
                         <!-- form start -->
                         <form action="{{ url('admin/matieres') }}" method="post" enctype="multipart/form-data">
-                        @csrf
+                            @csrf
                             <div class="card-body" id="inputs">
                                 <div class="form-group">
                                     <h2>Cette matière contient: </h2>
@@ -101,6 +101,7 @@
 
 @endsection
 @section('script')
+
 <script>
     $("#tp").on('click', function(){
         $("#enseignant_tp").css('display', 'block');
@@ -109,7 +110,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type:'get',
-            url:'/teachers/',
+            url:'/enseignants/',
             data:'_token = <?php echo csrf_token() ?>',
             success:function(data) {
                 console.log(data);
@@ -128,7 +129,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type:'get',
-            url:'/teachers/',
+            url:'/enseignants/',
             data:'_token = <?php echo csrf_token() ?>',
             success:function(data) {
                 console.log(data);
@@ -147,7 +148,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type:'get',
-            url:'/teachers/',
+            url:'/enseignants/',
             data:'_token = <?php echo csrf_token() ?>',
             success:function(data) {
                 console.log(data);

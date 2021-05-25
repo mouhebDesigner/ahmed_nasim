@@ -8,7 +8,7 @@
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>
-                    Modifier un chapitre de la matière : {{ App\Models\Matiere::find($matiere_id)->titre }} 
+                    Ajouter une formation
                 </h1>
             </section>
             <section class="content">
@@ -21,52 +21,39 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ route('chapitres.update', ['matiere_id' => $matiere_id, 'chapitre' => $chapitre->id]) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ url('admin/formations/'.$formation->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <div class="card-body" id="inputs">
                                 <div class="form-group">
-                                    <label for="titre">Titre de chapitre</label>
-                                    <input type="text" class="form-control" name="titre" value="{{ $chapitre->titre }}" id="titre" placeholder="Saisir titre de module">
+                                    <label for="titre">Titre de formation</label>
+                                    <input type="text" class="form-control" name="titre" value="{{ $formation->titre }}" id="titre" placeholder="Saisir titre de formation">
                                     @error('titre')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
-                                <!-- type de chapitre pdf ou video -->
-                                <div class="form-group">
-                                    <label for="type">Type de contenue</label>
-                                    <select name="type" id="type" class="form-control">
-                                        <option value="" selected disbaled>Choisir type</option>
-                                        <option value="document" @if($chapitre->type == 'document') selected @endif>document pdf</option>
-                                        <option value="video" @if($chapitre->type == 'video') selected @endif>video</option>
-                                    </select>
-                                    @error('type')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
                                 <!-- Contenue pdf -->
-                                <div class="form-group" id="document" @if($chapitre->type == 'document') style="display: block" @else style="display:none" @endif>
-                                    <label for="content">Document</label>
-                                    <input type="file" class="form-control" name="content"  id="content" placeholder="Saisir document de module">
-                                    @error('content')
+                                <div class="form-group" id="document">
+                                    <label for="image">Image</label>
+                                    <input type="file" class="form-control" name="image" value="{{ $formation->image }}" id="image" placeholder="Saisir document de module">
+                                    @error('image')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 
                                 <!-- Contenue video -->
-                                <div class="form-group" id="video"  @if($chapitre->type == 'video') style="display: block" @else style="display:none" @endif>
-                                    <label for="content">Video</label>
-                                    <input type="text" class="form-control" name="content" @if($chapitre->type == 'video') value="{{ $chapitre->content }}" @endif id="content" placeholder="Saisir content de module">
-                                    @error('content')
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea  class="form-control" name="description" value="{{ $formation->description }}" id="description" placeholder="Saisir description">{{ $formation->description }}</textarea>
+                                    @error('description')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
-
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            <button type="   " class="btn btn-primary">Enregistrer</button>
                             <button type="reset" class="btn btn-info">Annuler</button>
                             </div>
                         </form>

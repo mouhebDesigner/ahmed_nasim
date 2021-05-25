@@ -43,15 +43,20 @@
         <![endif]-->
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('front/main.css') }}">
+        @yield('css')
     </head>
     <body class="defult-home">
         <div class="full-width-header header-style1 home1-modifiy">
-            @yield('includes')
+            @include('includes.header')
             <div class="main-content">
                 @yield('content')
             </div>
             @include('includes.footer')
         </div>   
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
         
         <!-- script files -->
         <script src="assets/js/contact.form.js"></script>
@@ -90,8 +95,9 @@
         <script src="{{ asset('front/assets/js/contact.form.js') }}"></script>
         <!-- main js -->
         <script src="{{ asset('front/assets/js/main.js') }}"></script>
-        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
         @yield('script')
+
+       
     </body>
 
 <!-- Mirrored from keenitsolutions.com/products/html/educavo/index2.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Apr 2021 19:19:20 GMT -->

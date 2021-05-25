@@ -12819,10 +12819,13 @@ body .modal-backdrop {
 }
 .styled-form .form-group label {
   position: relative;
-  color: #626262;
+  color: white;
   font-size: 16px;
   font-weight: 400;
   margin-bottom: 15px;
+  background: #333131;
+  padding: 20px;
+  width: 100%;
 }
 .styled-form .form-group input {
   position: relative;

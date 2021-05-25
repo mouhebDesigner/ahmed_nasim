@@ -20,12 +20,26 @@
                         <li class="login-register">
                             <!-- <a href="{{ url('login') }}">Se connecter</a>/ -->
                         </li>
-                        <li class="btn-part">
+                        <li class="btn-part d-flex">
                         @guest
                             <a class="apply-btn" href="{{ url('login') }}">
                                 <i class="fa fa-sign-in"></i>Se connecter
                             </a>
                         @else 
+                            <a class="" href="{{ url('login') }}" style="
+                                display: flex;
+                                margin-right: 25px;
+                                align-items: center;
+                            ">
+                                <img src="{{ asset('storage/'.Auth::user()->photo) }}" alt="" style="
+                                    width: 50px;
+                                    height: 50px;
+                                    border-radius: 50px;
+                                    margin-right: 10px;
+                                ">
+                                {{  Auth::user()->nom }} {{ Auth::user()->prenom }}
+                            </a>
+
                             <a class="apply-btn" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
@@ -69,7 +83,7 @@
                             <nav class="rs-menu rs-menu-close" style="height: 0px;">
                                 <ul class="nav-menu">
                                     <li class="menu-item-has-children">
-                                        <a href="{{ url('/') }}">Accueil</a>
+                                        <a href="{{ url('/') }}" class="active">Accueil</a>
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a href="#sections">Sections</a>
@@ -78,14 +92,14 @@
                                         <a href="#formations">Formations</a>
                                     </li>
                                     <li class="menu-item-has-children">
-                                        <a href="#formateur">Enseignants</a>
+                                        <a href="#enseignant">Enseignants</a>
                                     </li>
                                     
                                     <li class="menu-item-has-children">
                                         <a href="{{ url('forums') }}">forum</a>
                                     </li>
                                     <li class="menu-item-has-children">
-                                        <a href="#contact">Contact</a>
+                                        <a href="{{ url('contact') }}" class="@if(Request::is('contact')) active @endif">Contact</a>
                                     </li>
                                 </ul> <!-- //.nav-menu -->
                             </nav>  

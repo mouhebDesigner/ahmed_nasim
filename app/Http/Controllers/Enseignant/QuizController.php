@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Enseignant;
 
+use App\Models\Cour;
 use App\Models\Quizze;
 use App\Models\Matiere;
 use Illuminate\Http\Request;
 use App\Http\Requests\QuizRequest;
 use App\Http\Controllers\Controller;    
-
+use Auth;
 class QuizController extends Controller
 {
 
     public function index(){
-        
-        $quizzes = Quizze::paginate(10);
+        $matieres = Cour::with('matiere')->where('enseignant_id', Auth::user()->enseignant->id)->get('matiere_id');
+        $quizzes = Quizze::whereIn('matiere_id', $matieres)->paginate(10);
         
         
         return view('enseignants.quizzes.index', compact('quizzes'));
@@ -21,49 +22,49 @@ class QuizController extends Controller
     }
     
 
-    public function create($matiere_id){
-        return view('enseignants.quizzes.create', compact('matiere_id'));
+    public function create(){
+        return view('enseignants.quizzes.create');
     }
 
-    public function store(QuizRequest $request, $matiere_id){
+    public function store(QuizRequest $request){
 
         $quiz = new Quizze();
 
-        $quiz->matiere_id = $matiere_id;
+        $quiz->matiere_id = $request->matiere_id;
         $quiz->nbr_questions = $request->nbr_questions;
         $quiz->nbr_reponses = $request->nbr_reponses;
 
         $quiz->save();
 
-        return redirect('enseignant/quizzes')->with('added', __('messages.added_message'));
+        return redirect('enseignant/quizzes')->with('added', 'Quiz a été ajouté avec succée');
     }
 
-    public function edit($matiere_id, $id){
+    public function edit($id){
         
-        $quiz = Quiz::find($id);
+        $quizze = Quizze::find($id);
 
-        return view('enseignants.pages.quizzes.edit', compact('quiz', 'matiere_id'));
+        return view('enseignants.quizzes.edit', compact('quizze'));
     }
 
-    public function update(QuizRequest $request, $matiere_id, $id){
+    public function update(QuizRequest $request, $id){
 
-        $quiz = Quiz::find($id);
+        $quiz = Quizze::find($id);
 
-        $quiz->matiere_id = $matiere_id;
+        $quiz->matiere_id = $request->matiere_id;
         $quiz->nbr_questions = $request->nbr_questions;
         $quiz->nbr_reponses = $request->nbr_reponses;
 
         $quiz->save();
 
-        return redirect('admin/quizzes')->with('added', __('messages.added_message'));
+        return redirect('enseignant/quizzes')->with('added', 'Quiz a été modifié avec succée');
     }
 
-    public function destroy($matiere_id, $id)
+    public function destroy($id)
     {
 
-        Quiz::find($id)->delete();
+        Quizze::find($id)->delete();
 
-        return redirect('admin/quizzes')->with('deleted', __('messages.deleted_message'));
+        return redirect('enseignant/quizzes')->with('deleted', 'Quiz a été supprimé avec succée');
     }
 
     public function deleteAll(Request $request){
@@ -74,7 +75,7 @@ class QuizController extends Controller
             Quiz::find($quizze)->delete();
         }
 
-        return  redirect()->back()->with('deleted', __('messages.deleted_message'));
+        return  redirect()->back()->with('deleted', 'Quiz a été ajouté avec succée');
 
     }
 

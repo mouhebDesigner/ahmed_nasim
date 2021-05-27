@@ -116,10 +116,19 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('admin/formations') }}" class="nav-link @if(Request::is('enseignant/formations*')) active @endif">
+            <a href="{{ url('admin/formations') }}" class="nav-link @if(Request::is('admin/formations*')) active @endif">
               <i class="nav-icon fas fa-book-reader"></i>
               <p>
                 {{ __('Gérer  formations') }}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('admin/contacts') }}" class="nav-link @if(Request::is('enseignant/contacts*')) active @endif">
+              <i class="nav-icon fas fa-book-reader"></i>
+              <p>
+                {{ __('Gérer  contacts') }}
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -140,7 +149,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item @if(Request::is('enseignant/matieres') || Request::is('enseignant/cours') || Request::is('enseignant/tp') || Request::is('enseignant/td')) menu-is-opening menu-open @endif">
+          <li class="nav-item @if(Request::is('enseignant/matieres') || Request::is('enseignant/cours') || Request::is('enseignant/tp') || Request::is('enseignant/td') ||  Request::is('*chapitres') || Request::is('*travaux_diriges') ||  Request::is('*travaux_pratiques')) menu-is-opening menu-open @endif">
             <a href="#" class="nav-link  @if(Request::is('enseignant/matieres') || Request::is('enseignant/cours') || Request::is('enseignant/tp') || Request::is('enseignant/td')) active @endif">
               <i class="nav-icon fas fa-book"></i>
               <p>
@@ -155,19 +164,19 @@
                   <p>Consulter matières</p>
                 </a>
               </li>
-              <li class="nav-item @if(Request::is('enseignant/cours')) active_treeview @endif">
+              <li class="nav-item @if(Request::is('enseignant/cours') || Request::is('*chapitres')) active_treeview @endif">
                 <a href="{{ url('enseignant/cours') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gérer chapitres</p>
                 </a>
               </li>
-              <li class="nav-item @if(Request::is('enseignant/tp')) active_treeview @endif">
+              <li class="nav-item @if(Request::is('enseignant/tp') ||   Request::is('*travaux_pratiques')) active_treeview @endif">
                 <a href="{{ url('enseignant/tp') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gérer travaux pratiques</p>
                 </a>
               </li>
-              <li class="nav-item @if(Request::is('enseignant/td')) active_treeview @endif">
+              <li class="nav-item @if(Request::is('enseignant/td') ||  Request::is('*travaux_diriges')) active_treeview @endif">
                 <a href="{{ url('enseignant/td') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gérer travaux dirigés</p>

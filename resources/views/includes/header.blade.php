@@ -1,26 +1,24 @@
 <header id="rs-header" class="rs-header">
     <!-- Topbar Area Start -->
     <div class="topbar-area dark-parimary-bg">
-        <div class="container">
+        <div class="container pt-2 pb-2">
             <div class="row y-middle">
                 <div class="col-md-7">
                     <ul class="topbar-contact">
                         <li>
                             <i class="flaticon-email"></i>
-                            <a href="mailto:support@rstheme.com">example@gmail.com</a>
+                            <a href="mailto:support@rstheme.com">isimg@isimg.rnu.tn</a>
                         </li>
                         <li>
                             <i class="flaticon-location"></i>
-                            Rue habib bourguiba Gabes
+                            Campus universitaire – BP 122, 6033 Cité El Amel 4, Gabès, TUNISIE
                         </li>
                     </ul>
                 </div>
                 <div class="col-md-5 text-right">
                     <ul class="topbar-right">
-                        <li class="login-register">
-                            <!-- <a href="{{ url('login') }}">Se connecter</a>/ -->
-                        </li>
-                        <li class="btn-part d-flex">
+                       
+                        <li class="btn-part @guest @else d-flex @endif">
                         @guest
                             <a class="apply-btn" href="{{ url('login') }}">
                                 <i class="fa fa-sign-in"></i>Se connecter
@@ -59,7 +57,7 @@
     <!-- Topbar Area End -->
 
     <!-- Menu Start -->
-    <div class="menu-area menu-sticky">
+    <div class="menu-area menu-sticky" style="box-shadow: 0px 0px 4px black;">
         <div class="container">
             <div class="row y-middle">
                 <div class="col-lg-2">

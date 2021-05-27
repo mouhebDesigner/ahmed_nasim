@@ -134,7 +134,7 @@ h6 {
   font-weight: 800 !important;
 }
 a {
-  color: #21a7d0;
+  color: #ffffff;
   transition: all 0.3s ease;
   text-decoration: none !important;
   outline: none !important;
@@ -13403,7 +13403,7 @@ body .modal-backdrop {
   background-size: cover;
 }
 .rs-footer .footer-top {
-  padding: 218px 0 93px;
+  padding: 50px 0;
 }
 .rs-footer .footer-top .widget-title {
   color: #ffffff;

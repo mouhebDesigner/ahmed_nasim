@@ -27,12 +27,11 @@
 
                                 <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
                                     <div class="input-group-append">
-                                    <button type="submit" class="btn btn-default">
-                                        <i class="fas fa-search"></i>
-                                    </button>
+                                        <a href="{{ url('enseignant/quizzes/create') }}" class="btn btn-success">
+                                            Ajouter <i class="fa fa-plus"></i>
+                                        </a>
                                     </div>
                                 </div>
                                 </div>
@@ -56,8 +55,8 @@
                                         <td>{{ $quizze->matiere->titre }}</td>
                                         <td>{{ $quizze->nbr_questions }}</td>
                                         <td>{{ $quizze->nbr_reponses }}</td>
-                                        <td>{{ $quizze->matiere->created_at }}</td>
-                                        <td>{{ $quizze->matiere->updated_at }}</td>
+                                        <td>{{ $quizze->matiere->created_at->diffForHumans() }}</td>
+                                        <td>{{ $quizze->matiere->updated_at->diffForHumans() }}</td>
                                         <td>
                                             <div class="d-flex justify-content-around">
                                                 <a href="{{ route('questions.index', ['quizze_id' => $quizze->id]) }}" class="btn btn-primary">

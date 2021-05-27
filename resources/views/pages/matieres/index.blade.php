@@ -13,7 +13,7 @@
             </div>
             @foreach($modules as $module)
                 <div class="row">
-                    <div class="sub-title primary">Module {{ $module->titre }}</div>
+                    <div class="col-md-12 module_title sub-title primary">Module {{ $module->titre }}</div>
                 </div>
                 <div class="row">
                     @foreach($module->matieres as  $matiere)

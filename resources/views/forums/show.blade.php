@@ -28,19 +28,39 @@
                 <div class="intro-info-tabs">
                     <div class="tab-content tabs-content" id="myTabContent">
                         <div class="tab-pane tab fade  active show" id="prod-overview" role="tabpanel" aria-labelledby="prod-overview-tab">
-                            <div class="white-bg pt-30">
-                                <!-- Cource Overview -->
-                                <div class="forum_block">
-                                    <h4>
-                                        {{ $forum->title }}
-                                    </h4>                                                                                       
-                                    <p>
-                                        {{ $forum->description }}
-                                    </p>
-                                </div>      
+                        <div class="content white-bg pt-30 mt-5 ">
+                                        <!-- Cource Overview -->
+                            <div class="forum_block">
+                                <a href="{{ url('forums/'.$forum->id.'/show') }}" class=" course-overview">
+                                    <div class="inner-box">
+                                        <div class="user">
+                                            <img src="{{ asset('storage/'.$forum->user->photo)}}" alt="">
+                                            <div class="name_date">
+                                                <p>{{ $forum->user->nom }} {{ $forum->user->prenom }}</p>
+                                                <span>{{ $forum->created_at->diffForHumans() }}</span>
+                                            </div>
+                                        </div>
+                                        <h4>{{ $forum->titre }}</h4>
+                                        <p>
+                                            {{ $forum->description }}
+                                        </p>
 
+                                        <div class="nbr_comments">
+                                            <p>
+                                                <span>
+                                                    {{ $forum->commentaires->count() }}
+                                                </span>
+                                                Commentaires
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>                                                
                             </div>
-                            @foreach(App\Models\Commentaire::where('forum_id', $forum->id)->get() as $comment)
+                        </div>
+                           
+                        </div>
+
+                        @foreach(App\Models\Commentaire::where('forum_id', $forum->id)->get() as $comment)
                             <div class="content pt-30 pb-30 white-bg comment mt-5">
                                 <div class="cource-review-box">
                                     <div class="d-flex justify-content-between align-items-center" style="width: max-content">
@@ -77,7 +97,6 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
                        
                         
                         

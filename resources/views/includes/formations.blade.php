@@ -33,7 +33,7 @@
                                 </p>
                             </div>
                             <div class="btn-part">
-                                <a href="{{ url('formations/'.$formation->id) }}"><i class="flaticon-right-arrow"></i></a>
+                                <a href="{{ url('formations/'.$formation->id.'/show') }}"><i class="flaticon-right-arrow"></i></a>
                             </div>
                         </div>
                     </div>

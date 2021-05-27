@@ -63,7 +63,7 @@ class QuestionController extends Controller
         $question->content = $request->content;
         $question->save();
 
-        for($i=1; $i <= Quizze::find($quizze_id)->nrb_reponses; $i++){
+        for($i=1; $i <= Quizze::find($question->quizze_id)->nbr_reponses; $i++){
 
             $reponse = new Reponse();
     

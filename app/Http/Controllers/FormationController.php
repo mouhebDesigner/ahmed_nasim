@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class FormationController extends Controller
 {
+
+    
     public function index(){
         $formations  = Formation::paginate(10);
 

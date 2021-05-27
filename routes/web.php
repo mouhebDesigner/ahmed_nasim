@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\QuizzeController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Admin\ContactController as ContactController_admin;
 use App\Http\Controllers\TravailController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\Admin\UserController;
@@ -48,11 +49,17 @@ use App\Http\Controllers\Admin\FormationController as formation_controller_admin
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// page d'acceuil
 Route::get('/', function () {
     return view('welcome');
 });
+// Login routes 
+Auth::routes(['register' => false]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Les path d'admin
 Route::prefix('admin')->group(function () {
+    Route::resource('contacts', ContactController_admin::class);
     Route::resource('modules', ModuleController::class);
     Route::resource('sections', SectionController::class);
     Route::resource('matieres', matiere_admin::class);
@@ -69,15 +76,19 @@ Route::prefix('admin')->group(function () {
     Route::resource('videos', VideoController::class)->only(['update', 'destroy', 'edit']);
 
 });
+// Middleware pour controller si un utilisateur authenitifé est approuvé ou pas 
 Route::middleware(['approved'])->group(function () {
     // etudiant routes 
+    // Matier
     Route::get('matiere/{matiere_id}/quizze', [QuizzeController::class, 'index']);
+    // Quize
     Route::post('quizze/{quizze_id}', [QuizzeController::class, 'store']);
-    Route::get('repasser/{quizze_id}', [QuizzeController::class, 'repasser']);
+    // Route::get('repasser/{quizze_id}', [QuizzeController::class, 'repasser']);
     Route::resource('matieres', MatiereController_etudiant::class);
+    // Formation
     Route::resource('formations', FormationController_etudiant::class)->except('index');
     Route::get('forums/{id}/show', [ForumController::class, 'show'])->middleware('auth');
-
+    // Forum 
     Route::get('forums/create', [ForumController::class, 'create'])->middleware('auth');
     Route::post('forums', [ForumController::class, 'store'])->middleware('auth');
     Route::put('forums/{id}', [ForumController::class, 'edit'])->middleware('auth');
@@ -86,6 +97,7 @@ Route::middleware(['approved'])->group(function () {
     Route::post('activite/{activite_id}/deposer',  [TravailController::class, 'deposer']);
     // esneigantn reoutes
     Route::prefix('enseignant')->group(function () {
+
         Route::resource('cours', matiere_enseignant::class);
         Route::get('td', function(){
             $matieres = Td::with('matiere')->where('enseignant_id', Auth::user()->enseignant->id)->get();
@@ -105,8 +117,10 @@ Route::middleware(['approved'])->group(function () {
             Route::resource('chapitres', ChapitreController::class);
             Route::resource('travaux_diriges', TdController::class);
             Route::resource('travaux_pratiques', TpController::class);
-            Route::resource('quizzes', QuizController::class)->only(['create', 'store']);
         });
+        // Gestion de quizze
+        Route::resource('quizzes', QuizController::class);
+        // Constuler toutes les matiers
         Route::get('matieres', [matiere_enseignant::class, 'matiere'])->middleware('auth');
         Route::prefix('quizze/{quizze_id}')->group(function ($matiere_id){
             Route::resource('questions', QuestionController::class)->only(['index', 'create', 'store']);
@@ -115,17 +129,18 @@ Route::middleware(['approved'])->group(function () {
     
         Route::resource('questions', QuestionController::class)->only(['destroy', 'edit', 'update']);
     
-        Route::resource('quizzes', QuizController::class)->except(['create', 'store']);
         
         
     
     });
 
+    // Details de formation
+    Route::get('formations/{id}/show', [FormationController_etudiant::class, 'show'])->middleware('auth');
    
 });
-
+// List of cpurses
 Route::get('formations', [FormationController_etudiant::class, 'index']);
-
+// Approval page
 Route::get('/approval', [App\Http\Controllers\HomeController::class, 'approval'])->name('approval')->middleware('auth');
 
 
@@ -143,12 +158,14 @@ Route::get('/module_list/{section_id}', function($section_id){
     return response()->json($modules);
 
 });
+
 Route::get('/enseignants', function(){
 
     $teachers= User::where('grade', 'enseignant')->with('enseignant')->get();
     return response()->json($teachers);
 
 });
+
 Route::get('/sections', function(){
 
     $sections = Section::all();
@@ -196,9 +213,7 @@ Route::get('forums', [ForumController::class, 'index']);
 
 
 
-Auth::routes(['register' => false]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 Route::get('travail', function(){
@@ -234,3 +249,4 @@ Route::get('image_upload', function(){
 Route::post('image', function(Request $request){
     return $request->photo->store('images');
 });
+

@@ -26,8 +26,8 @@ class EnseignantRequest extends FormRequest
         return [
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'nom' => ['required', 'string', 'max:255'],
-            'prenom' => ['required', 'string', 'max:255'],
+            'nom' => ['required', 'string', 'max:255', 'alpha'],
+            'prenom' => ['required', 'string', 'max:255', 'alpha'],
             'numtel' => ['required', 'numeric', 'digits:8'],
             'date_naissance' => ['required'],
         ];

@@ -43,36 +43,45 @@
                                 <thead>
                                     <tr>
                                         <th>titre</th>
+                                        <th>enseigne</th>
                                         <th>Date de creation</th>
                                         <th>Date de modification</th>
-                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($matieres_list as $matiere)
                                     <tr>
                                         <td>{{ $matiere->titre }}</td>
+                                        <td>
+                                        @if($matiere->has_tp == TRUE)
+                                            @if($matiere->tp->enseignant_id == Auth::user()->enseignant->id)
+                                                Tp
+                                            @endif
+                                        @endif
+                                        @if($matiere->has_td == TRUE)
+                                            @if($matiere->td->enseignant_id == Auth::user()->enseignant->id)
+                                                Td
+                                            @endif
+                                        @endif
+
+                                        @if($matiere->has_cour == TRUE)
+                                            @if($matiere->cour->enseignant_id == Auth::user()->enseignant->id)
+                                                Cour
+                                            @endif
+                                        @endif
+                                        </td>
                                         <td>{{ $matiere->created_at }}</td>
                                         <td>{{ $matiere->updated_at }}</td>
-                                        <td>
-                                            @if(App\Models\Quizze::where('matiere_id', $matiere->id)->count() != 0)
-                                                <a href="{{ route('quizzes.create', ['matiere_id' => $matiere->id]) }}" class="btn btn-primary">
-                                                    Créer quizze
-                                                </a>
-                                            @else 
-                                                <p>Quizze ajouté</p>
-                                            @endif
-                                        </td>
-                                       
+                                      
                                     </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>titre</th>
+                                        <th>enseigne</th>
                                         <th>Date de creation</th>
                                         <th>Date de modification</th>
-                                        <th>Actions</th>
                                     </tr>
                                 </tfoot>
                                 </table>

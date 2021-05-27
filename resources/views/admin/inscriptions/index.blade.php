@@ -19,7 +19,6 @@
             </div>
             <div class="content">
                 <div class="container-fluid">
-                    @include('admin.includes.statistique')
                     <div class="row">
                         <div class="col-12">
                             <div class="card">

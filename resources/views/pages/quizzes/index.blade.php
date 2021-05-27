@@ -6,10 +6,10 @@
 
 @section('content')
  
-<div id="rs-blog" class="rs-blog style1 pt-94 pb-100 md-pt-64 md-pb-70">
+<div id="rs-blog" class="rs-blog style1 pt-94 pb-100 md-pt-64 md-pb-70" style="background: #def7ff;">
     <div class="container">
         <div class="sec-title mb-60 md-mb-30 text-center">
-            <div class="sub-title primary">Bon chance pour l'examen</div>
+            <div class="sub-title primary" style="color: black !important">Bon chance pour l'examen</div>
         </div>
             <form action="{{ url('quizze/'.$quizze_id) }}" method="post">
                 @csrf

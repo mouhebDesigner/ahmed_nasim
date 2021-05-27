@@ -15,6 +15,13 @@
                         </div><!-- /.col -->
                        
                     </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <a href="{{ url('enseignant/tp') }}" class="btn btn-success">
+                                Retour
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="content">

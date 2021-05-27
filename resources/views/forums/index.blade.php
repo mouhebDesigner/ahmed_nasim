@@ -43,32 +43,34 @@
                     <div class="tab-content tabs-content" id="myTabContent">
                         <div class="tab-pane tab fade  active show" id="prod-overview" role="tabpanel" aria-labelledby="prod-overview-tab">
                                 @foreach($forums as $forum)
-                                    <div class="content white-bg pt-30 mt-5 forum_block">
+                                    <div class="content white-bg pt-30 mt-5 ">
                                         <!-- Cource Overview -->
-                                        <a href="{{ url('forums/'.$forum->id.'/show') }}" class=" course-overview">
-                                            <div class="inner-box">
-                                                <div class="user">
-                                                    <img src="{{ asset('storage/'.$forum->user->photo)}}" alt="">
-                                                    <div class="name_date">
-                                                        <p>{{ $forum->user->nom }} {{ $forum->user->prenom }}</p>
-                                                        <span>{{ $forum->created_at->diffForHumans() }}</span>
+                                        <div class="forum_block">
+                                            <a href="{{ url('forums/'.$forum->id.'/show') }}" class=" course-overview">
+                                                <div class="inner-box">
+                                                    <div class="user">
+                                                        <img src="{{ asset('storage/'.$forum->user->photo)}}" alt="">
+                                                        <div class="name_date">
+                                                            <p>{{ $forum->user->nom }} {{ $forum->user->prenom }}</p>
+                                                            <span>{{ $forum->created_at->diffForHumans() }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <h4>{{ $forum->titre }}</h4>
+                                                    <p>
+                                                        {{ substr($forum->description, 0, 100) }}...
+                                                    </p>
+
+                                                    <div class="nbr_comments">
+                                                        <p>
+                                                            <span>
+                                                                {{ $forum->commentaires->count() }}
+                                                            </span>
+                                                            Commentaires
+                                                        </p>
                                                     </div>
                                                 </div>
-                                                <h4>{{ $forum->titre }}</h4>
-                                                <p>
-                                                    {{ substr($forum->description, 0, 100) }}...
-                                                </p>
-
-                                                <div class="nbr_comments">
-                                                    <p>
-                                                        <span>
-                                                            {{ $forum->commentaires->count() }}
-                                                        </span>
-                                                        Commentaires
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>                                                
+                                            </a>                                                
+                                        </div>
                                     </div>
                                 @endforeach
                         </div>

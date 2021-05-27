@@ -8,7 +8,7 @@
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>
-                    Ajouter un quizze de la matière : {{ App\Models\Matiere::find($matiere_id)->titre }} 
+                    Ajouter un quizze
                 </h1>
             </section>
             <section class="content">
@@ -21,9 +21,20 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ route('quizzes.store', ['matiere_id' => $matiere_id]) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('quizzes.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body" id="inputs">
+                                <div class="form-group">
+                                    <label for="matiere_id">Matiére</label>
+                                    <select name="matiere_id" id="matiere_id" class="form-control">
+                                        <option value="" selected disbaled>Choisir matière</option>
+                                        @foreach(App\Models\Matiere::all() as $matiere)
+                                            @if(!$matiere->quizze)
+                                            <option value="{{ $matiere->id }}" @if(old('matiere_id') == $matiere->id) selected @endif>{{ $matiere->titre }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <div class="form-group">
                                     <label for="nbr_questions">Nombre de question</label>
                                     <input type="number" class="form-control" name="nbr_questions" value="{{ old('nbr_questions') }}" id="nbr_questions" placeholder="Saisir la nombre de question">

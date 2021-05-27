@@ -39,30 +39,35 @@ select{
 }
 
 .question{
-    background: #21a7d0;
+    background: transparent;
     padding: 20px;
-    color: white;
+    color: black;
     font-weight: bold;
+    text-align: center;
+    font-size: 1.5rem;
 }
 .reponse input[type="radio"]{
     display: none;
 }
 .reponse input[type="radio"]:checked + label{
-    border-left: 10px solid #273c66;
+    border-left: 10px solid black;
 }
 .reponse label{
-    background: #21a7d096;
+    background: white;
     padding: 25px;
     width: 100%;
     color: #203154;
     font-weight: bold;
     cursor: pointer;
+    box-shadow: 0px 0px 2px 1px black;
+
+
 }
 .button_quiz{
     width: 100%;
     padding: 20px;
     border: none;
-    background: #06475a;
+    background: #21a7d0;
     font-size: 1.2rem;
     color: white;
 }
@@ -169,4 +174,31 @@ textarea{
     color: white !important;
     padding: 0 !important;
     margin: 0 !important;
+}
+.approval{
+    width: 100%;
+    background: #2977a7;
+    color: white;
+    padding: 20px;
+    position: relative;
+    left: 50%;
+    /* top: 100px; */
+    /* bottom: 100px; */
+    transform: translate(-50%);
+}
+
+.logo_footer{
+
+}
+.module_title{
+    width: 100%;
+    background: #21a7d0;
+    padding: 20px;
+    position: relative;
+    left: 15px;
+    bottom: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
 }

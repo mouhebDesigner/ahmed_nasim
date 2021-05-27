@@ -70,7 +70,7 @@
 
                             </div>
                             <div class="form-group col-lg-12 mb-25">
-                                <input type="number" id="numtel" name="numtel" value="{{ old('numtel') }}" class="@error('numtel') error_input @enderror" placeholder="Saisir votre numtel">
+                                <input type="number" id="numtel" name="numtel" value="{{ old('numtel') }}" class="@error('numtel') error_input @enderror" placeholder="Saisir votre numéro de téléphone">
                                 @error('numtel')
                                     <span class="invalid-feedback" role="alert" style="display: inline">
                                         <strong class="font-size_strong_strong">{{ $message }}</strong>

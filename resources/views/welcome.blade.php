@@ -11,7 +11,7 @@
                     class="banner-title capitalize wow fadeInLeft" 
                     data-wow-delay="300ms" 
                     data-wow-duration="3000ms" 
-                    style="visibility: visible; animation-duration: 3000ms; animation-delay: 300ms; animation-name: fadeInLeft;">Bienvenue a notre centre de formation </h1>
+                    style="visibility: visible; animation-duration: 3000ms; animation-delay: 300ms; animation-name: fadeInLeft;">Bienvenue a notre université </h1>
                     <div class="desc mb-35 wow wow fadeInRight" data-wow-delay="900ms" data-wow-duration="3000ms" style="visibility: visible; animation-duration: 3000ms; animation-delay: 900ms; animation-name: fadeInRight;">Rejoinez nous maintenant<br>Inscrivez-vous comme : </div>
                     <div class="row">
                         <div class="col-md-6">

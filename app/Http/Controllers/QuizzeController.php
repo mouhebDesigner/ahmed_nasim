@@ -12,20 +12,11 @@ class QuizzeController extends Controller
 {
     public function index($matiere_id){
         $quizze_id =  Quizze::where('matiere_id', $matiere_id)->first()->id;
-        $questions  = Quizze::where('matiere_id', $matiere_id)->first()->questions;
+        $questions  = Quizze::find($quizze_id)->questions;
 
         return view('pages.quizzes.index', compact('questions', 'quizze_id'));
     }
-    public function repasser($quizze_id){
-
-        $resultat_id = Resultat::where('quizze_id', $quizze_id)->first()->id;
-
-        Resultat::find($resultat_id)->delete();
-
-        $questions  = Quizze::find($quizze_id)->first()->questions;
-
-        return view('pages.quizzes.index', compact('questions', 'quizze_id'));
-    }
+  
 
     public function store(Request $request, $quizze_id){
 

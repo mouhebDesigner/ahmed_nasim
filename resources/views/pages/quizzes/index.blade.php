@@ -26,7 +26,7 @@
                             <div class="reponse">
                                 <input type="radio" value="{{ $reponse->id }}" id="reponse{{ $reponse->id }}" name="reponse{{ $question->id }}">
                                 <label for="reponse{{ $reponse->id }}">{{ $reponse->titre }}</label>
-                            </div>
+                            </div>  
                         </div>
                         @endforeach
                     </div>

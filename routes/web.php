@@ -5,6 +5,7 @@ use App\Models\Tp;
 use App\Models\Car;
 use App\Models\User;
 use App\Models\Module;
+use App\Models\Section;
 use App\Models\Activite;
 use App\Models\Chapitre;
 use App\Models\Enseignant;
@@ -15,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\QuizzeController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\Admin\ContactController as ContactController_admin;
 use App\Http\Controllers\TravailController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\Admin\UserController;
@@ -36,6 +36,7 @@ use App\Http\Controllers\ForumController as ForumController_etudiant;
 use App\Http\Controllers\ModuleController as ModuleController_etudiant;
 use App\Http\Controllers\Admin\EnseignantController as enseignant_admin;
 use App\Http\Controllers\MatiereController as MatiereController_etudiant;
+use App\Http\Controllers\Admin\ContactController as ContactController_admin;
 use App\Http\Controllers\Enseignant\MatiereController as matiere_enseignant;
 use App\Http\Controllers\FormationController as FormationController_etudiant;
 use App\Http\Controllers\Admin\FormationController as formation_controller_admin;
@@ -166,11 +167,11 @@ Route::get('/enseignants', function(){
 
 });
 
-Route::get('/sections', function(){
+Route::get('/sections/{cycle}', function($cycle){
 
-    $sections = Section::all();
+    $sections = Section::where('niveau', $cycle)->get();
 
-    return response()->json($sections);
+    return response()->json($sections); 
 
 });
 
@@ -202,7 +203,7 @@ Route::get('/download_activite/{id}', function($id){
 
     $file = storage_path().'/app/public/'.$document->document;
 
-    $extension = explode('.', $file);
+    // $extension = explode('.', $file);
     $header = array(
         'Content-Type: application/pdf',
     );

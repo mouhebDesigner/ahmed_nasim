@@ -95,7 +95,7 @@
         <script src="{{ asset('front/assets/js/contact.form.js') }}"></script>
         <!-- main js -->
         <script src="{{ asset('front/assets/js/main.js') }}"></script>
-        @yield('script')
+        @yield('js')
 
        
     </body>

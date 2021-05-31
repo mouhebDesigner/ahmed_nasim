@@ -111,9 +111,6 @@
                             <div class="form-group col-lg-12 mb-25">
                                 <select name="section_id" id="section_id">
                                     <option value="" selected disbaled>Choisir votre section</option>
-                                    @foreach(App\Models\Section::all() as $section)
-                                        <option value="{{ $section->id }}" @if(old('section_id') == $section->id) selected @endif>{{ $section->titre }}</option>
-                                    @endforeach
                                 </select>
                                 @error('section')
                                     <span class="invalid-feedback" role="alert" style="display: inline">
@@ -151,18 +148,20 @@
     </section>
 @endsection
 
-@section('script')
+@section('js')
     <script>
         $("#cycle").on('change', function(){
+            var cycle = $(this).val();
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type:'get',
-                url:'/sections',
-                data:'_token = <?php echo csrf_token(); ?>',
+                url:'/sections/'+cycle,
                 success:function(data) {
                     console.log(data);
+                    $("#section_id").empty();
+                    $('#section_id').append('<option value="" selected disabled>Choisir votre section</option>');
                     $.each(data, function(index, value){
                         $('#section_id').append('<option value="'+value.id+'">'+value.titre+'</option>');
                     });

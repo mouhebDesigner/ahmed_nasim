@@ -22,54 +22,50 @@
                         <!-- /.card-header -->
                         <!-- form start -->
                         <form action="{{ url('admin/admins/'.$admin->id) }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        @method('put')
+                         
                             <div class="card-body" id="inputs">
                                 <div class="form-group">
                                     <label for="nom">Nom d'administrateur</label>
-                                    <input type="text" class="form-control" name="nom" value="{{ $admin->nom }}" id="nom" placeholder="Saisir nom de matiére">
+                                    <input type="text" class="form-control" name="nom" value="{{ $admin->nom }}" id="nom" placeholder="Saisir nom d'administrateur">
                                     @error('nom')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="prenom">Préprenom d'administrateur</label>
-                                    <input type="text" class="form-control" name="prenom" value="{{ $admin->prenom }}" id="prenom" placeholder="Saisir prenom de matiére">
+                                    <input type="text" class="form-control" name="prenom" value="{{ $admin->prenom }}" id="prenom" placeholder="Saisir prenom d'administrateur">
                                     @error('prenom')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email d'administrateur</label>
-                                    <input type="text" class="form-control" name="email" value="{{ $admin->email }}" id="email" placeholder="Saisir email de matiére">
+                                    <input type="text" class="form-control" name="email" value="{{ $admin->email }}" id="email" placeholder="Saisir email d'administrateur">
                                     @error('email')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Mot de passe  d'administrateur</label>
-                                    <input type="password" class="form-control" name="password"  id="password" placeholder="Saisir password de matiére">
+                                    <input type="password" class="form-control" name="password"  id="password" placeholder="Saisir mot de passe d'administrateur">
                                     @error('password')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Confirmer la Mot de passe</label>
-                                    <input type="password" class="form-control" name="password_confirmation"  id="password" placeholder="Saisir password de matiére">
-                                    @error('password')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror
+                                    <input type="password" class="form-control" name="password_confirmation"  id="password" placeholder="Saisir mot de passe d'administrateur">
                                 </div>
                                 <div class="form-group">
                                     <label for="numtel">Numéro de téléphone d'administrateur</label>
-                                    <input type="number" class="form-control" name="numtel" value="{{ $admin->numtel }}" id="numtel" placeholder="Saisir numtel de matiére">
+                                    <input type="number" class="form-control" name="numtel" value="{{ $admin->numtel }}" id="numtel" placeholder="Saisir numtel d'administrateur">
                                     @error('numtel')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="date_naissance">date naissance d'administrateur</label>
-                                    <input type="date" class="form-control" name="date_naissance" value="{{ $admin->date_naissance }}" id="date_naissance" placeholder="Saisir date_naissance de matiére">
+                                    <input type="date" class="form-control" name="date_naissance" value="{{ $admin->date_naissance }}" id="date_naissance" placeholder="Saisir date_naissance d'administrateur">
                                     @error('date_naissance')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class MatiereController extends Controller
 {
+    
     public function index(){
         $modules  = Module::where('section_id', Auth::user()->etudiant->section_id)->get();
         $matieres = Matiere::where('section_id', Auth::user()->etudiant->section_id)->paginate(6);

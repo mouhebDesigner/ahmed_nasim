@@ -60,7 +60,7 @@
                                         </td>
                                         <td>
                                             <div class="d-flex justify-content-around">
-                                                <form action="{{ route('formations.destroy', ['formation' => $formation->id]) }}" method="post">
+                                                <form action="{{ url('admin/formations/'.$formation->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" class="btn-delete" onclick="return confirm('Voules-vous supprimer cette formation')">

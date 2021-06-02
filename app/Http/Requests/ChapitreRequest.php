@@ -26,7 +26,7 @@ class ChapitreRequest extends FormRequest
         return [
             "titre" => "required | string",
             "type" => "required",
-            "content" => "required | file",
+            "content" => "required | file | mimes:pdf",
         ];
     }
 }

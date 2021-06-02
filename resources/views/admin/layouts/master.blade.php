@@ -19,7 +19,7 @@
     @yield('css')
     
   </head>
-<body class="sidebar-mini " style="height: auto;">
+<body class="sidebar-mini" style="height: auto;">
 
     @yield('content')
     <!-- jQuery -->

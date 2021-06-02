@@ -24,7 +24,7 @@
                                 <i class="fa fa-sign-in"></i>Se connecter
                             </a>
                         @else 
-                            <a class="" href="{{ url('login') }}" style="
+                            <a class="" href="{{ url('profile') }}" style="
                                 display: flex;
                                 margin-right: 25px;
                                 align-items: center;

@@ -124,8 +124,10 @@ textarea{
 
 .comment{
     border-radius: 20px;
-    background: #273c6678;
-    color: white !important;
+    background: #ffffff;
+    color: #273c66 !important;
+    border: 2px solid black;
+    font-weight: 600;
 }
 
 .comment_username{
@@ -201,4 +203,43 @@ textarea{
     font-weight: bold;
     font-size: 1.2rem;
     text-align: center;
+}
+
+.name_profile{
+    font-weight: bold;
+    text-align: center;
+    font-size: 2.2rem;
+}
+
+.comment_button{
+    flex-basis: 20%;
+    height: 50px;
+}
+
+.comment_input{
+    flex-basis: 80% !important;
+    /* border-radius: 30px; */
+    height: 50px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.comment_input textarea{
+    box-shadow: none;
+}
+
+.card-primary.card-outline {
+    border-top: 3px solid #343a40 !important;
+}
+
+.main-sidebar, .main-sidebar::before {
+    transition: margin-left .3s ease-in-out,width .3s ease-in-out !important;
+    width: 300px !important;
+}
+body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+    transition: margin-left .3s ease-in-out !important;
+    margin-left: 300px !important;
+}
+
+.main-header{
+    margin-left: 300px !important;
 }

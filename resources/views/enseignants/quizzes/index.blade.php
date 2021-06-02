@@ -5,7 +5,7 @@
         
         @include('admin.includes.header')
         @include('admin.includes.aside')
-        <div class="content-wrapper" style="min-height: 257px">
+        <div class="content-wrapper" style="min-height: 257px; margin-left: 300px !important;">
             <div class="content-header">
                 <div class="container-fluid">
                     @include('admin.includes.error-message')
@@ -65,13 +65,16 @@
                                                 <form action="{{ route('quizzes.destroy', ['quiz' => $quizze->id]) }}" method="post">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn-delete" onclick="return confirm('Voules-vous supprimer ce module')">
+                                                    <button type="submit" class="btn-delete" onclick="return confirm('Voules-vous supprimer ce quizze')">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
-                                                <a href="{{ route('quizzes.edit', ['quiz' => $quizze->id]) }}" onclick="return confirm('Voules-vous modifier ce module')">
+                                                @if($quizze->questions->count() < $quizze->nbr_questions)
+                                                <a href="{{ route('quizzes.edit', ['quiz' => $quizze->id]) }}" onclick="return confirm('Voules-vous modifier ce quizze')">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
+
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>

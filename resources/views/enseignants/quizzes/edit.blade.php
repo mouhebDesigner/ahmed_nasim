@@ -5,7 +5,7 @@
 <div class="wrapper">
         @include('admin.includes.header')
         @include('admin.includes.aside')
-        <div class="content-wrapper">
+        <div class="content-wrapper"  style="margin-left: 300px !important;">
             <section class="content-header">
                 <h1>
                     Ajouter un quizze

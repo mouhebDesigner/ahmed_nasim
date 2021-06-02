@@ -72,6 +72,7 @@ class VideoController extends Controller
      */
     public function destroy($id)
     {
+        $formation_id = Video::find($id)->formation_id;
         Video::find($id)->delete();
         return redirect('admin/formation/'.$formation_id.'/videos')->with('deleted', 'La video a été supprimé avec succés');
 

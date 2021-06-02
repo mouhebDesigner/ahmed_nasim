@@ -38,8 +38,12 @@ use App\Http\Controllers\Admin\EnseignantController as enseignant_admin;
 use App\Http\Controllers\MatiereController as MatiereController_etudiant;
 use App\Http\Controllers\Admin\ContactController as ContactController_admin;
 use App\Http\Controllers\Enseignant\MatiereController as matiere_enseignant;
+use App\Http\Controllers\Enseignant\ProfileController as ProfileController_enseignant;
 use App\Http\Controllers\FormationController as FormationController_etudiant;
 use App\Http\Controllers\Admin\FormationController as formation_controller_admin;
+use App\Http\Controllers\ProfileController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,9 +61,10 @@ Route::get('/', function () {
 // Login routes 
 Auth::routes(['register' => false]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/acceuil', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Les path d'admin
 Route::prefix('admin')->group(function () {
+    Route::resource('profile', ProfileController_enseignant::class);
     Route::resource('contacts', ContactController_admin::class);
     Route::resource('modules', ModuleController::class);
     Route::resource('sections', SectionController::class);
@@ -98,7 +103,8 @@ Route::middleware(['approved'])->group(function () {
     Route::post('activite/{activite_id}/deposer',  [TravailController::class, 'deposer']);
     // esneigantn reoutes
     Route::prefix('enseignant')->group(function () {
-
+        Route::resource('profile', ProfileController_enseignant::class);
+        Route::resource('contacts', ContactController_admin::class);
         Route::resource('cours', matiere_enseignant::class);
         Route::get('td', function(){
             $matieres = Td::with('matiere')->where('enseignant_id', Auth::user()->enseignant->id)->get();
@@ -250,4 +256,7 @@ Route::get('image_upload', function(){
 Route::post('image', function(Request $request){
     return $request->photo->store('images');
 });
+
+Route::get('profile', [ProfileController::class, 'index']);
+Route::put('profile', [ProfileController::class, 'update']);
 

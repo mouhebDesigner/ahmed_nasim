@@ -1,6 +1,6 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" @if(Auth::user()->grade== 'enseignant') style="width: 300px !important" @endif>
     <!-- Brand Logo -->
-    <a href="/home" class="brand-link">
+    <a href="/acceuil" class="brand-link">
       <img src="{{ asset('front/assets//images/easy-learn.png') }}" width="200" alt="">
 
       
@@ -14,7 +14,13 @@
           <img src="{{ asset('storage/'.Auth::user()->photo)}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"><strong>{{ Auth::user()->nom  }} {{ Auth::user()->prenom }}</strong> </a>
+      @if(Auth::user()->grade == "admin")
+          <a href="{{ url('admin/profile') }}" class="d-block"><strong>{{ Auth::user()->nom  }} {{ Auth::user()->prenom }}</strong> </a>
+
+      @else 
+
+          <a href="{{ url('enseignant/profile') }}" class="d-block"><strong>{{ Auth::user()->nom  }} {{ Auth::user()->prenom }}</strong> </a>
+      @endif
         </div>
       </div>
 
@@ -44,7 +50,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ url('home') }}" class="nav-link @if(Request::is('home')) active @endif">
+            <a href="{{ url('acceuil') }}" class="nav-link @if(Request::is('acceuil')) active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Acceuil
@@ -125,7 +131,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('admin/contacts') }}" class="nav-link @if(Request::is('enseignant/contacts*')) active @endif">
+            <a href="{{ url('admin/contacts') }}" class="nav-link @if(Request::is('admin/contacts*')) active @endif">
               <i class="nav-icon fas fa-book-reader"></i>
               <p>
                 {{ __('Gérer  contacts') }}
@@ -141,7 +147,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ url('home') }}" class="nav-link @if(Request::is('home')) active @endif">
+            <a href="{{ url('acceuil') }}" class="nav-link @if(Request::is('acceuil')) active @endif">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Acceuil
@@ -150,7 +156,7 @@
             </a>
           </li>
           <li class="nav-item @if(Request::is('enseignant/matieres') || Request::is('enseignant/cours') || Request::is('enseignant/tp') || Request::is('enseignant/td') ||  Request::is('*chapitres') || Request::is('*travaux_diriges') ||  Request::is('*travaux_pratiques')) menu-is-opening menu-open @endif">
-            <a href="#" class="nav-link  @if(Request::is('enseignant/matieres') || Request::is('enseignant/cours') || Request::is('enseignant/tp') || Request::is('enseignant/td')) active @endif">
+            <a href="#" class="nav-link  @if(Request::is('enseignant/matiere*') || Request::is('enseignant/cours') || Request::is('enseignant/tp') || Request::is('enseignant/td')) active @endif">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Gérer matières
@@ -195,6 +201,16 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ url('enseignant/contacts/create') }}" class="nav-link @if(Request::is('enseignant/contacts/create*')) active @endif">
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                {{ __('Contacter l\'admininstrateur') }}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+     
           
         
           

@@ -63,12 +63,16 @@ class QuestionController extends Controller
         $question->content = $request->content;
         $question->save();
 
+        $reponse_ids = $question->reponses()->get('id');
+
         for($i=1; $i <= Quizze::find($question->quizze_id)->nbr_reponses; $i++){
 
-            $reponse = new Reponse();
-    
-            $reponse->titre = $request->input('reponses'.$i);
-            $reponse->question_id = $question->id;
+            $reponse =  Reponse::find($reponse_ids[$i-1]->id);
+            
+            $reponse->titre = $request->input('reponse_'.$i);
+
+            if($request->reponse_correct == "reponse_".$i)
+                $reponse->reponse = 1;
             $reponse->save();
         }
 

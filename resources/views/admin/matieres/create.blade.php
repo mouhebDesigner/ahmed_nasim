@@ -116,7 +116,7 @@
                 console.log(data);
 
                 $.each(data, function(index, value){
-                    $('#enseignant_id_tp').append('<option value="'+value.enseignant.id+'">'+value.nom+'</option>');
+                    $('#enseignant_id_tp').append('<option value="'+value.enseignant.id+'">'+value.prenom+' '+value.nom+'</option>');
                 });
 
             }    
@@ -135,7 +135,7 @@
                 console.log(data);
 
                 $.each(data, function(index, value){
-                    $('#enseignant_id_td').append('<option value="'+value.enseignant.id+'">'+value.nom+'</option>');
+                    $('#enseignant_id_td').append('<option value="'+value.enseignant.id+'">'+value.prenom+' '+value.nom+'</option>');
                 });
 
             }    
@@ -154,7 +154,7 @@
                 console.log(data);
 
                 $.each(data, function(index, value){
-                    $('#enseignant_id_cours').append('<option value="'+value.enseignant.id+'">'+value.nom+'</option>');
+                    $('#enseignant_id_cours').append('<option value="'+value.enseignant.id+'">'+value.prenom+' '+value.nom+'</option>');
                 });
 
             }    

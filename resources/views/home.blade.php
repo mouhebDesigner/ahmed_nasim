@@ -45,7 +45,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="banner-btn wow fadeInUp" data-wow-delay="1500ms" data-wow-duration="2000ms" style="visibility: visible; animation-duration: 2000ms; animation-delay: 1500ms; animation-name: fadeInUp;">
-                                <a class="readon banner-style" href="{{ url('register/enseignant') }}">Liste vos matière</a>
+                                <a class="readon banner-style" href="{{ url('matieres') }}">Lister vos matière</a>
+
                             </div>
                         </div>
                         

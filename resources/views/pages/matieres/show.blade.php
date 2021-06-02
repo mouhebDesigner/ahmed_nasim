@@ -178,31 +178,23 @@
                                     <h3 class="instructor-title">Enseignants</h3>
                                     <div class="row rs-team style1 orange-color transparent-bg clearfix">
                                         @if($matiere->has_tp == 1)
-                                        <div class="col-lg-6 col-md-6 col-sm-12 sm-mb-30">
-                                            <div class="team-item">
-                                                @php 
-                                                    $user_id = App\Models\Enseignant::find($matiere->tp->enseignant_id)->user_id;
-                                                @endphp
-                                                <img src="{{ asset('storage/'.App\Models\User::find($user_id)->photo)}}" alt="">
-                                                <div class="content-part">
-                                                    <h4 class="name"><a href="#">{{ App\Models\User::find($user_id)->nom }} {{ App\Models\User::find($user_id)->prenom }}</a></h4>
-                                                    <span class="designation">{{  App\Models\User::find($user_id)->email }}</span>
-                                                    <ul class="social-links">
-                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>                                                            
-                                        @endif                                                         
+                                            @php 
+                                                $user_id_tp = App\Models\Enseignant::find($matiere->tp->enseignant_id)->user_id;
+                                            @endphp
+                                        @endif      
+
                                         @if($matiere->has_td == 1)
+                                            @php 
+                                                $user_id_td = App\Models\Enseignant::find($matiere->td->enseignant_id)->user_id;
+                                            @endphp
+                                        @endif                                                         
+                                        @if($matiere->has_cour == 1)
+                                            @php 
+                                                $user_id_cour = App\Models\Enseignant::find($matiere->td->enseignant_id)->user_id;
+                                            @endphp
+                                        @endif                                                         
                                         <div class="col-lg-6 col-md-6 col-sm-12 sm-mb-30">
                                             <div class="team-item">
-                                                @php 
-                                                    $user_id = App\Models\Enseignant::find($matiere->td->enseignant_id)->user_id;
-                                                @endphp
                                                 <img src="{{ asset('storage/'.App\Models\User::find($user_id)->photo)}}" alt="">
                                                 <div class="content-part">
                                                     <h4 class="name"><a href="#">{{ App\Models\User::find($user_id)->nom }} {{ App\Models\User::find($user_id)->prenom }}</a></h4>
@@ -216,7 +208,21 @@
                                                 </div>
                                             </div>
                                         </div>                                                            
-                                        @endif                                                         
+                                        <div class="col-lg-6 col-md-6 col-sm-12 sm-mb-30">
+                                            <div class="team-item">
+                                                <img src="{{ asset('storage/'.App\Models\User::find($user_id)->photo)}}" alt="">
+                                                <div class="content-part">
+                                                    <h4 class="name"><a href="#">{{ App\Models\User::find($user_id)->nom }} {{ App\Models\User::find($user_id)->prenom }}</a></h4>
+                                                    <span class="designation">{{  App\Models\User::find($user_id)->email }}</span>
+                                                    <ul class="social-links">
+                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>                                                            
                                     </div>  
                                 </div>
                             </div>

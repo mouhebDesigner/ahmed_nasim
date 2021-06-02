@@ -27,6 +27,7 @@ class ContactRequest extends FormRequest
             "sujet" => 'required',
             "nom" => 'required',
             "numtel" => 'required',
+            "email" => 'required | email',
             "message" => 'required'
         ];
     }

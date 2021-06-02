@@ -117,6 +117,6 @@ class FormationController extends Controller
     public function destroy($id)
     {
         Formation::find($id)->delete();
-        return redirect('enseignant/formations')->with('deleted', 'La formation a été supprimer avec succés');
+        return redirect('admin/formations')->with('deleted', 'La formation a été supprimer avec succés');
     }
 }

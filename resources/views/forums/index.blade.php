@@ -43,7 +43,7 @@
                     <div class="tab-content tabs-content" id="myTabContent">
                         <div class="tab-pane tab fade  active show" id="prod-overview" role="tabpanel" aria-labelledby="prod-overview-tab">
                                 @foreach($forums as $forum)
-                                    <div class="content white-bg pt-30 mt-5 ">
+                                    <div class="content  pt-30 mt-5 ">
                                         <!-- Cource Overview -->
                                         <div class="forum_block">
                                             <a href="{{ url('forums/'.$forum->id.'/show') }}" class=" course-overview">

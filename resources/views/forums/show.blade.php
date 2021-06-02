@@ -10,12 +10,12 @@
         <img src="{{asset('front/assets/images/breadcrumbs/2.jpg')}}" alt="Breadcrumbs Image">
     </div>
     <div class="breadcrumbs-text white-color">
-        <h1 class="page-title">Commencer votre formation</h1>
+        <h1 class="page-title">Forum</h1>
         <ul>
             <li>
-                <a class="active" href="index.html">Home</a>
+                <a class="active" href="index.html">Forum</a>
             </li>
-            <li>Course Details</li>
+            <li>Détails de forum</li>
         </ul>
     </div>
 </div>
@@ -28,7 +28,7 @@
                 <div class="intro-info-tabs">
                     <div class="tab-content tabs-content" id="myTabContent">
                         <div class="tab-pane tab fade  active show" id="prod-overview" role="tabpanel" aria-labelledby="prod-overview-tab">
-                        <div class="content white-bg pt-30 mt-5 ">
+                        <div class="content pt-30 mt-5 ">
                                         <!-- Cource Overview -->
                             <div class="forum_block">
                                 <a href="{{ url('forums/'.$forum->id.'/show') }}" class=" course-overview">
@@ -37,7 +37,7 @@
                                             <img src="{{ asset('storage/'.$forum->user->photo)}}" alt="">
                                             <div class="name_date">
                                                 <p>{{ $forum->user->nom }} {{ $forum->user->prenom }}</p>
-                                                <span>{{ $forum->created_at->diffForHumans() }}</span>
+                                                <span style="color: #00aae1;">{{ $forum->created_at->diffForHumans() }}</span>
                                             </div>
                                         </div>
                                         <h4>{{ $forum->titre }}</h4>
@@ -61,13 +61,13 @@
                         </div>
 
                         @foreach(App\Models\Commentaire::where('forum_id', $forum->id)->get() as $comment)
-                            <div class="content pt-30 pb-30 white-bg comment mt-5">
+                            <div class="content pt-30 pb-30  comment mt-5">
                                 <div class="cource-review-box">
                                     <div class="d-flex justify-content-between align-items-center" style="width: max-content">
                                         <img src="{{ asset('front/assets/images/gallery/12.jpg') }}" class="comment_imageuser" >
                                         <h4 class="comment_username">{{ $comment->user->nom }}</h4>
                                     </div>
-                                    <div class="text text-white">
+                                    <div class="" style="margin-left: 70px;">
                                         <p>
                                             {{ $comment->contenue }}
                                         </p>
@@ -75,22 +75,21 @@
                                 </div>
                             </div>
                             @endforeach
-                            <div class="content pt-30 pb-30 white-bg mt-5">
-                                <div class="cource-review-box">
+                            <div class="content pt-30 pb-30  mt-5">
+                                <div class="">
                                     <form action="{{ url('commentaires') }}" method="post">
                                         @csrf 
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                            <input type="hidden" value="{{ $forum->id }}" name="forum_id">
-                                                <div class="form_inputs">
-                                                    <textarea name="message" id="" cols="30" rows="5" placeholder="saisir votre commentaire"></textarea>
+                                                <input type="hidden" value="{{ $forum->id }}" name="forum_id">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="form_inputs comment_input">
+                                                    <textarea name="message" id="" cols="30"  class="h-100" placeholder="saisir votre commentaire"></textarea>
                                                     @error('message')
                                                         <p class="error_input_message">{{ $message }}</p>
                                                     @enderror
                                                 </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <button type="submit" class="readon submit-btn">Envoyer</button>
+                                                <button type="submit" class="readon submit-btn comment_button">
+                                                    <i class="fa fa-paper-plane"></i>
+                                                </button>
                                             </div>
                                         </div>
                                         

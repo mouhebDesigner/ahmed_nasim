@@ -40,7 +40,7 @@
                             <div class="btn-part">
                             
                                 @if($formation->videos)
-                                    <a href="{{ url('formations/'.$formation->id.'/shows') }}"><i class="flaticon-right-arrow"></i></a>
+                                    <a href="{{ url('formations/'.$formation->id.'/show') }}"><i class="flaticon-right-arrow"></i></a>
                                 @else 
                                     <a href="#" onclick="alert('Cette formation n a pas des videos pour le moment')"><i class="flaticon-right-arrow"></i></a>
                                 @endif

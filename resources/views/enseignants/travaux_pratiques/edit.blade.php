@@ -6,7 +6,7 @@
         @include('admin.includes.header')
         @include('admin.includes.aside')
         <div class="content-wrapper">
-            <section class="content-header">
+            <section class="content-header" style="margin-left: 300px !important;">
                 <h1>
                     Modifier un travaux dirigé  
                 </h1>

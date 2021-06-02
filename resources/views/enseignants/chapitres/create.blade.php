@@ -6,7 +6,7 @@
         @include('admin.includes.header')
         @include('admin.includes.aside')
         <div class="content-wrapper">
-            <section class="content-header">
+            <section class="content-header" style="margin-left: 300px !important;">
                 <h1>
                     Ajouter un chapitre de la matière : {{ App\Models\Matiere::find($matiere_id)->titre }} 
                 </h1>
@@ -78,37 +78,4 @@
    
 
 
-@endsection
-
-@section('script')
-    <script>
-        $("#type").on('change', function(){
-            if($(this).val() == "video")
-            {
-                $("#video").css('display', 'block');
-                $("#document").css('display', 'none');
-            }
-            else {
-
-                $("#video").css('display', 'none');
-                $("#document").css('display', 'block');
-            }
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type:'get',
-                url:'/teachers/',
-                data:'_token = <?php echo csrf_token() ?>',
-                success:function(data) {
-                    console.log(data);
-
-                    $.each(data, function(index, value){
-                        $('#enseignant_id_tp').append('<option value="'+value.id+'">'+value.nom+'</option>');
-                    });
-
-                }    
-            });
-        });
-    </script>
 @endsection

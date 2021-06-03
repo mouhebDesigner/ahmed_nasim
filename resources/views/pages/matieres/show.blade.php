@@ -175,54 +175,77 @@
                             </div>
                             <div class="tab-pane fade" id="prod-instructor" role="tabpanel" aria-labelledby="prod-instructor-tab">
                                 <div class="content pt-30 pb-30 pl-30 pr-30 white-bg">
-                                    <h3 class="instructor-title">Enseignants</h3>
                                     <div class="row rs-team style1 orange-color transparent-bg clearfix">
-                                        @if($matiere->has_tp == 1)
+                                                                                              
+                                        @if($matiere->has_cour == 1)
                                             @php 
-                                                $user_id_tp = App\Models\Enseignant::find($matiere->tp->enseignant_id)->user_id;
+                                                $user_id = App\Models\Enseignant::find($matiere->cour->enseignant_id)->user_id;
                                             @endphp
-                                        @endif      
-
-                                        @if($matiere->has_td == 1)
+                                            <h3 class="instructor-title">Enseignants de cours</h3>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 sm-mb-30">
+                                                <div class="team-item">
+                                                    <img src="{{ asset('storage/'.App\Models\User::find($user_id)->photo)}}" alt="">
+                                                    <div class="content-part">
+                                                        <h4 class="name"><a href="#">{{ App\Models\User::find($user_id)->nom }} {{ App\Models\User::find($user_id)->prenom }}</a></h4>
+                                                        <span class="designation">{{  App\Models\User::find($user_id)->email }}</span>
+                                                        <ul class="social-links">
+                                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>                                                            
+                                        @endif                                                         
+                                        @if($matiere->has_td== 1)
                                             @php 
                                                 $user_id_td = App\Models\Enseignant::find($matiere->td->enseignant_id)->user_id;
                                             @endphp
+                                            @if($user_id_td != $user_id)
+                                            <h3 class="instructor-title">Enseignants de travaux dirigé</h3>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 sm-mb-30">
+                                                <div class="team-item">
+                                                    <img src="{{ asset('storage/'.App\Models\User::find($user_id)->photo)}}" alt="">
+                                                    <div class="content-part">
+                                                        <h4 class="name"><a href="#">{{ App\Models\User::find($user_id_td)->nom }} {{ App\Models\User::find($user_id_td)->prenom }}</a></h4>
+                                                        <span class="designation">{{  App\Models\User::find($user_id_td)->email }}</span>
+                                                        <ul class="social-links">
+                                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>                                                            
+                                            @endif                                                         
                                         @endif                                                         
-                                        @if($matiere->has_cour == 1)
+                                        @if($matiere->has_tp== 1)
                                             @php 
-                                                $user_id_cour = App\Models\Enseignant::find($matiere->td->enseignant_id)->user_id;
+                                                $user_id_tp = App\Models\Enseignant::find($matiere->tp->enseignant_id)->user_id;
                                             @endphp
+                                            @if($user_id_tp != $user_id && $user_id_tp != $user_id_td)
+                                            <h3 class="instructor-title">Enseignants de travaux pratiques</h3>
+
+                                            <div class="col-lg-6 col-md-6 col-sm-12 sm-mb-30">
+                                                <div class="team-item">
+                                                    <img src="{{ asset('storage/'.App\Models\User::find($user_id)->photo)}}" alt="">
+                                                    <div class="content-part">
+                                                        <h4 class="name"><a href="#">{{ App\Models\User::find($user_id_tp)->nom }} {{ App\Models\User::find($user_id_tp)->prenom }}</a></h4>
+                                                        <span class="designation">{{  App\Models\User::find($user_id_tp)->email }}</span>
+                                                        <ul class="social-links">
+                                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>                                                            
+                                            @endif                                                         
                                         @endif                                                         
-                                        <div class="col-lg-6 col-md-6 col-sm-12 sm-mb-30">
-                                            <div class="team-item">
-                                                <img src="{{ asset('storage/'.App\Models\User::find($user_id)->photo)}}" alt="">
-                                                <div class="content-part">
-                                                    <h4 class="name"><a href="#">{{ App\Models\User::find($user_id)->nom }} {{ App\Models\User::find($user_id)->prenom }}</a></h4>
-                                                    <span class="designation">{{  App\Models\User::find($user_id)->email }}</span>
-                                                    <ul class="social-links">
-                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>                                                            
-                                        <div class="col-lg-6 col-md-6 col-sm-12 sm-mb-30">
-                                            <div class="team-item">
-                                                <img src="{{ asset('storage/'.App\Models\User::find($user_id)->photo)}}" alt="">
-                                                <div class="content-part">
-                                                    <h4 class="name"><a href="#">{{ App\Models\User::find($user_id)->nom }} {{ App\Models\User::find($user_id)->prenom }}</a></h4>
-                                                    <span class="designation">{{  App\Models\User::find($user_id)->email }}</span>
-                                                    <ul class="social-links">
-                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>                                                            
+                                                                                                   
                                     </div>  
                                 </div>
                             </div>

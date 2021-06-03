@@ -19,6 +19,7 @@ class CreateMatieresTable extends Migration
             $table->boolean('has_tp')->default(false);
             $table->boolean('has_td')->default(false);
             $table->boolean('has_cour')->default(false);
+            $table->enum('niveau', ['premiére licence', 'deuxième licence', 'troisième licence', 'première mastère', 'deuxième mastère']);
             $table->foreignId('section_id')->constrained('sections')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('module_id')->constrained('modules')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

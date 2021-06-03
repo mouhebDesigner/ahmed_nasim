@@ -61,12 +61,26 @@
                                 </div>
                                
                                 <div class="form-group">
+                                    <label for="cycle">Cycle</label>
+                                    <select name="cycle" id="cycle" class="form-control">
+                                        <option value="" selected disbaled>Choisir cycle</option>
+                                        <option value="licence">Licence</option>
+                                        <option value="mastère">Mastère</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="section_id">Section</label>
                                     <select name="section_id" id="section_id" class="form-control">
                                         <option value="" selected disbaled>Choisir section</option>
                                         @foreach(App\Models\Section::all() as $section)
                                             <option value="{{ $section->id }}" @if(old('section_id') == $section->id) selected @endif>{{ $section->titre }}</option>
                                         @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="niveau">Niveau</label>
+                                    <select name="niveau" id="niveau" class="form-control">
+                                        <option value="" selected disbaled>Choisir niveau</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -160,6 +174,8 @@
             }    
         });
     });
+
+
     $("#section_id").on('change', function(){
         var section_id = $(this).val();
         $.ajax({
@@ -179,6 +195,41 @@
             }    
         });
     });
+    $("#cycle").on('change', function(){
+        var cycle = $(this).val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type:'get',
+            url:'/sections/'+cycle,
+            success:function(data) {
+                console.log(data);
+                $("#section_id").empty();
+                $('#section_id').append('<option value="" selected disabled>Choisir votre section</option>');
+                $.each(data, function(index, value){
+                    $('#section_id').append('<option value="'+value.id+'">'+value.titre+'</option>');
+                });
+            }    
+        });
+    });
+    $("#cycle").on('change', function(){
+            var cycle = $(this).val();
+            if(cycle == 'licence'){
+                $('#niveau').empty();
+                $("#niveau").append('<option value="" selected disbaled>Choisir niveau</option>')
+                $("#niveau").append('<option value="première">Première année</option>')
+                $("#niveau").append('<option value="deuxième">Deuxième année</option>')
+                $("#niveau").append('<option value="troisième">Troisième année</option>')
+            } else {
+                $('#niveau').empty();
+                $("#niveau").append('<option value="" selected disbaled>Choisir niveau</option>')
+                $("#niveau").append('<option value="première">Première année</option>')
+                $("#niveau").append('<option value="deuxième">Deuxième année</option>')
+            }
+            
+            // Get sections 
+        });
 </script>
 
 @endsection

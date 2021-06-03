@@ -26,7 +26,7 @@ class ContactController extends Controller
         $contact->save();
         if(Auth::check() && Auth::user()->grade == "enseignant")
         {
-            return redirect('enseignant/contacts/create')->with('signed', 'Votre message a été envoyé avec succés');
+            return redirect('enseignant/contacts/create')->with('success', 'Votre message a été envoyé avec succés');
         }
         return redirect('contact')->with('signed', 'Votre message a été envoyé avec succés');
 

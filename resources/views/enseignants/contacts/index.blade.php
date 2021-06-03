@@ -20,6 +20,7 @@
             </section>
             <section class="content">
                 <div class="container-fluid">
+                @include('admin.includes.error-message')
                     <div class="row">
                     
                     <!-- /.col -->

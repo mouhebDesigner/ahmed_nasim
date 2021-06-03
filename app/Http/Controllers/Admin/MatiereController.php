@@ -46,6 +46,7 @@ class MatiereController extends Controller
 
         $matiere->titre = $request->titre;
         $matiere->section_id = $request->section_id;
+        $matiere->niveau = $request->niveau." ".$request->cycle;
         $matiere->module_id = $request->module_id;
 
         

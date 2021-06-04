@@ -43,7 +43,6 @@ class ModuleController extends Controller
 
         $module->titre = $request->titre;
         $module->section_id = $request->section_id;
-        $module->niveau = $request->niveau;
         $module->save();
 
         return redirect('admin/modules')->with('added', 'La module a été ajouté avec succés');

@@ -9,7 +9,7 @@ use Auth;
 class ModuleController extends Controller
 {
     public function index(){
-        $modules  = Module::where('section_id', Auth::user()->etudiant->section_id)->get();
+        $modules  = Module::where('section_id', Auth::user()->etudiant->section_id)->where('niveau', Auth::user()->etudiant->niveau)->get();
 
         return view('pages.modules', compact('modules'));
     }

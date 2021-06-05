@@ -25,7 +25,8 @@ class ModuleRequest extends FormRequest
     {
         return [
             'titre' => 'required',
-            'section_id' => 'required'
+            'section_id' => 'required',
+            'niveau' => 'required'
         ];
     }
 }

@@ -35,7 +35,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="prenom">Préprenom d'etudiant</label>
+                                    <label for="prenom">Prénom d'etudiant</label>
                                     <input type="text" class="form-control" name="prenom" value="{{ old('prenom') }}" id="prenom" placeholder="Saisir prenom d'etudiant">
                                     @error('prenom')
                                         <p class="text-danger">{{ $message }}</p>

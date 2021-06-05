@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Models\User;
+use App\Models\Activite;
 use Illuminate\Http\Request;
 use App\Models\TravailDemande;
-use Auth;
+
 class TravailController extends Controller
 {
     public function deposer(Request $request, $activite_id){
@@ -19,5 +22,21 @@ class TravailController extends Controller
         $travail->save();
 
         return redirect()->back()->with('success', 'Votre travail a été déposer avec succée');
+    }
+
+    public function travails($activite_id){
+
+        $travails = TravailDemande::where('activite_id', $activite_id)->get();
+
+        // $ids = [];
+        // foreach($users as $user){
+        //     array_push($ids, $user->user_id);
+        // }
+
+        // $etudiants = User::whereIn('id', $ids)->get();
+
+        // return response()->json($etudiants);
+        return view('enseignants.travails.index', compact('travails'));
+
     }
 }

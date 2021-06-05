@@ -33,6 +33,8 @@ use App\Http\Controllers\Enseignant\QuestionController;
 use App\Http\Controllers\Admin\MatiereController as matiere_admin;
 use App\Http\Controllers\Admin\EtudiantController as etudiant_admin;
 use App\Http\Controllers\ForumController as ForumController_etudiant;
+use App\Http\Controllers\Enseignant\ForumController as ForumController_enseignant;
+use App\Http\Controllers\Admin\ForumController as ForumController_admin;
 use App\Http\Controllers\ModuleController as ModuleController_etudiant;
 use App\Http\Controllers\Admin\EnseignantController as enseignant_admin;
 use App\Http\Controllers\MatiereController as MatiereController_etudiant;
@@ -64,6 +66,7 @@ Auth::routes(['register' => false]);
 Route::get('/acceuil', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Les path d'admin
 Route::prefix('admin')->group(function () {
+    Route::resource('forums', ForumController_admin::class);
     Route::resource('profile', ProfileController_enseignant::class);
     Route::resource('contacts', ContactController_admin::class);
     Route::resource('modules', ModuleController::class);
@@ -103,6 +106,8 @@ Route::middleware(['approved'])->group(function () {
     Route::post('activite/{activite_id}/deposer',  [TravailController::class, 'deposer']);
     // esneigantn reoutes
     Route::prefix('enseignant')->group(function () {
+        Route::resource('forums', ForumController_enseignant::class);
+        Route::get('travails/{activite_id}', [TravailController::class, 'travails']);
         Route::resource('profile', ProfileController_enseignant::class);
         Route::resource('contacts', ContactController_admin::class);
         Route::resource('cours', matiere_enseignant::class);
@@ -202,6 +207,21 @@ Route::get('/download_chapitre/{id}', function($id){
 
     return Response::download($file, "$document->titre.pdf", $header);
 });
+// Download travail
+Route::get('/download_travail/{id}', function($id){
+
+    $document = TravailDemande::find($id);
+
+    $file = storage_path().'/app/public/'.$document->fichier;
+
+    $extension = explode('.', $file);
+    $header = array(
+        'Content-Type: application/pdf',
+    );
+    $nom = $document->user->nom;
+
+    return Response::download($file, "$nom.pdf", $header);
+});
 // Download file
 Route::get('/download_activite/{id}', function($id){
 
@@ -259,4 +279,12 @@ Route::post('image', function(Request $request){
 
 Route::get('profile', [ProfileController::class, 'index']);
 Route::put('profile', [ProfileController::class, 'update']);
+
+// Get niveau from section id 
+
+Route::get('niveaux/{section_id}', function($section_id){
+     $niveau = Section::find($section_id)->niveau;
+
+    return response()->json($niveau);
+});
 

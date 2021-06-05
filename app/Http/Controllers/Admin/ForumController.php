@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Module;
+use Auth;
+use App\Models\Forum;
 use Illuminate\Http\Request;
+use App\Http\Requests\ForumRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ModuleRequest;
 
-class ModuleController extends Controller
+class ForumController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,9 @@ class ModuleController extends Controller
      */
     public function index()
     {
-        $modules = Module::paginate(10);
+        $forums = Forum::all();
 
-        return view('admin.modules.index', compact('modules'));
+        return view('admin.forums.index', compact('forums'));
     }
 
     /**
@@ -28,7 +29,7 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        return view('admin.modules.create');
+        return view('admin.forums.create');
     }
 
     /**
@@ -37,16 +38,17 @@ class ModuleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ModuleRequest $request)
+    public function store(ForumRequest $request)
     {
-        $module = new Module();
+        $forum = new Forum();
 
-        $module->titre = $request->titre;
-        $module->niveau = $request->niveau;
-        $module->section_id = $request->section_id;
-        $module->save();
+        $forum->titre = $request->titre;
+        $forum->description = $request->description;
+        $forum->user_id = Auth::id();
 
-        return redirect('admin/modules')->with('added', 'La module a été ajouté avec succés');
+        $forum->save();
+
+        return redirect('admin/forums')->with('added', 'Votre nouveau sujet a été créé avec succé');
     }
 
     /**
@@ -68,9 +70,9 @@ class ModuleController extends Controller
      */
     public function edit($id)
     {
-        $module = Module::find($id);
-
-        return view('admin.modules.edit', compact('module'));
+        $forum = Forum::find($id);
+        return view('admin.forums.edit', compact('forum'));
+        
     }
 
     /**
@@ -80,17 +82,17 @@ class ModuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ModuleRequest $request, $id)
-    {
-        $module =  Module::find($id);
+    public function update(ForumRequest $request, $id){
 
-        $module->titre = $request->titre;
-        $module->section_id = $request->section_id;
-        $module->niveau = $request->niveau;
+        $forum = Forum::find($id);
 
-        $module->save();
+        $forum->titre = $request->titre;
+        $forum->description = $request->description;
+        $forum->user_id = Auth::id();
 
-        return redirect('admin/modules')->with('updated', 'La module a été modifié avec succés');
+        $forum->save();
+
+        return redirect('admin/forums')->with('updated', 'Votre nouveau sujet a été modifié avec succé');
     }
 
     /**
@@ -101,8 +103,9 @@ class ModuleController extends Controller
      */
     public function destroy($id)
     {
-        Module::find($id)->delete();
-        return redirect('admin/modules')->with('deleted', 'La module a été supprimer avec succés');
-        
+        Forum::find($id)->delete();
+
+        return redirect('admin/forums')->with('deleted', 'Le forum a été supprimé avec succés');
+
     }
 }

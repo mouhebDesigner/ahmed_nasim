@@ -71,7 +71,7 @@
                                                         <div class="pull-left">
                                                         @php 
                                                             $link = $video->link;
-                                                            $code = substr($link, strpos($link, 'v=')+2, strpos($link, '&') - strpos($link, 'v=') - 2);
+                                                            $code = substr($link, strpos($link, 'v=')+2, 11);
                                                         @endphp
                                                             <a href="https://www.youtube.com/watch?v={{ $code }}" class="popup-videos play-icon"><span class="fa fa-play"></span>{{ $video->titre }}</a>
                                                         </div>

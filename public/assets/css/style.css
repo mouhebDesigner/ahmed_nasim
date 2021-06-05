@@ -56,3 +56,7 @@
     /* color: white !important; */
     border-radius: 19px;
 }
+
+.user-block .comment, .user-block .description, .user-block .username{
+    margin-left: 0px !important;
+}

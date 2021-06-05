@@ -17,6 +17,16 @@
     <section class="intro-section gray-bg pt-94 pb-100 md-pt-64 md-pb-70 loaded">
         <div class="container">
             <div class="row">
+                <div class="col-md-12">
+                    @if(session('success'))
+                        <div class="alert alert_success">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                            <strong>Succés! </strong>  {{ session('success') }}
+                        </div>             
+                    @endif
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-8">
                     <h2>{{ $matiere->titre }}</h2>
                 </div>
@@ -57,10 +67,11 @@
                                                                 @if($chapitre->type == "video")
                                                                 @php 
                                                                     $link = $chapitre->content;
-                                                                    $code = substr($link, strpos($link, 'v=')+2, strpos($link, '&') - strpos($link, 'v=') - 2);
+                                                                    $code = substr($link, strpos($link, 'v=')+2, 11);
                                                                 @endphp
                                                                 <!-- NU_omO5KCOc -->
                                                                 <!-- https://www.youtube.com/watch?v=NU_omO5KCOc&ab_channel=WataniaReplay -->
+                                                             
                                                                 <a class="popup-videos play-icon" href="https://www.youtube.com/watch?v={{ $code }}"><i class="fa fa-play"></i><strong>{{ $chapitre->titre }}</strong></a>
                                                                 @else 
                                                                 <a class=" play-icon" href="{{ url('download_chapitre/'.$chapitre->id) }}"><i class="fa fa-download"></i><strong>{{ $chapitre->titre }}</strong></a>
@@ -91,7 +102,7 @@
                                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                             </div>
                                                                             <div class="modal-body styled-form">
-                                                                                <form action="{{ url('activite/'.$activite->id.'/deposer') }}" method="post">
+                                                                                <form action="{{ url('activite/'.$activite->id.'/deposer') }}" method="post" enctype="multipart/form-data">
                                                                                 @csrf
                                                                                 
                                                                                 <div class="form-group col-lg-12 mb-25">
@@ -181,8 +192,8 @@
                                             @php 
                                                 $user_id = App\Models\Enseignant::find($matiere->cour->enseignant_id)->user_id;
                                             @endphp
-                                            <h3 class="instructor-title">Enseignants de cours</h3>
                                             <div class="col-lg-6 col-md-6 col-sm-12 sm-mb-30">
+                                            <h3 class="instructor-title">Enseignants de cours</h3>
                                                 <div class="team-item">
                                                     <img src="{{ asset('storage/'.App\Models\User::find($user_id)->photo)}}" alt="">
                                                     <div class="content-part">
@@ -203,10 +214,10 @@
                                                 $user_id_td = App\Models\Enseignant::find($matiere->td->enseignant_id)->user_id;
                                             @endphp
                                             @if($user_id_td != $user_id)
-                                            <h3 class="instructor-title">Enseignants de travaux dirigé</h3>
                                             <div class="col-lg-6 col-md-6 col-sm-12 sm-mb-30">
+                                            <h3 class="instructor-title">Enseignants de travaux dirigé</h3>
                                                 <div class="team-item">
-                                                    <img src="{{ asset('storage/'.App\Models\User::find($user_id)->photo)}}" alt="">
+                                                    <img src="{{ asset('storage/'.App\Models\User::find($user_id_td)->photo)}}" alt="">
                                                     <div class="content-part">
                                                         <h4 class="name"><a href="#">{{ App\Models\User::find($user_id_td)->nom }} {{ App\Models\User::find($user_id_td)->prenom }}</a></h4>
                                                         <span class="designation">{{  App\Models\User::find($user_id_td)->email }}</span>
@@ -226,11 +237,11 @@
                                                 $user_id_tp = App\Models\Enseignant::find($matiere->tp->enseignant_id)->user_id;
                                             @endphp
                                             @if($user_id_tp != $user_id && $user_id_tp != $user_id_td)
-                                            <h3 class="instructor-title">Enseignants de travaux pratiques</h3>
 
                                             <div class="col-lg-6 col-md-6 col-sm-12 sm-mb-30">
+                                            <h3 class="instructor-title">Enseignants de travaux pratiques</h3>
                                                 <div class="team-item">
-                                                    <img src="{{ asset('storage/'.App\Models\User::find($user_id)->photo)}}" alt="">
+                                                    <img src="{{ asset('storage/'.App\Models\User::find($user_id_tp)->photo)}}" alt="">
                                                     <div class="content-part">
                                                         <h4 class="name"><a href="#">{{ App\Models\User::find($user_id_tp)->nom }} {{ App\Models\User::find($user_id_tp)->prenom }}</a></h4>
                                                         <span class="designation">{{  App\Models\User::find($user_id_tp)->email }}</span>
@@ -300,10 +311,15 @@
                         
                         <div class="btn-part">
                             @if($matiere->quizze)
-                                @if(App\Models\Resultat::where('etudiant_id', Auth::user()->etudiant->id)->count() > 0)
-                                    <p class="quiz_message">Vous avez passé ce quizze</p>
+                                @if($matiere->quizze->questions->count())
+                                    @if(App\Models\Resultat::where('etudiant_id', Auth::user()->etudiant->id)->count() > 0)
+                                        <p class="quiz_message">Vous avez passé ce quizze</p>
+                                    @else 
+                                        <a href="{{ url('matiere/'.$matiere->id.'/quizze') }}" class="btn readon2 orange-transparent">Passer examen</a>
+                                    @endif
                                 @else 
-                                    <a href="{{ url('matiere/'.$matiere->id.'/quizze') }}" class="btn readon2 orange-transparent">Passer examen</a>
+
+                                    <p class="quiz_message">Il n'y a pas de quizze ajouté jusqu'à maintenant</p>
                                 @endif
                             @else 
                                 <p class="quiz_message">Il n'y a pas de quizze ajouté jusqu'à maintenant</p>

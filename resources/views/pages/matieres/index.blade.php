@@ -13,14 +13,12 @@
             </div>
            
 
-                @foreach($matieres as $matiere)
+               
                     @foreach($modules as $module)
-                        @if($matiere->module_id == $module->id)
                             <div class="row">
                                 <div class="col-md-12 module_title sub-title primary">Module {{ $module->titre }}</div>
                             </div>
-
-                            @foreach($module->matieres->where('niveau', Auth::user()->etudiant->niveau) as  $matiere)
+                            @foreach($module->matieres as  $matiere)
                                 <div class="col-lg-6 col-md-12 pr-75 md-pr-15 md-mb-50">
                                     <div class="row align-items-center no-gutter white-bg blog-item mb-30 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="2000ms" style="visibility: visible; animation-duration: 2000ms; animation-delay: 300ms; animation-name: fadeInUp;">
                                         <div class="col-md-6">
@@ -34,7 +32,7 @@
                                                     <li><strong>Module:</strong> {{ $matiere->module->titre }} </li>
                                                     <li>{{ $matiere->chapitres()->count() }} Chapitres</li>
                                                 </ul>
-                                                <h3 class="title"><a href="{{ url('matieres/'.$matiere->id) }}">{{ $matiere->id }}</a></h3>
+                                                <h3 class="title"><a href="{{ url('matieres/'.$matiere->id) }}">{{ $matiere->titre }}</a></h3>
                                                 <div class="btn-part">
                                                     <a class="readon-arrow" href="{{ url('matieres/'.$matiere->id) }}">Voir détails</a>
                                                 </div>
@@ -43,12 +41,8 @@
                                     </div>
                                 </div>
                             @endforeach
-                        @endif
                     @endforeach
-                    <div class="row">
-                       
-                    </div>
-                @endforeach
+                    
             
     </div>
 </div>

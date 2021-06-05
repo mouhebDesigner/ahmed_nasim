@@ -28,9 +28,12 @@
                                     <label for="matiere_id">Matiére</label>
                                     <select name="matiere_id" id="matiere_id" class="form-control">
                                         <option value="" selected disbaled>Choisir matière</option>
-                                        @foreach(App\Models\Matiere::all() as $matiere)
-                                            @if(!$matiere->quizze)
-                                            <option value="{{ $matiere->id }}" @if(old('matiere_id') == $matiere->id) selected @endif>{{ $matiere->titre }}</option>
+                                        @php 
+                                            $matieres = App\Models\Cour::with('matiere')->where('enseignant_id', Auth::user()->enseignant->id)->get('matiere_id');
+                                        @endphp
+                                        @foreach($matieres as $matiere)
+                                            @if(!$matiere->matiere->quizze)
+                                            <option value="{{ $matiere->matiere->id }}" @if(old('matiere_id') == $matiere->matiere->id) selected @endif>{{ $matiere->matiere->titre }}</option>
                                             @endif
                                         @endforeach
                                     </select>

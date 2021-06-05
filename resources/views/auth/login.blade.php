@@ -10,7 +10,7 @@
             <div class="noticed">
                 <div class="main-part">                           
                     <div class="method-account">
-                        <h2 class="login">Login</h2>
+                        <h2 class="login">Connexion</h2>
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form_inputs">

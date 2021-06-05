@@ -9,12 +9,12 @@
         
         @include('admin.includes.header')
         @include('admin.includes.aside')
-        <div class="content-wrapper" style="min-height: 257px">
+        <div class="content-wrapper" style="min-height: 257px; margin-left: 300px">
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Liste des modules</h1>
+                            <h1 class="m-0">Liste des comptes rendus</h1>
                         </div><!-- /.col -->
                        
                     </div>
@@ -39,9 +39,7 @@
                                         <div class="col-md-12">
                                             <div class="d-flex justify-content-between">
                                                
-                                                <a href="{{ url('admin/modules/create') }}">
-                                                    <i class="fa fa-plus"></i>
-                                                </a>
+                                              
                                             </div>
                                         </div>
                                     </div>
@@ -51,13 +49,10 @@
                                                 <thead>
                                                     <tr>
                                                         <th>
-                                                            titre
+                                                            Etudiant
                                                         </th>
                                                         <th>
-                                                            section
-                                                        </th>
-                                                        <th>
-                                                            niveau
+                                                            Travail
                                                         </th>
                                                         
                                                         <th>
@@ -67,49 +62,38 @@
                                                         <th>
                                                             date de modification
                                                         </th>
-                                                        <th>
-                                                            Action
-                                                        </th>
-
+                                                        
                                                     </tr>
-
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($modules as $module)
+                                                    @foreach($travails as $travail)
                                                         <tr>
-                                                            <td>{{ $module->titre }}</td>
-                                                            <td>{{ $module->section->titre }}</td>
-                                                            <td>{{ $module->niveau }}</td>
-                                                            <td>{{ $module->created_at }}</td>
-                                                            <td>{{ $module->updated_at }}</td>
+                                                            <td>{{ $travail->user->nom }} {{ $travail->user->prenom }}</td>
                                                             <td>
-                                                                <div class="d-flex justify-content-around">
-                                                                    <form action="{{ url('admin/modules/'.$module->id) }}" method="post">
-                                                                        @csrf
-                                                                        @method('delete')
-                                                                        <button type="submit" class="btn-delete" onclick="return confirm('Voules-vous supprimer ce module')">
-                                                                            <i class="fa fa-trash"></i>
-                                                                        </button>
-                                                                    </form>
-                                                                    <a href="{{ url('admin/modules/'.$module->id.'/edit') }}" onclick="return confirm('Voules-vous modifier ce module')">
-                                                                        <i class="fa fa-edit"></i>
-                                                                    </a>
-                                                                </div>
+                                                                <a class=" play-icon" href="{{ url('download_travail/'.$travail->id) }}">
+                                                                <i class="fa fa-download"></i>
+                                                                    <strong>
+                                                                        Télécharger
+                                                                    </strong>
+                                                                </a>
+                                                            
+                                                                
                                                             </td>
+                                                            <td>{{ $travail->created_at }}</td>
+                                                            <td>{{ $travail->updated_at }}</td>
+                                                           
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
                                                         <th>
-                                                            titre
+                                                            Etudiant
                                                         </th>
                                                         <th>
-                                                            section
+                                                            Travail
                                                         </th>
-                                                        <th>
-                                                            niveau
-                                                        </th>
+                                                        
                                                         <th>
                                                             date de creation
                                                         </th>
@@ -117,9 +101,7 @@
                                                         <th>
                                                             date de modification
                                                         </th>
-                                                        <th>
-                                                            Action
-                                                        </th>
+                                                        
                                                     </tr>
                                                 </tfoot>
                                             </table>

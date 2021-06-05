@@ -77,12 +77,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <label for="niveau">Niveau</label>
-                                    <select name="niveau" id="niveau" class="form-control">
-                                        <option value="" selected disbaled>Choisir niveau</option>
-                                    </select>
-                                </div>
+                               
                                 <div class="form-group">
                                     <label for="module_id">Module</label>
                                     <select name="module_id" id="module_id" class="form-control">

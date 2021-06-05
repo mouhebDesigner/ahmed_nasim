@@ -38,15 +38,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="d-flex justify-content-between">
-                                                <div id="example1_filter" class="dataTables_filter">
-                                                    <label>
-                                                        Search:
-                                                        <input 
-                                                        type="search" class="form-control form-control-sm" 
-                                                        placeholder="" 
-                                                        aria-controls="example1">
-                                                    </label>
-                                                </div>
+                                                
                                                 <a href="{{ url('admin/admins/create') }}">
                                                     <i class="fa fa-plus"></i>
                                                 </a>

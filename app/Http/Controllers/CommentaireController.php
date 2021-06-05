@@ -18,8 +18,14 @@ class CommentaireController extends Controller
         $comment->save();
 
         $commentaires = Commentaire::where('forum_id', $request->forum_id)->get();
+        if(Auth::user()->grade == 'etudiant'){
 
-        return redirect('forums/'.$request->forum_id.'/show');
+            return redirect('forums/'.$request->forum_id.'/show');
+        } else if(Auth::user()->grade == 'admin'){
+
+            return redirect('admin/forums/')->with('success', 'Votre commentaire a été ajouté avec succée');
+        }
+        return redirect('enseignant/forums/')->with('success', 'Votre commentaire a été ajouté avec succée');
     }
 
 }

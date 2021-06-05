@@ -39,7 +39,7 @@
                                     <div class="col">
                                         <div class="d-flex justify-content-between">
 
-                                            <h3 class="card-title">Liste de questions</h3>
+                                            <h3 class="card-title">Liste des questions</h3>
                                             @if($question_rest == 0)
                                                 <a href="#" onclick="alert('Vous avez créé toutes les questions')" class="btn btn-primary">
                                                     <i class="fa fa-plus"></i>

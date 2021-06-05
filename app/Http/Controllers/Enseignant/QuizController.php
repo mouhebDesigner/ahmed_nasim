@@ -14,7 +14,13 @@ class QuizController extends Controller
 
     public function index(){
         $matieres = Cour::with('matiere')->where('enseignant_id', Auth::user()->enseignant->id)->get('matiere_id');
-        $quizzes = Quizze::whereIn('matiere_id', $matieres)->paginate(10);
+        $ids = [];
+        foreach($matieres as $matiere){
+            array_push($ids, $matiere->matiere_id);
+        }
+        $quizzes = Quizze::whereIn('matiere_id', $ids)->get();
+
+        // return response()->json($quizzes);
         
         
         return view('enseignants.quizzes.index', compact('quizzes'));

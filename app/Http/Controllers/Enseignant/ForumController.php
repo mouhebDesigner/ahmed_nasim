@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Enseignant;
 
-use App\Models\Module;
+use App\Models\Forum;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ModuleRequest;
 
-class ModuleController extends Controller
+class ForumController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,9 @@ class ModuleController extends Controller
      */
     public function index()
     {
-        $modules = Module::paginate(10);
+        $forums = Forum::all();
 
-        return view('admin.modules.index', compact('modules'));
+        return view('enseignants.forums.index', compact('forums'));
     }
 
     /**
@@ -28,7 +27,7 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        return view('admin.modules.create');
+        //
     }
 
     /**
@@ -37,16 +36,9 @@ class ModuleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ModuleRequest $request)
+    public function store(Request $request)
     {
-        $module = new Module();
-
-        $module->titre = $request->titre;
-        $module->niveau = $request->niveau;
-        $module->section_id = $request->section_id;
-        $module->save();
-
-        return redirect('admin/modules')->with('added', 'La module a été ajouté avec succés');
+        //
     }
 
     /**
@@ -68,9 +60,7 @@ class ModuleController extends Controller
      */
     public function edit($id)
     {
-        $module = Module::find($id);
-
-        return view('admin.modules.edit', compact('module'));
+        //
     }
 
     /**
@@ -80,17 +70,9 @@ class ModuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ModuleRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $module =  Module::find($id);
-
-        $module->titre = $request->titre;
-        $module->section_id = $request->section_id;
-        $module->niveau = $request->niveau;
-
-        $module->save();
-
-        return redirect('admin/modules')->with('updated', 'La module a été modifié avec succés');
+        //
     }
 
     /**
@@ -101,8 +83,6 @@ class ModuleController extends Controller
      */
     public function destroy($id)
     {
-        Module::find($id)->delete();
-        return redirect('admin/modules')->with('deleted', 'La module a été supprimer avec succés');
-        
+        //
     }
 }

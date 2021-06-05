@@ -11,7 +11,7 @@
                     @include('admin.includes.error-message')
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Liste de travaux pratique de matière {{ $matiere }}</h1>
+                            <h1 class="m-0">Liste des travaux pratiques de matière {{ $matiere }}</h1>
                         </div><!-- /.col -->
                        
                     </div>
@@ -30,7 +30,7 @@
                         <div class="col-12">
                             <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Liste de travaux pratique</h3>
+                                <h3 class="card-title">Liste des travaux pratiques</h3>
 
                                 <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -68,6 +68,9 @@
                                                 </form>
                                                 <a href="{{ route('travaux_pratiques.edit', ['matiere_id' => $tp->matiere_id, 'travaux_pratique' => $tp->id]) }}" onclick="return confirm('Voules-vous modifier ce chapitre')">
                                                     <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a href="{{ url('enseignant/travails/'.$tp->id) }}" onclick="return confirm('Voules-vous modifier ce chapitre')">
+                                                    Compte rendu
                                                 </a>
                                             </div>
                                         </td>

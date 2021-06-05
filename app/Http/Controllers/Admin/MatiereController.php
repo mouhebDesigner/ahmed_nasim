@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Td;
 use App\Models\Tp;
 use App\Models\Cour;
+use App\Models\Module;
 use App\Models\Matiere;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -46,7 +47,7 @@ class MatiereController extends Controller
 
         $matiere->titre = $request->titre;
         $matiere->section_id = $request->section_id;
-        $matiere->niveau = $request->niveau." ".$request->cycle;
+        $matiere->niveau = Module::find($request->module_id)->niveau;
         $matiere->module_id = $request->module_id;
 
         

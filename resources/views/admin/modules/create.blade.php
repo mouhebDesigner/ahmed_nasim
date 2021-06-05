@@ -37,6 +37,18 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label for="niveau">Niveau</label>
+                                    <select name="niveau" id="niveau" class="form-control">
+                                        <option value="" selected disbaled>Choisir niveau</option>
+                                    </select>
+                                    @error('niveau')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+
+
+                                <div class="form-group">
                                     <label for="titre">Titre de module</label>
                                     <input type="text" class="form-control" name="titre" value="{{ old('titre') }}" id="titre" placeholder="Saisir titre de module">
                                     @error('titre')
@@ -60,4 +72,39 @@
    
 
 
+@endsection
+
+@section('script')
+   
+   
+
+<script>
+   $("#section_id").on('change', function(){
+        var section_id = $(this).val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type:'get',
+            url:'/niveaux/'+section_id,
+            data:'_token = <?php echo csrf_token() ?>',
+            success:function(data) {
+
+                if(data == 'licence'){
+                    $('#niveau').empty();
+                    $("#niveau").append('<option value="" selected disbaled>Choisir niveau</option>')
+                    $("#niveau").append('<option value="première licence">Première année</option>')
+                    $("#niveau").append('<option value="deuxième licence">Deuxième année</option>')
+                    $("#niveau").append('<option value="troisième licence">Troisième année</option>')
+                } else {
+                    $('#niveau').empty();
+                    $("#niveau").append('<option value="" selected disbaled>Choisir niveau</option>')
+                    $("#niveau").append('<option value="première mastère">Première année</option>')
+                    $("#niveau").append('<option value="deuxième mastère">Deuxième année</option>')
+                }
+            }    
+        });
+    });
+</script>
+            
 @endsection

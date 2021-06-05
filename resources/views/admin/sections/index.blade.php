@@ -14,7 +14,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Liste de sections</h1>
+                            <h1 class="m-0">Liste des sections</h1>
                         </div><!-- /.col -->
                        
                     </div>
@@ -38,15 +38,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="d-flex justify-content-between">
-                                                <div id="example1_filter" class="dataTables_filter">
-                                                    <label>
-                                                        Search:
-                                                        <input 
-                                                        type="search" class="form-control form-control-sm" 
-                                                        placeholder="" 
-                                                        aria-controls="example1">
-                                                    </label>
-                                                </div>
+                                             
                                                 <a href="{{ url('admin/sections/create') }}">
                                                     <i class="fa fa-plus"></i>
                                                 </a>

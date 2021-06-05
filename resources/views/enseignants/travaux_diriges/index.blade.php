@@ -69,6 +69,9 @@
                                                 <a href="{{ route('travaux_diriges.edit', ['matiere_id' => $td->matiere_id, 'travaux_dirige' => $td->id]) }}" onclick="return confirm('Voules-vous modifier ce chapitre')">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
+                                                <a href="{{ url('enseignant/travails/'.$td->id) }}" onclick="return confirm('Voules-vous modifier ce chapitre')">
+                                                    Compte rendu
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>

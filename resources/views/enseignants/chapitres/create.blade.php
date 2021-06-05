@@ -46,7 +46,7 @@
                                 <!-- Contenue pdf -->
                                 <div class="form-group" id="document" @if(old('type') == 'document') style="display: block" @else style="display:none" @endif>
                                     <label for="content">Document</label>
-                                    <input type="file" class="form-control" name="content" value="{{ old('content') }}" id="content" placeholder="Saisir document de module">
+                                    <input type="file" class="form-control" name="content" value="{{ old('content') }}" id="content" placeholder="Saisir document pdf">
                                     @error('content')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -55,7 +55,7 @@
                                 <!-- Contenue video -->
                                 <div class="form-group" id="video"  @if(old('type') == 'video') style="display: block" @else style="display:none" @endif>
                                     <label for="content">Video</label>
-                                    <input type="text" class="form-control" name="content" value="{{ old('content') }}" id="content" placeholder="Saisir content de module">
+                                    <input type="text" class="form-control" name="content" value="{{ old('content') }}" id="content" placeholder="Saisir lien de video youtube">
                                     @error('content')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
@@ -78,4 +78,18 @@
    
 
 
+@endsection
+
+@section('script')  
+    <script>
+        $("#type").on('change', function(){
+            if($(this).val() == "document"){
+                $("#document").css("display", "block");
+                $("#video").css("display", "none");
+            }else {
+                $("#document").css("display", "none");
+                $("#video").css("display", "block");
+            }
+        });
+    </script>
 @endsection

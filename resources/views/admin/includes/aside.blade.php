@@ -27,7 +27,7 @@
       <!-- SidebarSearch Form -->
       <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control form-control-sidebar" type="text" placeholder="Search" aria-label="Search">
           <div class="input-group-append">
             <button class="btn btn-sidebar">
               <i class="fas fa-search fa-fw"></i>
@@ -139,6 +139,15 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ url('admin/forums') }}" class="nav-link @if(Request::is('admin/forums*')) active @endif">
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                {{ __('Gérer les forums') }}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
           
         </ul>
       @endif
@@ -206,6 +215,15 @@
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 {{ __('Contacter l\'admininstrateur') }}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('enseignant/forums') }}" class="nav-link @if(Request::is('enseignant/forums*')) active @endif">
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                {{ __('Gérer les forums') }}
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>

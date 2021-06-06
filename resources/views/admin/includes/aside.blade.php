@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4" @if(Auth::user()->grade== 'enseignant') style="width: 300px !important" @endif>
+<aside class="main-sidebar sidebar-dark-primary elevation-4" @if(Auth::user()->grade== 'enseignant') style="" @endif>
     <!-- Brand Logo -->
     <a href="/acceuil" class="brand-link">
       <img src="{{ asset('front/assets//images/easy-learn.png') }}" width="200" alt="">
@@ -54,7 +54,7 @@
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Acceuil
-                <i class="right fas fa-angle-left"></i>
+                
               </p>
             </a>
           </li>
@@ -63,7 +63,7 @@
               <i class="nav-icon fas fa-registered"></i>
               <p>
                 {{ __('Gérer les inscriptions') }}
-                <i class="right fas fa-angle-left"></i>
+                
               </p>
             </a>
           </li>
@@ -72,7 +72,7 @@
               <i class="nav-icon fas fa-chalkboard-teacher"></i>
               <p>
                 {{ __('Gérer les enseignants') }}
-                <i class="right fas fa-angle-left"></i>
+                
               </p>
             </a>
           </li>
@@ -81,7 +81,7 @@
               <i class="nav-icon fas fa-user-graduate"></i>
               <p>
                 {{ __('Gérer les etudiants') }}
-                <i class="right fas fa-angle-left"></i>
+                
               </p>
             </a>
           </li>
@@ -90,7 +90,7 @@
               <i class="nav-icon fas fa-user-graduate"></i>
               <p>
                 {{ __('Gérer les administrateurs') }}
-                <i class="right fas fa-angle-left"></i>
+                
               </p>
             </a>
           </li>
@@ -99,7 +99,7 @@
               <i class="nav-icon fas fa-puzzle-piece"></i>
               <p>
                 {{ __('Gérer les sections') }}
-                <i class="right fas fa-angle-left"></i>
+                
               </p>
             </a>
           </li>
@@ -108,7 +108,7 @@
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 {{ __('Gérer les modules') }}
-                <i class="right fas fa-angle-left"></i>
+                
               </p>
             </a>
           </li>
@@ -117,7 +117,7 @@
               <i class="nav-icon fas fa-book"></i>
               <p>
                 {{ __('Gérer les matieres') }}
-                <i class="right fas fa-angle-left"></i>
+                
               </p>
             </a>
           </li>
@@ -126,7 +126,7 @@
               <i class="nav-icon fas fa-book-reader"></i>
               <p>
                 {{ __('Gérer  formations') }}
-                <i class="right fas fa-angle-left"></i>
+                
               </p>
             </a>
           </li>
@@ -135,7 +135,7 @@
               <i class="nav-icon fas fa-book-reader"></i>
               <p>
                 {{ __('Gérer  contacts') }}
-                <i class="right fas fa-angle-left"></i>
+                
               </p>
             </a>
           </li>
@@ -144,7 +144,7 @@
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 {{ __('Gérer les forums') }}
-                <i class="right fas fa-angle-left"></i>
+                
               </p>
             </a>
           </li>
@@ -160,7 +160,6 @@
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Acceuil
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
           </li>
@@ -169,7 +168,6 @@
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Gérer matières
-                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview" @if(Request::is('enseignant/matieres')) style="display: block;" @else  style="display: none;" @endif>
@@ -206,7 +204,7 @@
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 {{ __('Gérer  quizzes') }}
-                <i class="right fas fa-angle-left"></i>
+                
               </p>
             </a>
           </li>
@@ -215,7 +213,7 @@
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 {{ __('Contacter l\'admininstrateur') }}
-                <i class="right fas fa-angle-left"></i>
+                
               </p>
             </a>
           </li>
@@ -224,7 +222,7 @@
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 {{ __('Gérer les forums') }}
-                <i class="right fas fa-angle-left"></i>
+                
               </p>
             </a>
           </li>

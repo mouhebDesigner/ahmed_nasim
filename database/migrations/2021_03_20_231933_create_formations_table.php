@@ -18,6 +18,7 @@ class CreateFormationsTable extends Migration
             $table->text('titre');
             $table->text('description');
             $table->text('image');
+            $table->string('certificat');
             $table->timestamps();
         });
     }

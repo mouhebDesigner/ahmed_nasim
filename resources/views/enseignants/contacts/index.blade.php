@@ -5,7 +5,7 @@
         
         @include('admin.includes.header')
         @include('admin.includes.aside')
-        <div class="content-wrapper" style="min-height: 257px; margin-left: 300px">
+        <div class="content-wrapper" style="min-height: 257px;">
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">

@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+s@extends('admin.layouts.master')
 
 
 @section('content')
@@ -37,6 +37,14 @@
                                     <label for="image">Image</label>
                                     <input type="file" class="form-control" name="image" value="{{ $formation->image }}" id="image" placeholder="Saisir document de module">
                                     @error('image')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group" id="document">
+                                    <label for="certificat">Certificat</label>
+                                    <input type="file" class="form-control" name="certificat" value="{{ old('certificat') }}" id="certificat" placeholder="Saisir document de module">
+                                    @error('certificat')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>

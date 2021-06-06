@@ -611,18 +611,20 @@ blockquote p {
   background: #21a7d0;
 }
 .readon.submit-btn {
+ 
   border: 2px solid;
-  border-color: #21a7d0;
+  border-color: #273c66;
   padding: 10px 50px;
   line-height: normal;
   font-size: 14px;
   text-transform: uppercase;
   font-weight: 500;
-  background: #21a7d0;
+  background: #273c66;
   color: #ffffff;
   border-radius: 5px;
   margin-bottom: 12px;
   width: 100%;
+
 }
 .readon.submit-btn:hover {
   background: transparent;

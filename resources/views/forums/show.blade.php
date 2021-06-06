@@ -21,6 +21,16 @@
 </div>
 <section class="intro-section gray-bg pt-94 pb-100 md-pt-64 md-pb-70 loaded">
     <div class="container">
+        <div class="row">
+                <div class="col-md-12">
+                    @if(session('deleted'))
+                        <div class="alert alert_success">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                            <strong>Succés! </strong>  {{ session('deleted') }}
+                        </div>             
+                    @endif
+                </div>
+            </div>
         <div class="row clearfix">
             <!-- Content Column -->
             <div class="col-lg-8 offset-md-2 md-mb-50">
@@ -36,8 +46,8 @@
                                         <div class="user">
                                             <img src="{{ asset('storage/'.$forum->user->photo)}}" alt="">
                                             <div class="name_date">
-                                                <p>{{ $forum->user->nom }} {{ $forum->user->prenom }}</p>
-                                                <span style="color: #00aae1;">{{ $forum->created_at->diffForHumans() }}</span>
+                                                <h4>{{ $forum->user->nom }} {{ $forum->user->prenom }}</h4>
+                                                <span style="color: #273c66;">{{ $forum->created_at->diffForHumans() }}</span>
                                             </div>
                                         </div>
                                         <h4>{{ $forum->titre }}</h4>
@@ -63,9 +73,27 @@
                         @foreach(App\Models\Commentaire::where('forum_id', $forum->id)->get() as $comment)
                             <div class="content pt-30 pb-30  comment mt-5">
                                 <div class="cource-review-box">
-                                    <div class="d-flex justify-content-between align-items-center" style="width: max-content">
-                                        <img src="{{ asset('front/assets/images/gallery/12.jpg') }}" class="comment_imageuser" >
-                                        <h4 class="comment_username">{{ $comment->user->nom }}</h4>
+                                    <div class="d-flex justify-content-between align-items-center" style="">
+                                        <div class="user_coord d-flex justify-content-between">
+                                            <img src="{{ asset('front/assets/images/gallery/12.jpg') }}" class="comment_imageuser" >
+                                            <div class="name_d">
+                                                <h4 class="">
+                                                    {{ $comment->user->nom }}
+                                                </h4>
+                                                <span style="color: #273c66;">{{ $comment->created_at->diffForHumans() }}</span>
+                                            </div>
+                                        </div>
+                                        @if(Auth::id() == $comment->user_id)
+                                        <form action="{{ url('commentaires/'.$comment->id) }}" method="post" class="form_delete_comment">
+                                            @csrf 
+                                            @method('delete')
+
+                                            <button type="submit" style="border:none; background:transparent">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+
+                                        </form>
+                                        @endif
                                     </div>
                                     <div class="" style="margin-left: 70px;">
                                         <p>

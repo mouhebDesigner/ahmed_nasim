@@ -60,3 +60,10 @@
 .user-block .comment, .user-block .description, .user-block .username{
     margin-left: 0px !important;
 }
+.form_comment{
+    float: right;
+    position: relative;
+    top: 20px;
+    left: 72px;
+    
+}

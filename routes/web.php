@@ -8,7 +8,11 @@ use App\Models\Module;
 use App\Models\Section;
 use App\Models\Activite;
 use App\Models\Chapitre;
+use App\Models\Etudiant;
+use App\Models\Resultat;
+use App\Models\Formation;
 use App\Models\Enseignant;
+use App\Models\Participant;
 use Illuminate\Http\Request;
 use App\Models\TravailDemande;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\QuizzeController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TravailController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\Admin\UserController;
@@ -33,17 +38,16 @@ use App\Http\Controllers\Enseignant\QuestionController;
 use App\Http\Controllers\Admin\MatiereController as matiere_admin;
 use App\Http\Controllers\Admin\EtudiantController as etudiant_admin;
 use App\Http\Controllers\ForumController as ForumController_etudiant;
-use App\Http\Controllers\Enseignant\ForumController as ForumController_enseignant;
-use App\Http\Controllers\Admin\ForumController as ForumController_admin;
 use App\Http\Controllers\ModuleController as ModuleController_etudiant;
 use App\Http\Controllers\Admin\EnseignantController as enseignant_admin;
+use App\Http\Controllers\Admin\ForumController as ForumController_admin;
 use App\Http\Controllers\MatiereController as MatiereController_etudiant;
 use App\Http\Controllers\Admin\ContactController as ContactController_admin;
 use App\Http\Controllers\Enseignant\MatiereController as matiere_enseignant;
-use App\Http\Controllers\Enseignant\ProfileController as ProfileController_enseignant;
 use App\Http\Controllers\FormationController as FormationController_etudiant;
 use App\Http\Controllers\Admin\FormationController as formation_controller_admin;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Enseignant\ForumController as ForumController_enseignant;
+use App\Http\Controllers\Enseignant\ProfileController as ProfileController_enseignant;
 
 
 /*
@@ -106,6 +110,19 @@ Route::middleware(['approved'])->group(function () {
     Route::post('activite/{activite_id}/deposer',  [TravailController::class, 'deposer']);
     // esneigantn reoutes
     Route::prefix('enseignant')->group(function () {
+        Route::get('etudiants/{quizze_id}', function($quizze_id){
+            $ids = Resultat::where('quizze_id', $quizze_id)->get('etudiant_id');
+
+            $users_ids = [];
+
+            foreach($ids as $id){
+                array_push($users_ids, Etudiant::find($id->etudiant_id)->user_id);
+            }
+
+            $etudiants = User::whereIn('id', $users_ids)->paginate(10);
+
+            return view('enseignants.quizzes.etudiants', compact('etudiants'));
+        });
         Route::resource('forums', ForumController_enseignant::class);
         Route::get('travails/{activite_id}', [TravailController::class, 'travails']);
         Route::resource('profile', ProfileController_enseignant::class);
@@ -207,6 +224,20 @@ Route::get('/download_chapitre/{id}', function($id){
 
     return Response::download($file, "$document->titre.pdf", $header);
 });
+// Download certificate
+Route::get('/download_certificat/{id}', function($id){
+
+    $document = Formation::find($id);
+
+    $file = storage_path().'/app/public/'.$document->certificat;
+
+    $extension = explode('.', $file);
+    $header = array(
+        'Content-Type: application/pdf',
+    );
+
+    return Response::download($file, $document->titre."__".Auth::user()->nom.".pdf", $header);
+});
 // Download travail
 Route::get('/download_travail/{id}', function($id){
 
@@ -237,10 +268,6 @@ Route::get('/download_activite/{id}', function($id){
     return Response::download($file, "$document->titre.pdf", $header);
 });
 Route::get('forums', [ForumController::class, 'index']);
-
-
-
-
 
 
 Route::get('travail', function(){
@@ -286,5 +313,27 @@ Route::get('niveaux/{section_id}', function($section_id){
      $niveau = Section::find($section_id)->niveau;
 
     return response()->json($niveau);
+});
+
+Route::get('videos/{formation_id}', function($formation_id){
+
+
+    $participant_id = Participant::where('user_id', Auth::user()->id)->where('formation_id', $formation_id)->first()->id;
+
+    $participant = Participant::find($participant_id);
+
+    $participant->video_count += 1;
+
+    $participant->save();
+
+    $success = FALSE;
+    if(Formation::find($formation_id)->videos->count() == $participant->video_count){
+        $success = TRUE;
+    }
+
+    return response()->json([
+        'success' => $success,
+        'formation_id' => $formation_id
+    ]);
 });
 

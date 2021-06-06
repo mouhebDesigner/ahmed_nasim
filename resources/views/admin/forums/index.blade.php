@@ -86,6 +86,13 @@
                                             <span class="text-muted float-right">{{ $comment->created_at->diffForHumans() }}</span>
                                             </span><!-- /.username -->
                                             {{ $comment->contenue }}
+                                            <form action="{{ url('commentaires/'.$comment->id) }}" method="post" class="form_comment">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn-delete" style="background: transparent" onclick="return confirm('Voules-vous supprimer ce forum')">
+                                                    <i class="fa fa-trash" style="transform: scale(1)"></i>
+                                                </button>
+                                            </form>
                                         </div>
                                     <!-- /.comment-text -->
                                     </div>

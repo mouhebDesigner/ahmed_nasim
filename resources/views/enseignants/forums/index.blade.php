@@ -5,13 +5,20 @@
         
         @include('admin.includes.header')
         @include('admin.includes.aside')
-        <div class="content-wrapper" style="min-height: 257px; margin-left: 300px !important;">
+        <div class="content-wrapper" style="min-height: 257px;">
             <div class="content-header">
                 <div class="container-fluid">
                     @include('admin.includes.error-message')
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1 class="m-0">Gérer les forums</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <div class="d-flex justify-content-end">
+                                <a href="{{ url('enseignant/forums/create') }}" class="btn btn-primary">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
                         </div><!-- /.col -->
                        
                     </div>
@@ -40,16 +47,19 @@
                                     <span class="description">{{ $forum->created_at->diffForHumans() }}</span>
                                     </div>
                                     <!-- /.user-block -->
-                                    <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" title="Mark as read">
-                                        <i class="far fa-circle"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                        <i class="fas fa-times"></i>
-                                    </button>
+                                    <div class="card-tools d-flex">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        @if($forum->user_id == Auth::user()->id)
+                                        <form action="{{ url('enseignant/forums/'.$forum->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn-delete" onclick="return confirm('Voules-vous supprimer ce forum')">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                        @endif
                                     </div>
                                     <!-- /.card-tools -->
                                 </div>
@@ -84,6 +94,15 @@
                                             <span class="text-muted float-right">{{ $comment->created_at->diffForHumans() }}</span>
                                             </span><!-- /.username -->
                                             {{ $comment->contenue }}
+                                            @if(Auth::id() == $comment->user_id)
+                                            <form action="{{ url('commentaires/'.$comment->id) }}" method="post" class="form_comment">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn-delete" style="background: transparent" onclick="return confirm('Voules-vous supprimer ce forum')">
+                                                    <i class="fa fa-trash" style="transform: scale(1)"></i>
+                                                </button>
+                                            </form>
+                                            @endif
                                         </div>
                                     <!-- /.comment-text -->
                                     </div>

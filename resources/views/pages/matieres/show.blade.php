@@ -313,7 +313,15 @@
                             @if($matiere->quizze)
                                 @if($matiere->quizze->questions->count())
                                     @if(App\Models\Resultat::where('etudiant_id', Auth::user()->etudiant->id)->count() > 0)
-                                        <p class="quiz_message">Vous avez passé ce quizze</p>
+                                        <p class="quiz_message">
+                                            @php
+                                                $note = App\Models\Resultat::where('etudiant_id', Auth::user()->etudiant->id)->where('quizze_id', $matiere->quizze->id)->first()->note;
+                                                $percent = ($note / $matiere->quizze->questions->count()) * 100;
+                                            @endphp
+
+                                            Vous avez passé ce quizze avec un note de {{ round($percent) }}% 
+                                            
+                                        </p>
                                     @else 
                                         <a href="{{ url('matiere/'.$matiere->id.'/quizze') }}" class="btn readon2 orange-transparent">Passer examen</a>
                                     @endif

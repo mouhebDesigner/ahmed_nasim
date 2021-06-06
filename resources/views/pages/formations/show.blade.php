@@ -65,21 +65,22 @@
                                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion" style="">
                                             <div class="card-body acc-content current">
                                                 @if($formation->videos->count() > 0)
-                                                @foreach($formation->videos as $video)
-                                                <div class="content">
-                                                    <div class="clearfix">
-                                                        <div class="pull-left">
-                                                        @php 
-                                                            $link = $video->link;
-                                                            $code = substr($link, strpos($link, 'v=')+2, 11);
-                                                        @endphp
-                                                            <a href="https://www.youtube.com/watch?v={{ $code }}" class="popup-videos play-icon"><span class="fa fa-play"></span>{{ $video->titre }}</a>
-                                                        </div>
-                                                        <div class="pull-right">
+                                                    @foreach($formation->videos as $video)
+                                                    <div class="content">
+                                                        <div class="clearfix">
+                                                            <div class="pull-left">
+                                                            @php 
+                                                                $link = $video->link;
+                                                                $code = substr($link, strpos($link, 'v=')+2, 11);
+                                                            @endphp
+                                                                <a href="https://www.youtube.com/watch?v={{ $code }}"  class="video_showed popup-videos play-icon"><span class="fa fa-play"></span>{{ $video->titre }}</a>
+                                                                <input type="hidden" value="{{ $video->id }}">
+                                                            </div>
+                                                            <div class="pull-right">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                @endforeach
+                                                    @endforeach
                                                 @endif
                                             </div>
                                         </div>
@@ -114,13 +115,42 @@
                     </div>
                     @endif
                     <!-- End Video Box -->
-                    
-                    
-                    
+                    <div class="btn-part" id="certificate">
+                        @if($formation->videos->count() == App\Models\Participant::where('user_id', Auth::id())->first()->video_count)
+                            <a href="{{ url('download_certificat/'.$formation->id) }}" class="btn readon2 orange-transparent">Télécharger certificat</a>
+                        @else 
+                            <p class="quiz_message">Voir toutes les vidéos afin de trouver votre certificat</p>
+                        @endif
+                    </div>
                 </div>
             </div>                        
         </div>                
     </div>
 </section>
+@endsection
+
+@section('js')
+    <script>
+        $(".video_showed").on('click', function(){
+            var formation_id = "<?php echo $formation->id; ?>"
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type:'get',
+                url:'/videos/'+formation_id,
+                success:function(data) {
+                    if(data.success == true){
+                        $("#certificate").empty();
+                        $("#certificate").append(
+                            '<a href="http://127.0.0.1:8000/download_certificat/'+data.formation_id+'" class="btn readon2 orange-transparent">Télécharger certificat</a>'
+                        )
+                    }
+                    console.log("suceess");
+                }    
+            });
+            $(this).removeClass( "video_showed" );
+        });
+    </script>
 @endsection
 

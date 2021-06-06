@@ -28,4 +28,13 @@ class CommentaireController extends Controller
         return redirect('enseignant/forums/')->with('success', 'Votre commentaire a été ajouté avec succée');
     }
 
+    public function destroy($id)
+    {
+        Commentaire::find($id)->delete();
+
+        return redirect()->back()->with('deleted', 'La commentaire a été supprimé avec succé');
+        
+    }
+
+
 }

@@ -39,6 +39,14 @@
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
+                                <!-- Contenue pdf -->
+                                <div class="form-group" id="document">
+                                    <label for="certificat">Certificat</label>
+                                    <input type="file" class="form-control" name="certificat" value="{{ old('certificat') }}" id="certificat" placeholder="Saisir document de module">
+                                    @error('certificat')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
                                 
                                 <!-- Contenue video -->
                                 <div class="form-group">

@@ -5,7 +5,7 @@
         
         @include('admin.includes.header')
         @include('admin.includes.aside')
-        <div class="content-wrapper" style="min-height: 257px; margin-left: 300px !important;">
+        <div class="content-wrapper" style="min-height: 257px; ">
             <div class="content-header">
                 <div class="container-fluid">
                     @include('admin.includes.error-message')
@@ -61,6 +61,9 @@
                                             <div class="d-flex justify-content-around">
                                                 <a href="{{ route('questions.index', ['quizze_id' => $quizze->id]) }}" class="btn btn-primary">
                                                     Questions
+                                                </a>
+                                                <a href="{{ url('enseignant/etudiants/'.$quizze->id) }}" class="btn btn-primary">
+                                                    Etudiants
                                                 </a>
                                                 <form action="{{ route('quizzes.destroy', ['quiz' => $quizze->id]) }}" method="post">
                                                     @csrf

@@ -49,7 +49,25 @@ class FormationController extends Controller
             $formation->image = $request->image->store('images');
         }
 
+        if($request->hasFile('certificat')){
+            $formation->certificat = $request->certificat->store('images');
+        }
+
         $formation->save();
+
+        $etudiants = User::where('grade', 'etudiant')->get();
+        
+        foreach($etudiants as $etudiant){
+
+            $participant = new Participant();
+
+            $participant->user_id = $etudiant->id;
+            $participant->formation_id = $formation->id;
+
+            $participant->save();
+        }
+
+        
         
 
         return redirect('admin/formations')->with('added', 'La formation a été ajouté avec succés');
@@ -101,6 +119,9 @@ class FormationController extends Controller
         
         if($request->hasFile('image')){
             $formation->image = $request->image->store('images');
+        }
+        if($request->hasFile('certificat')){
+            $formation->certificat = $request->certificat->store('images');
         }
 
         $formation->save();

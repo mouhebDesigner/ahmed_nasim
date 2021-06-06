@@ -126,8 +126,7 @@ textarea{
     border-radius: 20px;
     background: #ffffff;
     color: #273c66 !important;
-    border: 2px solid black;
-    font-weight: 600;
+    border: 2px solid #273c66;
 }
 
 .comment_username{
@@ -144,6 +143,7 @@ textarea{
 .forum_block{
     background: white;
     padding: 50px;
+    border-radius: 25px;
 }
 
 .user{
@@ -167,7 +167,7 @@ textarea{
     background: #273c66;
     width: max-content;
     padding: 10px;
-    border-radius: 28px;
+    border-radius: 5px;
     color: white !important;
     float: right;
 }
@@ -237,13 +237,90 @@ textarea{
 }
 body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
     transition: margin-left .3s ease-in-out !important;
-    margin-left: 300px !important;
+    
 }
 
 .main-header{
-    margin-left: 300px !important;
+    
 }
 .instructor-title{
     width: max-content !important;
     font-size: 1.3rem !important;
+}
+
+.circle_score{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 2rem;
+    position: relative;
+}
+.circle_score .circle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    text-align: center;
+    width: 190px;
+    height: 190px;
+    border-radius: 100%;
+    background-color: #ffffff;
+}
+.congratulation{
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.display_flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_delete {
+    border: 2px solid;
+    border-color: #273c66;
+    padding: 10px 50px;
+    line-height: normal;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    background: #273c66;
+    color: #ffffff;
+    border-radius: 5px;
+    margin-bottom: 12px;
+    width: 100%;
+}
+.form_delete_comment{
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.form_delete_comment button .fa{
+    color: #c32727;
+    transform: scale(1.5);
+}
+.form_delete  button .fa{
+    float: right !important;
+    position: relative !important;
+    left: 72px !important;
+    transform: scale(1.8) !important;
+    color: #b92b2b !important;
+    bottom: 10px !important;
+
+}
+
+.name_d{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+}
+.name_d h4{
+    padding: 0;
+    margin: 0;
 }
